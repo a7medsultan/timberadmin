@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-Contrast Specular Timber Studio</title>
+
+    <!-- Bootstrap 5.3.3 CSS & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Custom 3D Timber Architectural Layer -->
+    <link href="timber-studio.css" rel="stylesheet">
+
+    <!-- Chart.js Engine -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Unified Framework Canvas Wrapper -->
+    <div class="d-flex h-100 flex-column p-3 bg-body">
+
+        <!-- TOP CONTROL BAR -->
+        <header class="navbar navbar-expand-lg wood-panel px-4 py-2 mb-3 flex-shrink-0">
+            <a class="navbar-brand d-flex align-items-center gap-2 text-body" href="#"
+                onclick="navigateTo('dashboard')">
+                <i class="bi bi-layers-half btn-wood-secondary fs-4"></i>
+                <span class="fw-bold tracking-tight">Contrast Timber 3D</span>
+            </a>
+
+            <div class="ms-auto d-flex align-items-center gap-2">
+                <button class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-7 mobile-nav-toggle d-lg-none"
+                    onclick="toggleSidebar()">
+                    <i class="bi bi-list"></i>
+                </button>
+                <button class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-7" id="themeToggle"
+                    onclick="handleThemeSwitch()">
+                    <i class="bi bi-moon-stars" id="themeIcon"></i>
+                </button>
+                <button class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-7" id="dirToggle"
+                    onclick="handleDirectionSwitch()">
+                    <span id="dirText">RTL</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- CONTAINER CONTROL DECK -->
+        <div class="d-flex flex-grow-1 overflow-hidden">
+
+            <!-- ROUTED TACTILE CONTROL SIDEBAR -->
+            <div class="sidebar wood-panel p-3 d-flex flex-column flex-shrink-0">
+                <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+                <ul class="nav nav-pills flex-column mb-auto gap-3">
+                    <li class="nav-item">
+                        <a href="#" id="nav-dashboard" class="nav-link active d-flex align-items-center gap-2"
+                            onclick="navigateTo('dashboard')">
+                            <i class="bi bi-cpu-fill"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" id="nav-forms" class="nav-link d-flex align-items-center gap-2"
+                            onclick="navigateTo('forms')">
+                            <i class="bi bi-sliders2"></i> <span>Form Elements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" id="nav-stats" class="nav-link d-flex align-items-center gap-2"
+                            onclick="navigateTo('stats')">
+                            <i class="bi bi-graph-up-arrow"></i> <span>System Stats</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" id="nav-components" class="nav-link d-flex align-items-center gap-2"
+                            onclick="navigateTo('components')">
+                            <i class="bi bi-grid-3x3-gap"></i> <span>Components</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="wood-divider my-3"></div>
+
+                <!-- Surface Matrix Configuration Dropdown -->
+                <div class="dropdown">
+                    <button
+                        class="wood-element btn-wood-secondary btn-sm w-100 text-start d-flex align-items-center justify-content-between dropdown-toggle"
+                        data-bs-toggle="dropdown">
+                        <span class="d-flex align-items-center gap-2 small">
+                            <i class="bi bi-circle-square"></i>
+                            <strong>Surface Matrix</strong>
+                        </span>
+                    </button>
+                    <ul class="dropdown-menu border-0 wood-panel p-2 shadow-lg">
+                        <li><a class="dropdown-item rounded small" href="#">Specular Profile</a></li>
+                        <li>
+                            <div class="wood-divider my-2"></div>
+                        </li>
+                        <li><a class="dropdown-item rounded small" href="#">Reset Vectors</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MAIN ACTIVE VIEWPORT VIEW -->
+            <main class="flex-grow-1 px-4 overflow-y-auto" id="mainViewport">
+                <!-- Content gets injected dynamically by javascript matrix router -->
+            </main>
+
+        </div>
+
+        <!-- CONSOLE FOOTER BAR -->
+        <footer class="footer mt-3 py-2 wood-panel px-4 flex-shrink-0">
+            <div class="d-flex justify-content-between align-items-center small opacity-75">
+                <span>Material Coordinates Bound</span>
+                <span class="fw-bold btn-wood-secondary" id="footerMatrixStatus">Active Deck: Dashboard</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==========================================================================
+       DYNAMIC STRUCTURAL CHANNELS (PAGES DATA SKELETONS)
+       ========================================================================== -->
+
+    <!-- PAGE 1: EXPANDED DASHBOARD VIEWPORT WITH CHARTS & STATS -->
+    <template id="view-dashboard">
+        <div class="container-fluid py-1">
+            <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+                style="border-color: rgba(0,0,0,0.06) !important;">
+                <h2 class="h5 fw-bold mb-0">Chrominance Control Dashboard</h2>
+            </div>
+
+            <!-- 3D STATS CARD ARRAY (RAISED LAYOUT KEYS) -->
+            <div class="row g-3 mb-4">
+                <!-- Stat Card 1 -->
+                <div class="col-12 col-sm-6 col-xl-4">
+                    <div class="wood-stat-card p-3">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="fs-8 text-uppercase fw-bold opacity-50">Active Matrix Nodes</span>
+                            <i class="bi bi-cpu btn-wood-secondary fs-5"></i>
+                        </div>
+                        <div class="h3 fw-bold mb-1 btn-wood-primary">1,402</div>
+                        <span class="fs-9 btn-wood-success fw-bold"><i class="bi bi-arrow-up-short"></i> +12% vs
+                            Epoch</span>
+                    </div>
+                </div>
+
+                <!-- Stat Card 2 -->
+                <div class="col-12 col-sm-6 col-xl-4">
+                    <div class="wood-stat-card p-3">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="fs-8 text-uppercase fw-bold opacity-50">Luminance Output</span>
+                            <i class="bi bi-lightning-charge btn-wood-action fs-5"></i>
+                        </div>
+                        <div class="h3 fw-bold mb-1 btn-wood-primary">482.5 <span
+                                class="fs-7 fw-normal text-body opacity-50">kW</span></div>
+                        <span class="fs-9 btn-wood-secondary fw-bold"><i class="bi bi-dash"></i> Optimal Balance</span>
+                    </div>
+                </div>
+
+                <!-- Stat Card 3 -->
+                <div class="col-12 col-sm-6 col-xl-4">
+                    <div class="wood-stat-card p-3">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="fs-8 text-uppercase fw-bold opacity-50">Specular Variance</span>
+                            <i class="bi bi-activity btn-wood-danger fs-5"></i>
+                        </div>
+                        <div class="h3 fw-bold mb-1 btn-wood-primary">0.04%</div>
+                        <span class="fs-9 btn-wood-danger fw-bold"><i class="bi bi-arrow-down-short"></i> -3.1% Lower
+                            Variance</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RECESSED CHART BAY DISPLAY -->
+            <div class="row g-4 mb-4">
+                <div class="col-12">
+                    <div class="wood-card-inset p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-graph-up btn-wood-secondary fs-5"></i>
+                                <h4 class="h6 fw-bold mb-0 text-body">Frequency Waveform Diagnostics</h4>
+                            </div>
+                            <span class="fs-9 opacity-50 fw-bold">Live Graph Output</span>
+                        </div>
+                        <div class="wood-divider mb-4"></div>
+
+                        <!-- Chart canvas context footprint -->
+                        <div style="position: relative; height: 260px; width: 100%;">
+                            <canvas id="dashboardChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Background System Explainer Panels -->
+            <div class="row g-4">
+                <div class="col-12 col-md-6">
+                    <div class="p-4 wood-panel h-100">
+                        <h5 class="h6 fw-bold mb-2">Continuous Milled Canvas</h5>
+                        <p class="small opacity-75 mb-0">
+                            The background deck and modules are color-locked. The raw linear grain textures run
+                            completely uninterrupted without breaking boundaries.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="p-4 wood-panel h-100">
+                        <h5 class="h6 fw-bold mb-2">Typographic Hierarchy</h5>
+                        <p class="small opacity-75 mb-0">
+                            Interface actions drop flat material boxes for pure laser-etched contrast ink, letting the
+                            clean architecture remain unblemished.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- PAGE 2: FORM ELEMENTS CONSOLE -->
+    <template id="view-forms">
+        <div class="container-fluid py-1">
+            <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+                style="border-color: rgba(0,0,0,0.06) !important;">
+                <h2 class="h5 fw-bold mb-0">Form Controls Console</h2>
+            </div>
+
+            <div class="wood-card-inset p-4">
+                <h4 class="h6 fw-bold mb-3 btn-wood-secondary"><i class="bi bi-sliders me-2"></i>Parameter Node Entry
+                </h4>
+                <div class="wood-divider mb-4"></div>
+
+                <form id="consoleDataForm" onsubmit="event.preventDefault();">
+                    <div class="row g-4">
+                        <!-- Carved Text Box Input Component -->
+                        <div class="col-12 col-md-6">
+                            <label class="form-label small fw-bold opacity-75">Registry Node Label</label>
+                            <input type="text" class="form-control wood-input-carved"
+                                placeholder="e.g. Core-Module-Alpha">
+                        </div>
+
+                        <!-- Carved Select Dropdown Component -->
+                        <div class="col-12 col-md-6">
+                            <label class="form-label small fw-bold opacity-75">Chroma Frequency Channel</label>
+                            <select class="form-select wood-input-carved">
+                                <option selected>Select Channel Matrix...</option>
+                                <option value="1">Terracotta Shift (#BF7A43)</option>
+                                <option value="2">Copper Action (#C46510)</option>
+                                <option value="3">Moss Olive (#7A8568)</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label small fw-bold opacity-75">Registry Node Desc</label>
+                            <textarea class="form-control wood-input-carved" rows="3"
+                                placeholder="e.g. Core-Module-Desc"></textarea>
+                        </div>
+
+                        <!-- Checkboxes & Radios & Switches -->
+                        <div class="col-12 col-md-6">
+                            <div class="wood-card-inset">
+                                <h5 class="h6 fw-bold mb-3">Checkboxes, Radios & Switches</h5>
+                                <div class="d-flex flex-column gap-3">
+                                    <label class="wood-checkbox">
+                                        <input type="checkbox" checked>
+                                        <span class="wood-checkbox-box"><i class="bi bi-check-lg"></i></span>
+                                        Enable diagnostics overlay
+                                    </label>
+                                    <label class="wood-checkbox">
+                                        <input type="checkbox">
+                                        <span class="wood-checkbox-box"><i class="bi bi-check-lg"></i></span>
+                                        Auto-recalibrate nodes
+                                    </label>
+                                    <label class="wood-checkbox">
+                                        <input type="checkbox" disabled>
+                                        <span class="wood-checkbox-box"><i class="bi bi-check-lg"></i></span>
+                                        Locked parameter (disabled)
+                                    </label>
+
+                                    <div class="wood-divider my-1"></div>
+
+                                    <label class="wood-radio">
+                                        <input type="radio" name="matrixMode" checked>
+                                        <span class="wood-radio-circle"></span>
+                                        Linear Grain Mode
+                                    </label>
+                                    <label class="wood-radio">
+                                        <input type="radio" name="matrixMode">
+                                        <span class="wood-radio-circle"></span>
+                                        Cross Grain Mode
+                                    </label>
+
+                                    <div class="wood-divider my-1"></div>
+
+                                    <label class="wood-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="wood-switch-track"><span class="wood-switch-thumb"></span></span>
+                                        Live telemetry sync
+                                    </label>
+                                    <label class="wood-switch">
+                                        <input type="checkbox">
+                                        <span class="wood-switch-track"><span class="wood-switch-thumb"></span></span>
+                                        Override safe mode
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Call-To-Action Operations -->
+                        <div class="col-12 d-flex justify-content-end gap-3 mt-4">
+                            <button type="button" class="wood-element btn-wood-primary btn-sm px-4"
+                                onclick="navigateTo('dashboard')">Cancel</button>
+                            <button type="button" class="wood-element btn-wood-action btn-sm px-4">Execute Matrix
+                                Commit</button>
+                        </div>
+                    </div>
+                    <!-- Add this as a new section within the view-forms template, after the existing form or as its own wood-card-inset -->
+                    <div class="wood-card-inset mt-4">
+                        <h4 class="h6 fw-bold mb-3 btn-wood-secondary"><i class="bi bi-hand-index-thumb me-2"></i>Button
+                            Controls</h4>
+                        <div class="wood-divider mb-4"></div>
+
+                        <div class="row g-4">
+                            <!-- Intent Buttons -->
+                            <div class="col-12">
+                                <label class="form-label small fw-bold opacity-75 d-block mb-2">Intent Variants</label>
+                                <div class="d-flex flex-wrap gap-3">
+                                    <button type="button" class="wood-element btn-wood-primary btn-sm px-4">
+                                        <i class="bi bi-circle me-2"></i>Primary
+                                    </button>
+                                    <button type="button" class="wood-element btn-wood-secondary btn-sm px-4">
+                                        <i class="bi bi-bookmark me-2"></i>Secondary
+                                    </button>
+                                    <button type="button" class="wood-element btn-wood-action btn-sm px-4">
+                                        <i class="bi bi-lightning-charge me-2"></i>Action
+                                    </button>
+                                    <button type="button" class="wood-element btn-wood-success btn-sm px-4">
+                                        <i class="bi bi-check-circle me-2"></i>Success
+                                    </button>
+                                    <button type="button" class="wood-element btn-wood-danger btn-sm px-4">
+                                        <i class="bi bi-exclamation-triangle me-2"></i>Danger
+                                    </button>
+                                    <button type="button" class="wood-element btn-wood-accent btn-sm px-4">
+                                        <i class="bi bi-star me-2"></i>Accent
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Sizes -->
+                            <div class="col-12">
+                                <label class="form-label small fw-bold opacity-75 d-block mb-2">Sizes</label>
+                                <div class="d-flex flex-wrap align-items-center gap-3">
+                                    <button type="button"
+                                        class="wood-element btn-wood-action btn-sm py-1 px-3 fs-8">Small</button>
+                                    <button type="button" class="wood-element btn-wood-action px-4">Default</button>
+                                    <button type="button"
+                                        class="wood-element btn-wood-action px-5 py-3 fs-5">Large</button>
+                                </div>
+                            </div>
+
+                            <!-- Icon-only Buttons -->
+                            <div class="col-12">
+                                <label class="form-label small fw-bold opacity-75 d-block mb-2">Icon Only</label>
+                                <div class="d-flex flex-wrap gap-3">
+                                    <button type="button" class="wood-element btn-wood-primary btn-sm py-2 px-2 fs-6"
+                                        style="width: 42px; height: 42px;">
+                                        <i class="bi bi-gear"></i>
+                                    </button>
+                                    <button type="button" class="wood-element btn-wood-secondary btn-sm py-2 px-2 fs-6"
+                                        style="width: 42px; height: 42px;">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                    <button type="button" class="wood-element btn-wood-action btn-sm py-2 px-2 fs-6"
+                                        style="width: 42px; height: 42px;">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                    <button type="button" class="wood-element btn-wood-danger btn-sm py-2 px-2 fs-6"
+                                        style="width: 42px; height: 42px;">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- States -->
+                            <div class="col-12">
+                                <label class="form-label small fw-bold opacity-75 d-block mb-2">States</label>
+                                <div class="d-flex flex-wrap align-items-center gap-3">
+                                    <button type="button"
+                                        class="wood-element btn-wood-action btn-sm px-4">Normal</button>
+                                    <button type="button"
+                                        class="wood-element btn-wood-action active btn-sm px-4">Pressed</button>
+                                    <button type="button" class="wood-element btn-wood-action btn-sm px-4"
+                                        disabled>Disabled</button>
+                                </div>
+                            </div>
+
+                            <!-- Button Group -->
+                            <div class="col-12">
+                                <label class="form-label small fw-bold opacity-75 d-block mb-2">Grouped Actions</label>
+                                <div class="wood-rocker-track d-inline-flex p-1">
+                                    <button type="button" class="rocker-segment active" onclick="toggleRocker(this)">
+                                        <i class="bi bi-list-ul me-1"></i>List
+                                    </button>
+                                    <button type="button" class="rocker-segment" onclick="toggleRocker(this)">
+                                        <i class="bi bi-grid-3x3-gap me-1"></i>Grid
+                                    </button>
+                                    <button type="button" class="rocker-segment" onclick="toggleRocker(this)">
+                                        <i class="bi bi-card-list me-1"></i>Card
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Full Width / Block Buttons -->
+                            <div class="col-12">
+                                <label class="form-label small fw-bold opacity-75 d-block mb-2">Block Width</label>
+                                <div class="d-flex flex-column gap-3" style="max-width: 320px;">
+                                    <button type="button" class="wood-element btn-wood-action w-100">
+                                        <i class="bi bi-cloud-upload me-2"></i>Upload Configuration
+                                    </button>
+                                    <button type="button" class="wood-element btn-wood-primary w-100">
+                                        <i class="bi bi-arrow-clockwise me-2"></i>Reset to Defaults
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Loading Button -->
+                            <div class="col-12">
+                                <label class="form-label small fw-bold opacity-75 d-block mb-2">Loading State</label>
+                                <button type="button"
+                                    class="wood-element btn-wood-action btn-sm px-4 d-inline-flex align-items-center gap-2"
+                                    disabled>
+                                    <span class="wood-spinner"></span>
+                                    Processing...
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </template>
+
+    <!-- PAGE 3: SYSTEM STATS DECK -->
+    <template id="view-stats">
+        <div class="container-fluid py-1">
+            <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+                style="border-color: rgba(0,0,0,0.06) !important;">
+                <h2 class="h5 fw-bold mb-0">System Node Registry & Stats</h2>
+            </div>
+
+            <!-- Deep Carved Card Display Containing Laser-Etched Table -->
+            <div class="wood-card-inset">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-cpu btn-wood-secondary fs-5"></i>
+                        <h4 class="h6 fw-bold mb-0 text-body">Live Node Calibration Ledger</h4>
+                    </div>
+                </div>
+
+                <div class="table-responsive wood-table-container">
+                    <table class="table wood-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Node Identification</th>
+                                <th scope="col">Matrix State</th>
+                                <th scope="col">Luminance</th>
+                                <th scope="col" class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="fw-bold d-block small">Core-Module-Alpha</span>
+                                    <span class="fs-9 opacity-50">Addr: 0x4F8E2</span>
+                                </td>
+                                <td><span class="btn-wood-success small"><i class="bi bi-circle-fill me-1 fs-9"></i>
+                                        Operational</span></td>
+                                <td><span class="small opacity-75">85% Stable</span></td>
+                                <td class="text-end">
+                                    <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
+                                            class="bi bi-sliders"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-bold d-block small">Bevel-Vector-Beta</span>
+                                    <span class="fs-9 opacity-50">Addr: 0x9A1C4</span>
+                                </td>
+                                <td><span class="btn-wood-success small"><i class="bi bi-circle-fill me-1 fs-9"></i>
+                                        Operational</span></td>
+                                <td><span class="small opacity-75">92% Stable</span></td>
+                                <td class="text-end">
+                                    <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
+                                            class="bi bi-sliders"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-bold d-block small">Specular-Chroma-Delta</span>
+                                    <span class="fs-9 opacity-50">Addr: 0x2D7B9</span>
+                                </td>
+                                <td><span class="btn-wood-danger small"><i class="bi bi-slash-circle me-1 fs-9"></i>
+                                        Mismatch Fault</span></td>
+                                <td><span class="small btn-wood-danger fw-bold">41% Variance</span></td>
+                                <td class="text-end">
+                                    <button class="wood-element btn-wood-danger btn-sm py-1 px-2 fs-8 shadow-sm"><i
+                                            class="bi bi-wrench-adjustable"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- PAGE 4: COMPONENT SHOWCASE -->
+    <template id="view-components">
+        <div class="container-fluid py-1">
+            <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+                style="border-color: rgba(0,0,0,0.06) !important;">
+                <h2 class="h5 fw-bold mb-0">Component Showcase</h2>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- Badges -->
+                <div class="col-12 col-md-6">
+                    <div class="wood-panel p-4 mb-3">
+                        <h5 class="h6 fw-bold mb-3">Badges</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="wood-badge btn-wood-secondary"><i class="bi bi-circle-fill"></i>
+                                Secondary</span>
+                            <span class="wood-badge btn-wood-action"><i class="bi bi-lightning-charge-fill"></i>
+                                Action</span>
+                            <span class="wood-badge btn-wood-success"><i class="bi bi-check-circle-fill"></i>
+                                Success</span>
+                            <span class="wood-badge btn-wood-danger"><i class="bi bi-exclamation-triangle-fill"></i>
+                                Danger</span>
+                            <span class="wood-badge wood-badge-inset btn-wood-accent"><i class="bi bi-star-fill"></i>
+                                Inset Accent</span>
+                        </div>
+                    </div>
+
+                    <div class="wood-panel p-4 mb-3">
+                        <h5 class="h6 fw-bold mb-3">Tooltips & Popovers</h5>
+                        <div class="d-flex flex-wrap gap-3 align-items-center">
+                            <span class="wood-tooltip-trigger">
+                                <button class="wood-element btn-wood-primary btn-sm">Hover for tooltip</button>
+                                <span class="wood-tooltip tt-top">Specular variance: 0.04%</span>
+                            </span>
+
+                            <div style="position: relative;">
+                                <button class="wood-element btn-wood-secondary btn-sm"
+                                    onclick="toggleWoodPopover()">Toggle
+                                    popover</button>
+                                <div class="wood-popover" id="demoPopover">
+                                    <div class="wood-popover-title">Node Details</div>
+                                    <div class="wood-popover-body">Core-Module-Alpha is operating at 85% stability with
+                                        nominal luminance output.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wood-panel p-4">
+                        <h5 class="h6 fw-bold mb-3">Modals & Toasts</h5>
+                        <div class="d-flex flex-wrap gap-3">
+                            <button class="wood-element btn-wood-action btn-sm" onclick="openWoodModal()">Open
+                                Modal</button>
+                            <button class="wood-element btn-wood-success btn-sm"
+                                onclick="showToast('success', 'Sync Complete', 'All matrix nodes recalibrated successfully.')">Success
+                                Toast</button>
+                            <button class="wood-element btn-wood-danger btn-sm"
+                                onclick="showToast('danger', 'Fault Detected', 'Specular-Chroma-Delta reported a mismatch fault.')">Danger
+                                Toast</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bars -->
+                <div class="col-12 col-md-6">
+                    <div class="wood-panel p-4 mb-3">
+                        <h5 class="h6 fw-bold mb-3">Progress Bars</h5>
+                        <div class="d-flex flex-column gap-3">
+                            <div class="wood-progress">
+                                <div class="wood-progress-bar bar-secondary" style="width: 85%;"></div>
+                            </div>
+                            <div class="wood-progress">
+                                <div class="wood-progress-bar bar-action" style="width: 60%;"></div>
+                            </div>
+                            <div class="wood-progress">
+                                <div class="wood-progress-bar bar-success" style="width: 95%;"></div>
+                            </div>
+                            <div class="wood-progress">
+                                <div class="wood-progress-bar bar-danger" style="width: 41%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wood-panel p-4">
+                        <h5 class="h6 fw-bold mb-3">Pagination</h5>
+                        <ul class="wood-pagination">
+                            <li class="page-item disabled"><a class="page-link" href="#"><i
+                                        class="bi bi-chevron-left"></i></a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Skeleton Loaders -->
+                <div class="col-12">
+                    <div class="wood-card-inset">
+                        <h5 class="h6 fw-bold mb-3">Skeleton Loaders</h5>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-4">
+                                <div class="wood-skeleton wood-skeleton-circle mb-3"></div>
+                                <div class="wood-skeleton wood-skeleton-title"></div>
+                                <div class="wood-skeleton wood-skeleton-text"></div>
+                                <div class="wood-skeleton wood-skeleton-text medium"></div>
+                                <div class="wood-skeleton wood-skeleton-text short"></div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="wood-skeleton wood-skeleton-card mb-2"></div>
+                                <div class="wood-skeleton wood-skeleton-text"></div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="wood-skeleton wood-skeleton-card mb-2"></div>
+                                <div class="wood-skeleton wood-skeleton-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cards Section -->
+                <div class="col-12">
+                    <div class="wood-panel p-4">
+                        <h5 class="h6 fw-bold mb-3">Cards</h5>
+                        <div class="row g-4">
+
+                            <!-- Standard card with image -->
+                            <div class="col-12 col-md-4">
+                                <div class="wood-card wood-card-hover">
+                                    <img src="https://picsum.photos/seed/timber1/400/240" class="wood-card-img-top"
+                                        alt="Module preview">
+                                    <div class="wood-card-body">
+                                        <div class="wood-card-subtitle btn-wood-secondary">Calibration Node</div>
+                                        <h6 class="wood-card-title">Core-Module-Alpha</h6>
+                                        <p class="wood-card-text">Primary processing unit running at nominal specular
+                                            variance with stable luminance throughput.</p>
+                                        <button class="wood-element btn-wood-action btn-sm px-4 w-100">View
+                                            Details</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Accent status card, no image -->
+                            <div class="col-12 col-md-4">
+                                <div class="wood-card wood-card-hover wood-card-accent btn-wood-danger">
+                                    <div class="wood-card-body">
+                                        <div class="wood-card-subtitle btn-wood-danger"><i
+                                                class="bi bi-exclamation-triangle-fill me-1"></i>Fault Alert</div>
+                                        <h6 class="wood-card-title text-body">Specular-Chroma-Delta</h6>
+                                        <p class="wood-card-text">Mismatch fault detected — 41% variance exceeds the
+                                            safe calibration threshold.</p>
+                                    </div>
+                                    <div class="wood-card-footer">
+                                        <span class="wood-card-footer-meta">Addr: 0x2D7B9</span>
+                                        <button
+                                            class="wood-element btn-wood-danger btn-sm py-1 px-3 fs-8">Resolve</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Flat / inset card -->
+                            <div class="col-12 col-md-4">
+                                <div class="wood-card wood-card-flat">
+                                    <div class="wood-card-body">
+                                        <div class="wood-card-subtitle btn-wood-success"><i
+                                                class="bi bi-graph-up-arrow me-1"></i>Summary</div>
+                                        <h6 class="wood-card-title">Weekly Output</h6>
+                                        <p class="wood-card-text">Aggregate luminance across all active nodes increased
+                                            12% over the previous epoch.</p>
+                                    </div>
+                                    <div class="wood-card-footer">
+                                        <span class="wood-card-footer-meta">Updated 2h ago</span>
+                                        <i class="bi bi-arrow-clockwise btn-wood-secondary"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Horizontal card -->
+                            <div class="col-12">
+                                <div class="wood-card wood-card-hover wood-card-horizontal">
+                                    <img src="https://picsum.photos/seed/timber2/200/200" class="wood-card-img-top"
+                                        alt="Module preview">
+                                    <div class="wood-card-body d-flex flex-column justify-content-center">
+                                        <div class="wood-card-subtitle btn-wood-secondary">Registry Entry</div>
+                                        <h6 class="wood-card-title">Bevel-Vector-Beta</h6>
+                                        <p class="wood-card-text mb-0">Secondary support module operating at 92%
+                                            stability — no action required at this time.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="col-12">
+                    <div class="wood-card-inset">
+                        <div class="wood-empty-state">
+                            <i class="bi bi-inbox"></i>
+                            <h5>No Calibration Records Found</h5>
+                            <p class="opacity-75 mb-3">Run a diagnostic sweep to populate the node registry.</p>
+                            <button class="wood-element btn-wood-action btn-sm px-4">Run Diagnostic Sweep</button>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            </div>
+        </div>
+    </template>
+
+    <!-- Modal markup - place near end of body, before scripts -->
+    <div class="wood-modal-backdrop" id="woodModal" style="display: none;">
+        <div class="wood-modal-content">
+            <div class="wood-modal-header">
+                <h5 class="wood-modal-title">Confirm Matrix Commit</h5>
+                <button class="btn-close-raised" onclick="closeWoodModal()"><i class="bi bi-x"></i></button>
+            </div>
+            <div class="wood-modal-body">
+                This action will permanently bind the current chroma frequency channel configuration to the active node
+                registry. Continue?
+            </div>
+            <div class="wood-modal-footer">
+                <button class="wood-element btn-wood-primary btn-sm px-4" onclick="closeWoodModal()">Cancel</button>
+                <button class="wood-element btn-wood-action btn-sm px-4" onclick="closeWoodModal()">Confirm
+                    Commit</button>
+            </div>
+        </div>
+    </div>
+    <div class="wood-toast-container" id="toastContainer"></div>
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>import "./timber-script.js";</script>
+    
+</body>
+
+</html>

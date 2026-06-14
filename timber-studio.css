@@ -1,0 +1,1550 @@
+/* ==========================================================================
+   TIMBER STUDIO COGNITIVE 3D SURFACE STYLESHEET
+   ========================================================================== */
+
+:root,
+[data-bs-theme="light"] {
+    /* Unified Block Surface & Canvas Backdrop Base */
+    --studio-bg: #f5d5b4;
+    --studio-canvas: #f5d5b4;
+
+    /* Bootstrap Engine Synchronization (Hex #f5d5b4 converted to RGB channels) */
+    --bs-body-bg-rgb: 245, 213, 180;
+
+    /* Organic Texture Layers */
+    --studio-texture: url(lightwood.png);
+    --studio-blend: multiply;
+
+    --bs-body-bg: var(--studio-canvas);
+    --bs-body-color: var(--studio-text);
+
+    /* Real-World Typographic Ink Mappings */
+    --studio-text: #36302b;
+    /* --medium-warm-gray: Soft Stone Charcoal */
+    --studio-text-alt: #5e564f;
+    /* --light-warm-gray */
+
+    --btn-text-primary: #36302b;
+    /* --medium-warm-gray */
+    --btn-text-secondary: #a6632e;
+    /* --deep-terracotta: Rich Clay */
+    --btn-text-action: #c46510;
+    /* --clay: Hand-Rubbed Copper */
+    --btn-text-success: #7a8568;
+    /* --olive: Moss Green */
+    --btn-text-danger: #935759;
+    /* --color-dusty-rose: Mahogany Red */
+
+    /* High-Contrast Light Mode 3D Specular Bevels */
+    --nm-outset:
+        1px 1px 0px rgba(255, 245, 235, 0.85),
+        -1px -1px 0px rgba(150, 110, 70, 0.45),
+        5px 5px 12px rgba(150, 110, 70, 0.55),
+        -5px -5px 12px rgba(255, 245, 235, 0.5);
+
+    --nm-outset-hover:
+        1px 1px 0px rgba(255, 245, 235, 0.95),
+        -1px -1px 0px rgba(130, 90, 50, 0.55),
+        8px 8px 18px rgba(150, 110, 70, 0.65),
+        -8px -8px 18px rgba(255, 245, 235, 0.85);
+
+    --nm-inset:
+        inset 1px 1px 3px rgba(89, 43, 17, 0.22),
+        inset -1px -1px 0px rgba(255, 245, 235, 0.6),
+        inset 4px 4px 8px rgba(150, 110, 70, 0.5),
+        inset -4px -4px 8px rgba(255, 245, 235, 0.6);
+}
+
+[data-bs-theme="dark"] {
+    /* Unified Block Surface & Canvas Backdrop Base */
+    --studio-bg: #4e2a14;
+    --studio-canvas: #331a0b;
+
+    /* Bootstrap Engine Synchronization (Hex #331a0b converted to RGB channels) */
+    --bs-body-bg-rgb: 51, 26, 11;
+
+    /* Organic Texture Layers */
+    --studio-texture: url(lightwood.png);
+    --studio-blend: multiply;
+
+    --bs-body-bg: var(--studio-canvas);
+    --bs-body-color: var(--studio-text);
+
+    /* Glowing Intaglio Ink Mappings */
+    --studio-text: #fff9f5;
+    /* --warm-white: Soft Specular Glow */
+    --studio-text-alt: #d4c7ba;
+    /* --warm-gray: Raw Balsa */
+
+    --btn-text-primary: #fff9f5;
+    /* --warm-white */
+    --btn-text-secondary: #bf7a43;
+    /* --color-terracotta: Bright Terracotta */
+    --btn-text-action: #e07a1f;
+    /* --burnt-orange: Glowing Amber */
+    --btn-text-success: #92967f;
+    /* --color-sage: Sage Green */
+    --btn-text-danger: #c26a6c;
+    /* --soft-red: Muted Coral */
+
+    /* Dark Mode 3D Soft Specular Bevels */
+    --nm-outset:
+        1px 1px 0px rgba(110, 63, 34, 0.5),
+        -1px -1px 0px rgba(31, 13, 4, 0.6),
+        5px 5px 12px rgba(20, 7, 0, 0.7),
+        -5px -5px 12px rgba(110, 63, 34, 0.4);
+
+    --nm-outset-hover:
+        1px 1px 0px rgba(125, 73, 40, 0.7),
+        -1px -1px 0px rgba(20, 7, 0, 0.8),
+        8px 8px 18px rgba(20, 7, 0, 0.8),
+        -8px -8px 18px rgba(110, 63, 34, 0.5);
+
+    --nm-inset:
+        inset 1px 1px 3px rgba(20, 7, 0, 0.6),
+        inset -1px -1px 0px rgba(110, 63, 34, 0.4),
+        inset 4px 4px 8px rgba(20, 7, 0, 0.6),
+        inset -4px -4px 8px rgba(110, 63, 34, 0.3);
+}
+
+/* --- MATERIAL APPARATUS CORES --- */
+
+body {
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    height: 100%;
+    overflow: hidden;
+}
+
+html {
+    height: 100%;
+}
+
+.wood-panel {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    box-shadow: var(--nm-inset);
+    border-radius: 12px;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --- STANDARDIZED PHYSICAL COMPONENT SURFACE --- */
+.wood-element {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    box-shadow: var(--nm-outset);
+    border-radius: 8px;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wood-element:hover {
+    box-shadow: var(--nm-outset-hover);
+    transform: translateY(-1px);
+}
+
+.wood-element:active,
+.wood-element.active {
+    box-shadow: var(--nm-inset) !important;
+    transform: translateY(1px);
+}
+
+/* --- TYPOGRAPHIC INTENT MODIFIERS --- */
+.btn-wood-primary {
+    color: var(--btn-text-primary) !important;
+}
+
+.btn-wood-secondary {
+    color: var(--btn-text-secondary) !important;
+}
+
+.btn-wood-action {
+    color: var(--btn-text-action) !important;
+}
+
+.btn-wood-success {
+    color: var(--btn-text-success) !important;
+}
+
+.btn-wood-danger {
+    color: var(--btn-text-danger) !important;
+}
+
+/* --- INTERFACE UTILITIES --- */
+.sidebar {
+    width: 260px;
+    min-height: 100%;
+}
+
+[dir="rtl"] .ms-auto {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+.nav-pills .nav-link {
+    background: transparent;
+    color: var(--studio-text);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.nav-pills .nav-link.active {
+    box-shadow: var(--nm-inset) !important;
+    background-color: transparent !important;
+    color: var(--btn-text-secondary) !important;
+    font-weight: 700;
+}
+
+.wood-divider {
+    height: 0;
+    border: none;
+    border-top: 1px solid var(--studio-text-alt);
+    opacity: 0.15;
+}
+
+[data-bs-theme="light"] .wood-divider {
+    box-shadow: 0px 1px 0px rgba(255, 245, 235, 0.4);
+}
+
+[data-bs-theme="dark"] .wood-divider {
+    box-shadow: 0px 1px 0px rgba(110, 63, 34, 0.3);
+    border-top-color: rgba(43, 20, 7, 0.6);
+}
+
+/* --- CARVED CONTEXTUAL ALERTS --- */
+.wood-alert-carved {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+
+    /* Using the deep inset shadow to mimic a precision-routed trench */
+    box-shadow: var(--nm-inset) !important;
+    border: none;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    /* Elegant left boundary marker using your typographic accent values */
+    border-left: 4px solid currentColor;
+}
+
+/* --- RAISED MECHANICAL DISMISS UTILITY --- */
+.wood-alert-carved .btn-close-raised {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+
+    /* Forces the button upward against the sunken alert background */
+    box-shadow: var(--nm-outset) !important;
+    border: none;
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: var(--studio-text-alt);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wood-alert-carved .btn-close-raised:hover {
+    box-shadow: var(--nm-outset-hover) !important;
+    color: var(--studio-text);
+    transform: translateY(-1px);
+}
+
+.wood-alert-carved .btn-close-raised:active {
+    box-shadow: var(--nm-inset) !important;
+    transform: translateY(1px);
+}
+
+/* Custom alignment adjustment for RTL rendering blocks */
+[dir="rtl"] .wood-alert-carved {
+    border-left: none;
+    border-right: 4px solid currentColor;
+}
+
+/* --- TACTILE SIDEBAR NAVIGATION ELEMENTS --- */
+.sidebar .nav-pills .nav-link {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+
+    /* Inactive State: Raised cleanly off the sidebar canvas deck */
+    box-shadow: var(--nm-outset) !important;
+    color: var(--studio-text) !important;
+    border-radius: 8px;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hovering over an unselected wooden link block */
+.sidebar .nav-pills .nav-link:hover:not(.active) {
+    box-shadow: var(--nm-outset-hover) !important;
+    transform: translateY(-1px);
+    color: var(--btn-text-secondary) !important;
+    /* Glow text on hover */
+}
+
+/* Active State: The block physically depresses completely down into the groove */
+.sidebar .nav-pills .nav-link.active {
+    box-shadow: var(--nm-inset) !important;
+    background-color: transparent !important;
+    color: var(--btn-text-secondary) !important;
+    /* Beautiful terracotta highlight ink */
+    font-weight: 700;
+    transform: translateY(1px);
+}
+
+/* --- DEEP CARVED CONTENT CARDS --- */
+.wood-card-inset {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+
+    /* Stronger, tighter inset shadows to give the tray distinct vertical depth */
+    box-shadow:
+        inset 2px 2px 5px rgba(50, 25, 10, 0.25),
+        inset -1px -1px 0px rgba(255, 245, 235, 0.5),
+        inset 5px 5px 10px rgba(110, 63, 34, 0.2),
+        inset -5px -5px 10px rgba(255, 245, 235, 0.5) !important;
+
+    border: none;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+/* Dark mode adjustment for deep trenches */
+[data-bs-theme="dark"] .wood-card-inset {
+    box-shadow:
+        inset 2px 2px 5px rgba(15, 5, 0, 0.7),
+        inset -1px -1px 0px rgba(110, 63, 34, 0.3),
+        inset 6px 6px 12px rgba(15, 5, 0, 0.6),
+        inset -6px -6px 12px rgba(110, 63, 34, 0.2) !important;
+}
+
+/* --- LAZER-ETCHED DATA TABLES --- */
+.wood-table-container {
+    border: none;
+    background: transparent;
+}
+
+.wood-table {
+    margin-bottom: 0;
+    color: var(--studio-text) !important;
+    vertical-align: middle;
+}
+
+/* Style the header row to look slightly distinct but clean */
+.wood-table thead th {
+    color: var(--btn-text-secondary) !important;
+    /* Beautiful terracotta accent ink */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid rgba(90, 85, 80, 0.15) !important;
+    padding: 0.75rem 1rem;
+}
+
+[data-bs-theme="dark"] .wood-table thead th {
+    border-bottom: 2px solid rgba(255, 249, 245, 0.15) !important;
+}
+
+/* Etched horizontal separator lines for the rows */
+.wood-table tbody td {
+    padding: 0.85rem 1rem;
+    color: var(--studio-text);
+    border-bottom: 1px solid rgba(90, 85, 80, 0.08) !important;
+    background: transparent !important;
+}
+
+[data-bs-theme="dark"] .wood-table tbody td {
+    border-bottom: 1px solid rgba(255, 249, 245, 0.08) !important;
+}
+
+/* Remove the border from the very last row so it blends into the card radius */
+.wood-table tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* --- CARVED FORM ELEMENT TRACKS --- */
+.wood-input-carved {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    box-shadow: var(--nm-inset) !important;
+    color: var(--studio-text) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.65rem 1rem;
+    font-weight: 500;
+    transition: all 0.25s linear;
+}
+
+/* Focused form input slot channels illuminate with dynamic interaction ink */
+.wood-input-carved:focus {
+    outline: none !important;
+    box-shadow: var(--nm-inset) !important;
+    color: var(--btn-text-secondary) !important;
+}
+
+.wood-input-carved::placeholder {
+    color: var(--studio-text-alt);
+    opacity: 0.5;
+}
+
+/* --- SEGMENTED MECHANICAL ROCKER SWITCHES --- */
+.wood-rocker-track {
+    background-color: var(--studio-bg);
+    background-image: var(--studio-texture);
+    background-blend-mode: var(--studio-blend);
+    box-shadow: var(--nm-inset) !important;
+    border-radius: 10px;
+    gap: 4px;
+}
+
+.wood-rocker-track .rocker-segment {
+    background: transparent;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--studio-text-alt);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* The active choice springs upward out of the route line slot track */
+.wood-rocker-track .rocker-segment.active {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    box-shadow: var(--nm-outset) !important;
+    color: var(--btn-text-action) !important;
+    /* Action accent color highlights selection */
+}
+
+/* --- TACTILE MINATURE STAT CARDS --- */
+.wood-stat-card {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    box-shadow: var(--nm-outset) !important;
+    /* Raised wood block keys */
+    border-radius: 10px;
+    border: none;
+    transition: all 0.25s ease;
+}
+
+.wood-stat-card:hover {
+    box-shadow: var(--nm-outset-hover) !important;
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   ADDITIONAL TIMBER STUDIO COMPONENTS
+   ========================================================================== */
+
+/* --- THIRD ACCENT TONE (Primary CTA distinct from secondary) --- */
+:root,
+[data-bs-theme="light"] {
+    --btn-text-accent: #8a6d3b;
+    /* --warm-umber: Deep Walnut Accent */
+}
+
+[data-bs-theme="dark"] {
+    --btn-text-accent: #d9a86c;
+    /* --light-walnut: Glowing Walnut */
+}
+
+.btn-wood-accent {
+    color: var(--btn-text-accent) !important;
+}
+
+/* --- SMOOTH THEME TRANSITION --- */
+.wood-panel,
+.wood-element,
+.wood-card-inset,
+.wood-input-carved,
+.wood-rocker-track,
+.wood-stat-card,
+.wood-table tbody td,
+.wood-table thead th,
+.wood-divider,
+.wood-alert-carved,
+.wood-modal-content,
+.wood-toast,
+.wood-badge,
+.wood-progress,
+.wood-checkbox,
+.wood-radio,
+.wood-switch-track,
+.wood-pagination .page-link {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ==========================================================================
+   CUSTOM SCROLLBARS
+   ========================================================================== */
+.sidebar::-webkit-scrollbar,
+#mainViewport::-webkit-scrollbar,
+.wood-table-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.sidebar::-webkit-scrollbar-track,
+#mainViewport::-webkit-scrollbar-track,
+.wood-table-container::-webkit-scrollbar-track {
+    background-color: var(--studio-bg);
+    background-image: var(--studio-texture);
+    background-blend-mode: var(--studio-blend);
+    box-shadow: var(--nm-inset);
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+#mainViewport::-webkit-scrollbar-thumb,
+.wood-table-container::-webkit-scrollbar-thumb {
+    background-color: var(--studio-bg);
+    background-image: var(--studio-texture);
+    background-blend-mode: var(--studio-blend);
+    box-shadow: var(--nm-outset);
+    border-radius: 10px;
+    border: 2px solid transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover,
+#mainViewport::-webkit-scrollbar-thumb:hover,
+.wood-table-container::-webkit-scrollbar-thumb:hover {
+    box-shadow: var(--nm-outset-hover);
+}
+
+/* Firefox */
+.sidebar,
+#mainViewport,
+.wood-table-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--studio-text-alt) transparent;
+}
+
+/* ==========================================================================
+   FOCUS-VISIBLE ACCESSIBILITY STATES
+   ========================================================================== */
+.wood-element:focus-visible,
+.wood-input-carved:focus-visible,
+.sidebar .nav-pills .nav-link:focus-visible,
+.wood-rocker-track .rocker-segment:focus-visible,
+.wood-checkbox input:focus-visible~.wood-checkbox-box,
+.wood-radio input:focus-visible~.wood-radio-circle,
+.wood-switch-track input:focus-visible~.wood-switch-thumb,
+.wood-pagination .page-link:focus-visible {
+    outline: 2px solid var(--btn-text-action) !important;
+    outline-offset: 2px;
+}
+
+.wood-input-carved:focus-visible {
+    box-shadow: var(--nm-inset), 0 0 0 2px var(--btn-text-action) !important;
+    outline: none !important;
+}
+
+/* ==========================================================================
+   DISABLED STATES
+   ========================================================================== */
+.wood-element:disabled,
+.wood-element.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: var(--nm-inset) !important;
+    transform: none !important;
+}
+
+.wood-input-carved:disabled,
+.wood-input-carved.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    color: var(--studio-text-alt) !important;
+}
+
+.wood-rocker-track .rocker-segment:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ==========================================================================
+   BADGES / PILLS
+   ========================================================================== */
+.wood-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    box-shadow: var(--nm-outset) !important;
+    border-radius: 999px;
+    padding: 0.3rem 0.85rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1;
+}
+
+.wood-badge.wood-badge-inset {
+    box-shadow: var(--nm-inset) !important;
+}
+
+.wood-badge i {
+    font-size: 0.65rem;
+}
+
+/* ==========================================================================
+   PROGRESS BARS
+   ========================================================================== */
+.wood-progress {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    box-shadow: var(--nm-inset) !important;
+    border-radius: 999px;
+    height: 14px;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.wood-progress-bar {
+    height: 100%;
+    border-radius: 999px;
+    background-color: var(--studio-bg);
+    background-image: var(--studio-texture);
+    background-blend-mode: var(--studio-blend);
+    box-shadow: var(--nm-outset);
+    position: relative;
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    min-width: 14px;
+}
+
+/* Color overlays via pseudo-element so the wood grain still shows through */
+.wood-progress-bar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    mix-blend-mode: multiply;
+    opacity: 0.55;
+}
+
+.wood-progress-bar.bar-secondary::after {
+    background-color: var(--btn-text-secondary);
+}
+
+.wood-progress-bar.bar-action::after {
+    background-color: var(--btn-text-action);
+}
+
+.wood-progress-bar.bar-success::after {
+    background-color: var(--btn-text-success);
+}
+
+.wood-progress-bar.bar-danger::after {
+    background-color: var(--btn-text-danger);
+}
+
+.wood-progress-bar.bar-accent::after {
+    background-color: var(--btn-text-accent);
+}
+
+/* ==========================================================================
+   CHECKBOXES
+   ========================================================================== */
+.wood-checkbox {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.wood-checkbox input {
+    position: absolute;
+    opacity: 0;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.wood-checkbox-box {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    background-color: var(--studio-bg);
+    background-image: var(--studio-texture);
+    background-blend-mode: var(--studio-blend);
+    box-shadow: var(--nm-outset);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wood-checkbox-box i {
+    font-size: 0.85rem;
+    color: var(--btn-text-action);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wood-checkbox input:checked~.wood-checkbox-box {
+    box-shadow: var(--nm-inset);
+}
+
+.wood-checkbox input:checked~.wood-checkbox-box i {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.wood-checkbox input:disabled~.wood-checkbox-box {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.wood-checkbox:hover .wood-checkbox-box {
+    box-shadow: var(--nm-outset-hover);
+}
+
+.wood-checkbox input:checked:hover~.wood-checkbox-box {
+    box-shadow: var(--nm-inset);
+}
+
+/* ==========================================================================
+   RADIO BUTTONS
+   ========================================================================== */
+.wood-radio {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.wood-radio input {
+    position: absolute;
+    opacity: 0;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.wood-radio-circle {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    background-color: var(--studio-bg);
+    background-image: var(--studio-texture);
+    background-blend-mode: var(--studio-blend);
+    box-shadow: var(--nm-outset);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wood-radio-circle::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--btn-text-action);
+    opacity: 0;
+    transform: scale(0.4);
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wood-radio input:checked~.wood-radio-circle {
+    box-shadow: var(--nm-inset);
+}
+
+.wood-radio input:checked~.wood-radio-circle::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.wood-radio input:disabled~.wood-radio-circle {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.wood-radio:hover .wood-radio-circle {
+    box-shadow: var(--nm-outset-hover);
+}
+
+.wood-radio input:checked:hover~.wood-radio-circle {
+    box-shadow: var(--nm-inset);
+}
+
+/* ==========================================================================
+   TOGGLE SWITCHES
+   ========================================================================== */
+.wood-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.wood-switch input {
+    position: absolute;
+    opacity: 0;
+    width: 50px;
+    height: 28px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.wood-switch-track {
+    width: 50px;
+    height: 28px;
+    flex-shrink: 0;
+    background-color: var(--studio-bg);
+    background-image: var(--studio-texture);
+    background-blend-mode: var(--studio-blend);
+    box-shadow: var(--nm-inset);
+    border-radius: 999px;
+    position: relative;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wood-switch-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: var(--studio-bg);
+    background-image: var(--studio-texture);
+    background-blend-mode: var(--studio-blend);
+    box-shadow: var(--nm-outset);
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wood-switch input:checked~.wood-switch-track .wood-switch-thumb,
+.wood-switch input:checked~.wood-switch-track {
+    /* handled below via sibling selector trick */
+}
+
+.wood-switch input:checked~.wood-switch-track .wood-switch-thumb {
+    transform: translateX(22px);
+    box-shadow: var(--nm-outset-hover);
+}
+
+.wood-switch input:checked~.wood-switch-track {
+    box-shadow: var(--nm-inset);
+}
+
+.wood-switch input:checked~.wood-switch-track .wood-switch-thumb::after {
+    content: "";
+}
+
+.wood-switch input:checked~.wood-switch-track {
+    background-blend-mode: var(--studio-blend);
+}
+
+.wood-switch input:checked~.wood-switch-track .wood-switch-thumb {
+    box-shadow: var(--nm-outset-hover), inset 0 0 0 999px rgba(196, 101, 16, 0.12);
+}
+
+.wood-switch input:disabled~.wood-switch-track {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* ==========================================================================
+   PAGINATION
+   ========================================================================== */
+.wood-pagination {
+    display: flex;
+    gap: 0.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wood-pagination .page-item .page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 0.6rem;
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    box-shadow: var(--nm-outset) !important;
+    border-radius: 8px;
+    border: none;
+    color: var(--studio-text) !important;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wood-pagination .page-item .page-link:hover {
+    box-shadow: var(--nm-outset-hover) !important;
+    color: var(--btn-text-secondary) !important;
+    transform: translateY(-1px);
+}
+
+.wood-pagination .page-item.active .page-link {
+    box-shadow: var(--nm-inset) !important;
+    color: var(--btn-text-action) !important;
+    transform: translateY(1px);
+}
+
+.wood-pagination .page-item.disabled .page-link {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: var(--nm-inset) !important;
+}
+
+/* ==========================================================================
+   MODALS
+   ========================================================================== */
+.wood-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(20, 10, 4, 0.45);
+    backdrop-filter: blur(3px);
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+[data-bs-theme="dark"] .wood-modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+.wood-modal-content {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    box-shadow: var(--nm-outset-hover) !important;
+    border-radius: 14px;
+    border: none;
+    max-width: 480px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.wood-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(90, 85, 80, 0.1);
+}
+
+[data-bs-theme="dark"] .wood-modal-header {
+    border-bottom-color: rgba(255, 249, 245, 0.08);
+}
+
+.wood-modal-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.wood-modal-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    font-size: 0.875rem;
+    opacity: 0.85;
+}
+
+.wood-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid rgba(90, 85, 80, 0.1);
+}
+
+[data-bs-theme="dark"] .wood-modal-footer {
+    border-top-color: rgba(255, 249, 245, 0.08);
+}
+
+/* ==========================================================================
+   TOASTS
+   ========================================================================== */
+.wood-toast-container {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 1080;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 340px;
+}
+
+[dir="rtl"] .wood-toast-container {
+    right: auto;
+    left: 1.5rem;
+}
+
+.wood-toast {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    box-shadow: var(--nm-outset-hover) !important;
+    border-radius: 10px;
+    border: none;
+    padding: 0.9rem 1.1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    border-left: 4px solid currentColor;
+    animation: wood-toast-in 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+[dir="rtl"] .wood-toast {
+    border-left: none;
+    border-right: 4px solid currentColor;
+}
+
+.wood-toast-icon {
+    font-size: 1.1rem;
+    margin-top: 0.1rem;
+}
+
+.wood-toast-content {
+    flex: 1;
+}
+
+.wood-toast-title {
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 0.15rem;
+    color: var(--studio-text);
+}
+
+.wood-toast-message {
+    font-size: 0.78rem;
+    opacity: 0.75;
+    color: var(--studio-text);
+}
+
+.wood-toast .btn-close-raised {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    box-shadow: var(--nm-outset) !important;
+    border: none;
+    border-radius: 6px;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: var(--studio-text-alt);
+    cursor: pointer;
+    font-size: 0.7rem;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wood-toast .btn-close-raised:hover {
+    box-shadow: var(--nm-outset-hover) !important;
+    color: var(--studio-text);
+}
+
+@keyframes wood-toast-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes wood-toast-out {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+}
+
+.wood-toast.toast-leaving {
+    animation: wood-toast-out 0.25s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+/* ==========================================================================
+   TOOLTIPS
+   ========================================================================== */
+.wood-tooltip {
+    position: absolute;
+    background-color: var(--studio-bg);
+    background-image: var(--studio-texture);
+    background-blend-mode: var(--studio-blend);
+    box-shadow: var(--nm-outset-hover);
+    color: var(--studio-text);
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    white-space: nowrap;
+    z-index: 1090;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.wood-tooltip-trigger {
+    position: relative;
+    display: inline-flex;
+}
+
+.wood-tooltip-trigger:hover .wood-tooltip,
+.wood-tooltip-trigger:focus-visible .wood-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.wood-tooltip.tt-top {
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+}
+
+.wood-tooltip-trigger:hover .wood-tooltip.tt-top,
+.wood-tooltip-trigger:focus-visible .wood-tooltip.tt-top {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   POPOVERS
+   ========================================================================== */
+.wood-popover {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    background-color: var(--studio-bg);
+    background-image: var(--studio-texture);
+    background-blend-mode: var(--studio-blend);
+    box-shadow: var(--nm-outset-hover);
+    border-radius: 10px;
+    width: 240px;
+    padding: 1rem;
+    z-index: 1085;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.wood-popover.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.wood-popover-title {
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+    color: var(--btn-text-secondary);
+}
+
+.wood-popover-body {
+    font-size: 0.78rem;
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   SKELETON LOADERS
+   ========================================================================== */
+.wood-skeleton {
+    background-color: var(--studio-bg);
+    background-image: var(--studio-texture);
+    background-blend-mode: var(--studio-blend);
+    box-shadow: var(--nm-inset);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.wood-skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg,
+            transparent 30%,
+            rgba(255, 245, 235, 0.35) 50%,
+            transparent 70%);
+    transform: translateX(-100%);
+    animation: wood-skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+[data-bs-theme="dark"] .wood-skeleton::after {
+    background: linear-gradient(100deg,
+            transparent 30%,
+            rgba(255, 249, 245, 0.08) 50%,
+            transparent 70%);
+}
+
+@keyframes wood-skeleton-shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.wood-skeleton-text {
+    height: 14px;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.wood-skeleton-text.short {
+    width: 40%;
+}
+
+.wood-skeleton-text.medium {
+    width: 65%;
+}
+
+.wood-skeleton-title {
+    height: 22px;
+    width: 50%;
+    margin-bottom: 0.75rem;
+}
+
+.wood-skeleton-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.wood-skeleton-card {
+    height: 100px;
+    border-radius: 10px;
+}
+
+/* ==========================================================================
+   EMPTY STATES
+   ========================================================================== */
+.wood-empty-state {
+    text-align: center;
+    padding: 3rem 1.5rem;
+}
+
+.wood-empty-state i {
+    font-size: 2.5rem;
+    color: var(--studio-text-alt);
+    opacity: 0.5;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.wood-empty-state h5 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.wood-empty-state p {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-bottom: 1.25rem;
+}
+
+/* ==========================================================================
+   MOBILE / RESPONSIVE SIDEBAR
+   ========================================================================== */
+@media (max-width: 991.98px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 1040;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        border-radius: 0;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+        box-shadow: var(--nm-outset-hover);
+    }
+
+    [dir="rtl"] .sidebar {
+        left: auto;
+        right: 0;
+        transform: translateX(100%);
+    }
+
+    [dir="rtl"] .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1035;
+    }
+
+    .sidebar-overlay.show {
+        display: block;
+    }
+
+    .mobile-nav-toggle {
+        display: inline-flex !important;
+    }
+}
+
+.mobile-nav-toggle {
+    display: none;
+}
+
+.wood-modal-header .btn-close-raised {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    box-shadow: var(--nm-outset) !important;
+    border: none;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: var(--studio-text-alt);
+    cursor: pointer;
+    font-size: 0.95rem;
+    line-height: 1;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wood-modal-header .btn-close-raised:hover {
+    box-shadow: var(--nm-outset-hover) !important;
+    color: var(--btn-text-danger) !important;
+    transform: translateY(-1px);
+}
+
+.wood-modal-header .btn-close-raised:active {
+    box-shadow: var(--nm-inset) !important;
+    transform: translateY(1px);
+}
+
+.dropdown-menu {
+    --bs-dropdown-bg: transparent;
+    --bs-dropdown-link-hover-bg: transparent;
+    --bs-dropdown-link-active-bg: transparent;
+}
+
+.dropdown-item {
+    color: var(--studio-text) !important;
+    border-radius: 6px;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: transparent !important;
+    box-shadow: var(--nm-inset) !important;
+    color: var(--btn-text-secondary) !important;
+}
+
+.dropdown-item:active {
+    background-color: transparent !important;
+    color: var(--btn-text-action) !important;
+}
+/* ==========================================================================
+   LOADING SPINNER
+   ========================================================================== */
+.wood-spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: wood-spin 0.7s linear infinite;
+}
+
+@keyframes wood-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   CARDS
+   ========================================================================== */
+.wood-card {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    box-shadow: var(--nm-outset) !important;
+    border-radius: 12px;
+    border: none;
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wood-card.wood-card-hover:hover {
+    box-shadow: var(--nm-outset-hover) !important;
+    transform: translateY(-2px);
+}
+
+.wood-card-img-top {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.85);
+}
+
+[data-bs-theme="dark"] .wood-card-img-top {
+    filter: saturate(0.7) brightness(0.85);
+}
+
+.wood-card-body {
+    padding: 1.25rem 1.5rem;
+}
+
+.wood-card-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: var(--studio-text);
+}
+
+.wood-card-subtitle {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.6rem;
+    opacity: 0.6;
+}
+
+.wood-card-text {
+    font-size: 0.85rem;
+    opacity: 0.75;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.wood-card-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid rgba(90, 85, 80, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+[data-bs-theme="dark"] .wood-card-footer {
+    border-top-color: rgba(255, 249, 245, 0.08);
+}
+
+.wood-card-footer-meta {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    font-weight: 600;
+}
+
+/* Carved variant - recessed instead of raised */
+.wood-card.wood-card-flat {
+    box-shadow: var(--nm-inset) !important;
+}
+
+.wood-card.wood-card-flat.wood-card-hover:hover {
+    box-shadow: var(--nm-inset) !important;
+    transform: none;
+}
+
+/* Card with accent border marker, useful for status/category */
+.wood-card-accent {
+    border-left: 4px solid currentColor;
+}
+
+[dir="rtl"] .wood-card-accent {
+    border-left: none;
+    border-right: 4px solid currentColor;
+}
+
+/* Horizontal card layout */
+.wood-card-horizontal {
+    display: flex;
+    flex-direction: row;
+}
+
+.wood-card-horizontal .wood-card-img-top {
+    width: 140px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+@media (max-width: 575.98px) {
+    .wood-card-horizontal {
+        flex-direction: column;
+    }
+    .wood-card-horizontal .wood-card-img-top {
+        width: 100%;
+        height: 140px;
+    }
+}
