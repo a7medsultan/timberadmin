@@ -1548,3 +1548,254 @@ html {
         height: 140px;
     }
 }
+
+/* ==========================================================================
+   ACCORDION / COLLAPSE
+   ========================================================================== */
+.wood-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.wood-accordion-item {
+    background-color: var(--studio-bg) !important;
+    background-image: var(--studio-texture) !important;
+    background-blend-mode: var(--studio-blend) !important;
+    box-shadow: var(--nm-outset) !important;
+    border-radius: 10px;
+    border: none;
+    overflow: hidden;
+    transition: box-shadow 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wood-accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--studio-text);
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.wood-accordion-header:hover {
+    color: var(--btn-text-secondary);
+}
+
+.wood-accordion-header .wood-accordion-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.wood-accordion-header .bi-chevron-down {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    flex-shrink: 0;
+}
+
+/* Open state: carve the header inward and rotate chevron */
+.wood-accordion-item.open {
+    box-shadow: var(--nm-inset) !important;
+}
+
+.wood-accordion-item.open .wood-accordion-header .bi-chevron-down {
+    transform: rotate(180deg);
+    color: var(--btn-text-action);
+    opacity: 1;
+}
+
+.wood-accordion-item.open .wood-accordion-header {
+    color: var(--btn-text-secondary);
+}
+
+/* Collapsible body with smooth height animation */
+.wood-accordion-collapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wood-accordion-item.open .wood-accordion-collapse {
+    max-height: var(--collapse-height, 500px);
+}
+
+.wood-accordion-body {
+    padding: 0 1.25rem 1.25rem;
+    font-size: 0.85rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    border-top: 1px solid rgba(90, 85, 80, 0.1);
+    padding-top: 1rem;
+    margin-top: -1px;
+}
+
+[data-bs-theme="dark"] .wood-accordion-body {
+    border-top-color: rgba(255, 249, 245, 0.08);
+}
+
+/* Disabled accordion item */
+.wood-accordion-item.disabled .wood-accordion-header {
+    opacity: 0.45;
+    cursor: not-allowed;
+    color: var(--studio-text) !important;
+}
+
+/* Flush variant - no gaps, shared borders, single block */
+.wood-accordion.flush {
+    gap: 0;
+    box-shadow: var(--nm-inset) !important;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.wood-accordion.flush .wood-accordion-item {
+    box-shadow: none !important;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(90, 85, 80, 0.1);
+}
+
+[data-bs-theme="dark"] .wood-accordion.flush .wood-accordion-item {
+    border-bottom-color: rgba(255, 249, 245, 0.08);
+}
+
+.wood-accordion.flush .wood-accordion-item:last-child {
+    border-bottom: none;
+}
+
+.wood-accordion.flush .wood-accordion-item.open {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.wood-accordion.flush .wood-accordion-item.open .wood-accordion-header {
+    color: var(--btn-text-secondary);
+}
+
+/* ==========================================================================
+   SIDEBAR NESTED NAV (SAMPLE PAGES)
+   ========================================================================== */
+.sidebar .nav-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar .nav-group-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.sidebar .nav-group-toggle .bi-chevron-down {
+    font-size: 0.7rem;
+    opacity: 0.5;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.sidebar .nav-group.open > .nav-group-toggle .bi-chevron-down {
+    transform: rotate(180deg);
+}
+
+.sidebar .nav-group.open > .nav-group-toggle {
+    color: var(--btn-text-secondary) !important;
+}
+
+/* Submenu container */
+.sidebar .nav-submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sidebar .nav-group.open .nav-submenu {
+    max-height: var(--submenu-height, 300px);
+    padding-top: 0.5rem;
+}
+
+/* Submenu links: smaller, indented, carved instead of raised */
+.sidebar .nav-submenu .nav-link {
+    box-shadow: var(--nm-inset) !important;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.6rem 1rem 0.6rem 2.25rem;
+    opacity: 0.85;
+}
+
+[dir="rtl"] .sidebar .nav-submenu .nav-link {
+    padding: 0.6rem 2.25rem 0.6rem 1rem;
+}
+
+.sidebar .nav-submenu .nav-link:hover:not(.active) {
+    box-shadow: var(--nm-inset) !important;
+    transform: none;
+    opacity: 1;
+}
+
+.sidebar .nav-submenu .nav-link.active {
+    box-shadow: var(--nm-outset) !important;
+    transform: translateY(-1px);
+}
+
+/* Small dot marker before submenu link text */
+.sidebar .nav-submenu .nav-link::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--btn-text-secondary);
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+.sidebar .nav-submenu .nav-link.active::before {
+    background-color: var(--btn-text-action);
+    opacity: 1;
+}
+
+/* ==========================================================================
+   PROFILE AVATAR
+   ========================================================================== */
+.wood-avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background-color: var(--studio-bg);
+    background-image: var(--studio-texture);
+    background-blend-mode: var(--studio-blend);
+    box-shadow: var(--nm-outset);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.25rem;
+    color: var(--btn-text-secondary);
+}
+
+/* ==========================================================================
+   SMALL AVATAR (for project member stacks)
+   ========================================================================== */
+.wood-avatar-sm {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--studio-bg);
+    background-image: var(--studio-texture);
+    background-blend-mode: var(--studio-blend);
+    box-shadow: var(--nm-outset);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: var(--btn-text-secondary);
+    border: 2px solid var(--studio-bg);
+}

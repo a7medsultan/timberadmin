@@ -52,7 +52,7 @@
             <!-- ROUTED TACTILE CONTROL SIDEBAR -->
             <div class="sidebar wood-panel p-3 d-flex flex-column flex-shrink-0">
                 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
-                <ul class="nav nav-pills flex-column mb-auto gap-3">
+                <ul class="nav nav-pills flex-column mb-auto gap-3 p-1">
                     <li class="nav-item">
                         <a href="#" id="nav-dashboard" class="nav-link active d-flex align-items-center gap-2"
                             onclick="navigateTo('dashboard')">
@@ -76,6 +76,36 @@
                             onclick="navigateTo('components')">
                             <i class="bi bi-grid-3x3-gap"></i> <span>Components</span>
                         </a>
+                    </li>
+                    <!-- Sample Pages - Collapsible Nav Group -->
+                    <li class="nav-item">
+                        <div class="nav-group">
+                            <a href="#" class="nav-link nav-group-toggle d-flex align-items-center gap-2"
+                                onclick="toggleNavGroup(event, this)">
+                                <span class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-folder2-open"></i> <span>Sample Pages</span>
+                                </span>
+                                <i class="bi bi-chevron-down"></i>
+                            </a>
+                            <div class="nav-submenu">
+                                <a href="#" id="nav-profile" class="nav-link d-flex align-items-center gap-2"
+                                    onclick="navigateTo('profile')">
+                                    <span>Profile Page</span>
+                                </a>
+                                <a href="#" id="nav-pricing" class="nav-link d-flex align-items-center gap-2"
+                                    onclick="navigateTo('pricing')">
+                                    <span>Pricing Table</span>
+                                </a>
+                                <a href="#" id="nav-faq" class="nav-link d-flex align-items-center gap-2"
+                                    onclick="navigateTo('faq')">
+                                    <span>FAQ Page</span>
+                                </a>
+                                <a href="#" id="nav-projects" class="nav-link d-flex align-items-center gap-2"
+                                    onclick="navigateTo('projects')">
+                                    <span>Projects</span>
+                                </a>
+                            </div>
+                        </div>
                     </li>
                 </ul>
 
@@ -613,6 +643,103 @@
                     </div>
                 </div>
 
+                <!-- Accordion Section -->
+                <div class="col-12 col-md-6">
+                    <div class="wood-panel p-4">
+                        <h5 class="h6 fw-bold mb-3">Accordion</h5>
+                        <div class="wood-accordion">
+                            <div class="wood-accordion-item open">
+                                <div class="wood-accordion-header" onclick="toggleAccordion(this)">
+                                    <span class="wood-accordion-icon"><i class="bi bi-cpu btn-wood-secondary"></i>
+                                        Matrix Node Configuration</span>
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>
+                                <div class="wood-accordion-collapse">
+                                    <div class="wood-accordion-body">
+                                        Configure the active matrix nodes including frequency channel assignment,
+                                        luminance thresholds, and specular variance tolerances for the calibration
+                                        ledger.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wood-accordion-item">
+                                <div class="wood-accordion-header" onclick="toggleAccordion(this)">
+                                    <span class="wood-accordion-icon"><i
+                                            class="bi bi-shield-check btn-wood-success"></i> System Diagnostics</span>
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>
+                                <div class="wood-accordion-collapse">
+                                    <div class="wood-accordion-body">
+                                        Run a full diagnostic sweep across all registered nodes to verify operational
+                                        status, surface mismatch faults, and recalibrate variance baselines.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wood-accordion-item disabled">
+                                <div class="wood-accordion-header">
+                                    <span class="wood-accordion-icon"><i class="bi bi-lock btn-wood-primary"></i> Locked
+                                        Settings</span>
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>
+                                <div class="wood-accordion-collapse">
+                                    <div class="wood-accordion-body">
+                                        These settings are locked pending administrator approval.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flush Accordion Variant -->
+                <div class="col-12 col-md-6">
+                    <div class="wood-panel p-4">
+                        <h5 class="h6 fw-bold mb-3">Accordion (Flush)</h5>
+                        <div class="wood-accordion flush">
+                            <div class="wood-accordion-item">
+                                <div class="wood-accordion-header" onclick="toggleAccordion(this)">
+                                    <span>What is Specular Variance?</span>
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>
+                                <div class="wood-accordion-collapse">
+                                    <div class="wood-accordion-body">
+                                        A measure of deviation in surface reflectivity across the matrix nodes. Lower
+                                        values indicate more consistent material calibration.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wood-accordion-item">
+                                <div class="wood-accordion-header" onclick="toggleAccordion(this)">
+                                    <span>How often should I recalibrate?</span>
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>
+                                <div class="wood-accordion-collapse">
+                                    <div class="wood-accordion-body">
+                                        Recalibration is recommended every 72 hours, or immediately following a mismatch
+                                        fault on any registered node.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wood-accordion-item">
+                                <div class="wood-accordion-header" onclick="toggleAccordion(this)">
+                                    <span>Can I export the calibration ledger?</span>
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>
+                                <div class="wood-accordion-collapse">
+                                    <div class="wood-accordion-body">
+                                        Yes — use the export action from the System Stats deck to download the current
+                                        ledger as a structured report.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Skeleton Loaders -->
                 <div class="col-12">
                     <div class="wood-card-inset">
@@ -724,8 +851,870 @@
                     </div>
                 </div>
 
-                
 
+
+            </div>
+        </div>
+    </template>
+
+    <!-- PAGE: PROFILE -->
+    <template id="view-profile">
+        <div class="container-fluid py-1">
+            <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+                style="border-color: rgba(0,0,0,0.06) !important;">
+                <h2 class="h5 fw-bold mb-0">Operator Profile</h2>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- Profile Summary Card -->
+                <div class="col-12 col-lg-4">
+                    <div class="wood-card">
+                        <div class="wood-card-body text-center">
+                            <div class="wood-avatar mx-auto mb-3">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                            <h6 class="wood-card-title mb-1">Amira Al-Farsi</h6>
+                            <div class="wood-card-subtitle btn-wood-secondary mb-3">Senior Matrix Operator</div>
+
+                            <div class="d-flex justify-content-center gap-2 mb-3">
+                                <span class="wood-badge btn-wood-success"><i class="bi bi-circle-fill"></i>
+                                    Online</span>
+                                <span class="wood-badge wood-badge-inset btn-wood-action"><i
+                                        class="bi bi-patch-check-fill"></i> Verified</span>
+                            </div>
+
+                            <p class="wood-card-text">
+                                Responsible for calibration oversight across Core and Bevel node clusters. Member since
+                                2023.
+                            </p>
+
+                            <button class="wood-element btn-wood-action w-100">
+                                <i class="bi bi-pencil-square me-2"></i>Edit Profile
+                            </button>
+                        </div>
+                        <div class="wood-card-footer">
+                            <span class="wood-card-footer-meta"><i class="bi bi-geo-alt me-1"></i>Abu Dhabi, AE</span>
+                            <span class="wood-card-footer-meta"><i class="bi bi-clock me-1"></i>GST</span>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info Card -->
+                    <div class="wood-card-inset mt-4">
+                        <h6 class="fw-bold mb-3 btn-wood-secondary"><i class="bi bi-person-lines-fill me-2"></i>Contact
+                            Information</h6>
+                        <div class="wood-divider mb-3"></div>
+                        <div class="d-flex flex-column gap-3 small">
+                            <div class="d-flex justify-content-between">
+                                <span class="opacity-60">Email</span>
+                                <span class="fw-bold">amira.alfarsi@timberstudio.io</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="opacity-60">Phone</span>
+                                <span class="fw-bold">+971 50 123 4567</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="opacity-60">Node Access Level</span>
+                                <span class="fw-bold btn-wood-action">Tier 3 — Full</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-12 col-lg-8">
+
+                    <!-- Performance Stats -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-12 col-sm-4">
+                            <div class="wood-stat-card p-3">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <span class="fs-8 text-uppercase fw-bold opacity-50">Nodes Managed</span>
+                                    <i class="bi bi-diagram-3 btn-wood-secondary fs-5"></i>
+                                </div>
+                                <div class="h3 fw-bold mb-0 btn-wood-primary">28</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4">
+                            <div class="wood-stat-card p-3">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <span class="fs-8 text-uppercase fw-bold opacity-50">Calibrations</span>
+                                    <i class="bi bi-check2-circle btn-wood-success fs-5"></i>
+                                </div>
+                                <div class="h3 fw-bold mb-0 btn-wood-primary">412</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4">
+                            <div class="wood-stat-card p-3">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <span class="fs-8 text-uppercase fw-bold opacity-50">Open Faults</span>
+                                    <i class="bi bi-exclamation-triangle btn-wood-danger fs-5"></i>
+                                </div>
+                                <div class="h3 fw-bold mb-0 btn-wood-primary">1</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skill / Proficiency Progress -->
+                    <div class="wood-card-inset mb-4">
+                        <h6 class="fw-bold mb-3 btn-wood-secondary"><i
+                                class="bi bi-bar-chart-steps me-2"></i>Proficiency Matrix</h6>
+                        <div class="wood-divider mb-4"></div>
+
+                        <div class="d-flex flex-column gap-3">
+                            <div>
+                                <div class="d-flex justify-content-between small fw-bold mb-2">
+                                    <span>Specular Calibration</span>
+                                    <span class="opacity-60">92%</span>
+                                </div>
+                                <div class="wood-progress">
+                                    <div class="wood-progress-bar bar-action" style="width: 92%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between small fw-bold mb-2">
+                                    <span>Frequency Diagnostics</span>
+                                    <span class="opacity-60">78%</span>
+                                </div>
+                                <div class="wood-progress">
+                                    <div class="wood-progress-bar bar-secondary" style="width: 78%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between small fw-bold mb-2">
+                                    <span>Fault Resolution</span>
+                                    <span class="opacity-60">65%</span>
+                                </div>
+                                <div class="wood-progress">
+                                    <div class="wood-progress-bar bar-success" style="width: 65%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between small fw-bold mb-2">
+                                    <span>System Override Protocols</span>
+                                    <span class="opacity-60">41%</span>
+                                </div>
+                                <div class="wood-progress">
+                                    <div class="wood-progress-bar bar-danger" style="width: 41%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Activity / Recent Actions -->
+                    <div class="wood-card-inset">
+                        <h6 class="fw-bold mb-3 btn-wood-secondary"><i class="bi bi-clock-history me-2"></i>Recent
+                            Activity</h6>
+                        <div class="wood-divider mb-3"></div>
+
+                        <div class="d-flex flex-column gap-3">
+                            <div class="d-flex align-items-start gap-3">
+                                <span class="wood-badge btn-wood-success wood-badge-inset"><i
+                                        class="bi bi-check-lg"></i></span>
+                                <div class="flex-grow-1">
+                                    <div class="small fw-bold">Recalibrated Bevel-Vector-Beta</div>
+                                    <div class="fs-9 opacity-50">Variance reduced to 8% — 2 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <span class="wood-badge btn-wood-danger wood-badge-inset"><i
+                                        class="bi bi-exclamation-triangle"></i></span>
+                                <div class="flex-grow-1">
+                                    <div class="small fw-bold">Flagged Specular-Chroma-Delta</div>
+                                    <div class="fs-9 opacity-50">Mismatch fault logged — 5 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start gap-3">
+                                <span class="wood-badge btn-wood-secondary wood-badge-inset"><i
+                                        class="bi bi-arrow-repeat"></i></span>
+                                <div class="flex-grow-1">
+                                    <div class="small fw-bold">Updated Chroma Frequency Channel</div>
+                                    <div class="fs-9 opacity-50">Core-Module-Alpha — yesterday</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- PAGE: PRICING -->
+    <template id="view-pricing">
+        <div class="container-fluid py-1">
+            <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+                style="border-color: rgba(0,0,0,0.06) !important;">
+                <h2 class="h5 fw-bold mb-0">Subscription Tiers</h2>
+            </div>
+
+            <!-- Intro + Billing Toggle -->
+            <div class="wood-panel p-4 mb-4">
+                <div class="row g-3 align-items-center">
+                    <div class="col-12 col-md-8">
+                        <h5 class="h6 fw-bold mb-1">Choose your matrix capacity</h5>
+                        <p class="small opacity-75 mb-0">
+                            All tiers include core diagnostics and the calibration ledger. Upgrade for expanded node
+                            capacity and override protocols.
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-4 d-flex justify-content-md-end">
+                        <div class="wood-rocker-track d-inline-flex p-1">
+                            <button type="button" class="rocker-segment active"
+                                onclick="toggleRocker(this); togglePricingPeriod('monthly')">Monthly</button>
+                            <button type="button" class="rocker-segment"
+                                onclick="toggleRocker(this); togglePricingPeriod('annual')">
+                                Annual <span class="wood-badge wood-badge-inset btn-wood-success ms-1"
+                                    style="font-size: 0.6rem; padding: 0.1rem 0.5rem;">-20%</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="row g-4">
+
+                <!-- Tier 1: Basic -->
+                <div class="col-12 col-lg-4">
+                    <div class="wood-card wood-card-hover h-100 d-flex flex-column">
+                        <div class="wood-card-body flex-grow-1">
+                            <div class="wood-card-subtitle btn-wood-secondary">Starter</div>
+                            <h6 class="wood-card-title fs-5 mb-1">Core Access</h6>
+                            <div class="mb-3">
+                                <span class="h2 fw-bold btn-wood-primary price-monthly">$29</span>
+                                <span class="h2 fw-bold btn-wood-primary price-annual d-none">$23</span>
+                                <span class="small opacity-60">/ month</span>
+                            </div>
+                            <p class="wood-card-text">For individual operators managing a small registry of calibration
+                                nodes.</p>
+
+                            <div class="d-flex flex-column gap-2 mt-4">
+                                <div class="d-flex align-items-center gap-2 small">
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Up to 10 active nodes
+                                </div>
+                                <div class="d-flex align-items-center gap-2 small">
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Calibration ledger
+                                </div>
+                                <div class="d-flex align-items-center gap-2 small">
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Standard diagnostics
+                                </div>
+                                <div class="d-flex align-items-center gap-2 small opacity-40">
+                                    <i class="bi bi-x-circle"></i> Override protocols
+                                </div>
+                                <div class="d-flex align-items-center gap-2 small opacity-40">
+                                    <i class="bi bi-x-circle"></i> Priority support
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wood-card-footer">
+                            <button class="wood-element btn-wood-primary w-100">Get Started</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tier 2: Pro (Most Popular) -->
+                <div class="col-12 col-lg-4">
+                    <div class="wood-card wood-card-hover wood-card-accent btn-wood-action h-100 d-flex flex-column"
+                        style="border-width: 4px;">
+                        <div class="wood-card-body flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="wood-card-subtitle btn-wood-action">Professional</div>
+                                <span class="wood-badge btn-wood-action"><i class="bi bi-star-fill"></i> Most
+                                    Popular</span>
+                            </div>
+                            <h6 class="wood-card-title fs-5 mb-1">Expanded Matrix</h6>
+                            <div class="mb-3">
+                                <span class="h2 fw-bold btn-wood-primary price-monthly">$79</span>
+                                <span class="h2 fw-bold btn-wood-primary price-annual d-none">$63</span>
+                                <span class="small opacity-60">/ month</span>
+                            </div>
+                            <p class="wood-card-text">For teams running active calibration sweeps across multiple node
+                                clusters.</p>
+
+                            <div class="d-flex flex-column gap-2 mt-4">
+                                <div class="d-flex align-items-center gap-2 small">
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Up to 100 active nodes
+                                </div>
+                                <div class="d-flex align-items-center gap-2 small">
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Calibration ledger
+                                </div>
+                                <div class="d-flex align-items-center gap-2 small">
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Advanced diagnostics
+                                </div>
+                                <div class="d-flex align-items-center gap-2 small">
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Override protocols
+                                </div>
+                                <div class="d-flex align-items-center gap-2 small opacity-40">
+                                    <i class="bi bi-x-circle"></i> Priority support
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wood-card-footer">
+                            <button class="wood-element btn-wood-action w-100">Get Started</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tier 3: Enterprise -->
+                <div class="col-12 col-lg-4">
+                    <div class="wood-card wood-card-hover h-100 d-flex flex-column">
+                        <div class="wood-card-body flex-grow-1">
+                            <div class="wood-card-subtitle btn-wood-secondary">Enterprise</div>
+                            <h6 class="wood-card-title fs-5 mb-1">Full Deployment</h6>
+                            <div class="mb-3">
+                                <span class="h2 fw-bold btn-wood-primary price-monthly">$199</span>
+                                <span class="h2 fw-bold btn-wood-primary price-annual d-none">$159</span>
+                                <span class="small opacity-60">/ month</span>
+                            </div>
+                            <p class="wood-card-text">For organizations operating unlimited nodes with dedicated
+                                support.</p>
+
+                            <div class="d-flex flex-column gap-2 mt-4">
+                                <div class="d-flex align-items-center gap-2 small">
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Unlimited active nodes
+                                </div>
+                                <div class="d-flex align-items-center gap-2 small">
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Calibration ledger
+                                </div>
+                                <div class="d-flex align-items-center gap-2 small">
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Advanced diagnostics
+                                </div>
+                                <div class="d-flex align-items-center gap-2 small">
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Override protocols
+                                </div>
+                                <div class="d-flex align-items-center gap-2 small">
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Priority support
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wood-card-footer">
+                            <button class="wood-element btn-wood-secondary w-100">Contact Sales</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Comparison note -->
+            <div class="wood-card-inset mt-4 text-center">
+                <p class="small opacity-75 mb-0">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Need a custom configuration? <span class="btn-wood-action fw-bold" style="cursor: pointer;">Contact
+                        our team</span> for tailored node allocations and SLA terms.
+                </p>
+            </div>
+        </div>
+    </template>
+
+    <!-- PAGE: FAQ -->
+    <template id="view-faq">
+        <div class="container-fluid py-1">
+            <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+                style="border-color: rgba(0,0,0,0.06) !important;">
+                <h2 class="h5 fw-bold mb-0">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- Intro + Search -->
+                <div class="col-12">
+                    <div class="wood-panel p-4">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-12 col-md-8">
+                                <h5 class="h6 fw-bold mb-1">How can we help?</h5>
+                                <p class="small opacity-75 mb-0">
+                                    Browse common questions about matrix calibration, node management, and system
+                                    diagnostics below.
+                                </p>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="position-relative">
+                                    <input type="text" class="form-control wood-input-carved ps-5"
+                                        placeholder="Search questions...">
+                                    <i class="bi bi-search position-absolute"
+                                        style="left: 1rem; top: 50%; transform: translateY(-50%); opacity: 0.5;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Filter -->
+                <div class="col-12">
+                    <div class="wood-rocker-track d-inline-flex p-1">
+                        <button type="button" class="rocker-segment active" onclick="toggleRocker(this)">All</button>
+                        <button type="button" class="rocker-segment" onclick="toggleRocker(this)">Calibration</button>
+                        <button type="button" class="rocker-segment" onclick="toggleRocker(this)">Nodes</button>
+                        <button type="button" class="rocker-segment" onclick="toggleRocker(this)">Account</button>
+                        <button type="button" class="rocker-segment" onclick="toggleRocker(this)">Billing</button>
+                    </div>
+                </div>
+
+                <!-- FAQ Accordion - Calibration -->
+                <div class="col-12">
+                    <h6 class="fw-bold mb-2 btn-wood-secondary"><i class="bi bi-sliders me-2"></i>Calibration</h6>
+                    <div class="wood-accordion flush">
+                        <div class="wood-accordion-item open">
+                            <div class="wood-accordion-header" onclick="toggleAccordion(this)">
+                                <span>What is Specular Variance?</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="wood-accordion-collapse">
+                                <div class="wood-accordion-body">
+                                    A measure of deviation in surface reflectivity across the matrix nodes. Lower values
+                                    indicate more consistent material calibration. Values above 30% typically trigger a
+                                    mismatch fault flag on the System Stats deck.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wood-accordion-item">
+                            <div class="wood-accordion-header" onclick="toggleAccordion(this)">
+                                <span>How often should I recalibrate?</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="wood-accordion-collapse">
+                                <div class="wood-accordion-body">
+                                    Recalibration is recommended every 72 hours under normal operating conditions, or
+                                    immediately following a mismatch fault on any registered node.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wood-accordion-item">
+                            <div class="wood-accordion-header" onclick="toggleAccordion(this)">
+                                <span>Can calibration be automated?</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="wood-accordion-collapse">
+                                <div class="wood-accordion-body">
+                                    Yes — enable Auto-recalibrate from the Form Elements console to schedule calibration
+                                    sweeps at fixed intervals without manual intervention.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Accordion - Nodes -->
+                <div class="col-12">
+                    <h6 class="fw-bold mb-2 btn-wood-secondary"><i class="bi bi-cpu me-2"></i>Nodes & Registry</h6>
+                    <div class="wood-accordion flush">
+                        <div class="wood-accordion-item">
+                            <div class="wood-accordion-header" onclick="toggleAccordion(this)">
+                                <span>How do I add a new node to the registry?</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="wood-accordion-collapse">
+                                <div class="wood-accordion-body">
+                                    Navigate to Form Elements, enter a Registry Node Label and assign a Chroma Frequency
+                                    Channel, then select Execute Matrix Commit to register the node.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wood-accordion-item">
+                            <div class="wood-accordion-header" onclick="toggleAccordion(this)">
+                                <span>What does "Mismatch Fault" mean?</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="wood-accordion-collapse">
+                                <div class="wood-accordion-body">
+                                    A node has reported specular variance exceeding the safe threshold (typically 30%).
+                                    Review the node's calibration history and run a diagnostic sweep to resolve.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wood-accordion-item">
+                            <div class="wood-accordion-header" onclick="toggleAccordion(this)">
+                                <span>Can I export the calibration ledger?</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="wood-accordion-collapse">
+                                <div class="wood-accordion-body">
+                                    Yes — use the export action from the System Stats deck to download the current
+                                    ledger as a structured report.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Accordion - Account -->
+                <div class="col-12">
+                    <h6 class="fw-bold mb-2 btn-wood-secondary"><i class="bi bi-person-gear me-2"></i>Account & Access
+                    </h6>
+                    <div class="wood-accordion flush">
+                        <div class="wood-accordion-item">
+                            <div class="wood-accordion-header" onclick="toggleAccordion(this)">
+                                <span>How do I change my access tier?</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="wood-accordion-collapse">
+                                <div class="wood-accordion-body">
+                                    Access tier changes must be requested from a Tier 3 operator. Contact your system
+                                    administrator to initiate an access review.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wood-accordion-item">
+                            <div class="wood-accordion-header" onclick="toggleAccordion(this)">
+                                <span>Is my profile data shared with other operators?</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="wood-accordion-collapse">
+                                <div class="wood-accordion-body">
+                                    Only your name, role, and online status are visible to other operators. Contact
+                                    information and access tier remain private to administrators.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Still need help -->
+                <div class="col-12">
+                    <div class="wood-card-inset text-center py-4">
+                        <i class="bi bi-life-preserver fs-3 btn-wood-secondary mb-2 d-block"></i>
+                        <h6 class="fw-bold mb-2">Still need help?</h6>
+                        <p class="small opacity-75 mb-3">Our support team can assist with node configuration,
+                            calibration issues, and account access.</p>
+                        <button class="wood-element btn-wood-action px-4">
+                            <i class="bi bi-chat-dots me-2"></i>Contact Support
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </template>
+
+    <!-- PAGE: PROJECTS PROGRESS -->
+    <template id="view-projects">
+        <div class="container-fluid py-1">
+            <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+                style="border-color: rgba(0,0,0,0.06) !important;">
+                <h2 class="h5 fw-bold mb-0">Projects Progress</h2>
+                <button class="wood-element btn-wood-action btn-sm px-4">
+                    <i class="bi bi-plus-lg me-2"></i>New Project
+                </button>
+            </div>
+
+            <!-- Summary Stats -->
+            <div class="row g-3 mb-4">
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="wood-stat-card p-3">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="fs-8 text-uppercase fw-bold opacity-50">Active Projects</span>
+                            <i class="bi bi-kanban btn-wood-secondary fs-5"></i>
+                        </div>
+                        <div class="h3 fw-bold mb-0 btn-wood-primary">6</div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="wood-stat-card p-3">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="fs-8 text-uppercase fw-bold opacity-50">On Track</span>
+                            <i class="bi bi-check-circle btn-wood-success fs-5"></i>
+                        </div>
+                        <div class="h3 fw-bold mb-0 btn-wood-primary">4</div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="wood-stat-card p-3">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="fs-8 text-uppercase fw-bold opacity-50">At Risk</span>
+                            <i class="bi bi-exclamation-triangle btn-wood-danger fs-5"></i>
+                        </div>
+                        <div class="h3 fw-bold mb-0 btn-wood-primary">2</div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="wood-stat-card p-3">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="fs-8 text-uppercase fw-bold opacity-50">Avg. Completion</span>
+                            <i class="bi bi-graph-up btn-wood-action fs-5"></i>
+                        </div>
+                        <div class="h3 fw-bold mb-0 btn-wood-primary">68%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div class="row g-4 mb-4">
+
+                <!-- Project Card 1 -->
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="wood-card wood-card-hover h-100 d-flex flex-column">
+                        <div class="wood-card-body flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="wood-card-subtitle btn-wood-secondary">Core Systems</div>
+                                <span class="wood-badge btn-wood-success"><i class="bi bi-circle-fill"></i> On
+                                    Track</span>
+                            </div>
+                            <h6 class="wood-card-title">Matrix Node Migration</h6>
+                            <p class="wood-card-text">Migrating legacy node clusters to the new specular calibration
+                                framework.</p>
+
+                            <div class="d-flex justify-content-between small fw-bold mb-2">
+                                <span class="opacity-60">Progress</span>
+                                <span>82%</span>
+                            </div>
+                            <div class="wood-progress mb-3">
+                                <div class="wood-progress-bar bar-success" style="width: 82%;"></div>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between small">
+                                <span class="opacity-60"><i class="bi bi-calendar3 me-1"></i>Due Jul 28</span>
+                                <span class="opacity-60"><i class="bi bi-list-task me-1"></i>18/22 tasks</span>
+                            </div>
+                        </div>
+                        <div class="wood-card-footer">
+                            <div class="d-flex">
+                                <span class="wood-avatar wood-avatar-sm" style="margin-right: -8px;"><i
+                                        class="bi bi-person-fill"></i></span>
+                                <span class="wood-avatar wood-avatar-sm" style="margin-right: -8px;"><i
+                                        class="bi bi-person-fill"></i></span>
+                                <span class="wood-avatar wood-avatar-sm"><i class="bi bi-person-fill"></i></span>
+                            </div>
+                            <button class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-8">View</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="wood-card wood-card-hover h-100 d-flex flex-column">
+                        <div class="wood-card-body flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="wood-card-subtitle btn-wood-secondary">Diagnostics</div>
+                                <span class="wood-badge btn-wood-danger"><i class="bi bi-circle-fill"></i> At
+                                    Risk</span>
+                            </div>
+                            <h6 class="wood-card-title">Fault Detection Overhaul</h6>
+                            <p class="wood-card-text">Rebuilding the mismatch fault pipeline with real-time variance
+                                alerts.</p>
+
+                            <div class="d-flex justify-content-between small fw-bold mb-2">
+                                <span class="opacity-60">Progress</span>
+                                <span>34%</span>
+                            </div>
+                            <div class="wood-progress mb-3">
+                                <div class="wood-progress-bar bar-danger" style="width: 34%;"></div>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between small">
+                                <span class="opacity-60"><i class="bi bi-calendar3 me-1"></i>Due Jun 30</span>
+                                <span class="opacity-60"><i class="bi bi-list-task me-1"></i>7/20 tasks</span>
+                            </div>
+                        </div>
+                        <div class="wood-card-footer">
+                            <div class="d-flex">
+                                <span class="wood-avatar wood-avatar-sm" style="margin-right: -8px;"><i
+                                        class="bi bi-person-fill"></i></span>
+                                <span class="wood-avatar wood-avatar-sm"><i class="bi bi-person-fill"></i></span>
+                            </div>
+                            <button class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-8">View</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="wood-card wood-card-hover h-100 d-flex flex-column">
+                        <div class="wood-card-body flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="wood-card-subtitle btn-wood-secondary">Interface</div>
+                                <span class="wood-badge btn-wood-action"><i class="bi bi-circle-fill"></i> In
+                                    Progress</span>
+                            </div>
+                            <h6 class="wood-card-title">Mobile Console Rollout</h6>
+                            <p class="wood-card-text">Expanding the carved-wood interface to mobile sidebar and touch
+                                controls.</p>
+
+                            <div class="d-flex justify-content-between small fw-bold mb-2">
+                                <span class="opacity-60">Progress</span>
+                                <span>57%</span>
+                            </div>
+                            <div class="wood-progress mb-3">
+                                <div class="wood-progress-bar bar-action" style="width: 57%;"></div>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between small">
+                                <span class="opacity-60"><i class="bi bi-calendar3 me-1"></i>Due Aug 15</span>
+                                <span class="opacity-60"><i class="bi bi-list-task me-1"></i>12/21 tasks</span>
+                            </div>
+                        </div>
+                        <div class="wood-card-footer">
+                            <div class="d-flex">
+                                <span class="wood-avatar wood-avatar-sm" style="margin-right: -8px;"><i
+                                        class="bi bi-person-fill"></i></span>
+                                <span class="wood-avatar wood-avatar-sm" style="margin-right: -8px;"><i
+                                        class="bi bi-person-fill"></i></span>
+                                <span class="wood-avatar wood-avatar-sm" style="margin-right: -8px;"><i
+                                        class="bi bi-person-fill"></i></span>
+                                <span class="wood-avatar wood-avatar-sm"><i class="bi bi-person-fill"></i></span>
+                            </div>
+                            <button class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-8">View</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Detailed Table -->
+            <div class="wood-card-inset">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-list-check btn-wood-secondary fs-5"></i>
+                        <h4 class="h6 fw-bold mb-0 text-body">All Projects</h4>
+                    </div>
+                </div>
+
+                <div class="table-responsive wood-table-container">
+                    <table class="table wood-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Project</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Progress</th>
+                                <th scope="col">Deadline</th>
+                                <th scope="col" class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="fw-bold d-block small">Matrix Node Migration</span>
+                                    <span class="fs-9 opacity-50">Core Systems</span>
+                                </td>
+                                <td><span class="wood-badge btn-wood-success wood-badge-inset"><i
+                                            class="bi bi-circle-fill"></i> On Track</span></td>
+                                <td style="width: 180px;">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="wood-progress flex-grow-1">
+                                            <div class="wood-progress-bar bar-success" style="width: 82%;"></div>
+                                        </div>
+                                        <span class="small fw-bold">82%</span>
+                                    </div>
+                                </td>
+                                <td><span class="small opacity-75">Jul 28, 2026</span></td>
+                                <td class="text-end">
+                                    <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
+                                            class="bi bi-arrow-up-right"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-bold d-block small">Fault Detection Overhaul</span>
+                                    <span class="fs-9 opacity-50">Diagnostics</span>
+                                </td>
+                                <td><span class="wood-badge btn-wood-danger wood-badge-inset"><i
+                                            class="bi bi-exclamation-triangle-fill"></i> At Risk</span></td>
+                                <td style="width: 180px;">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="wood-progress flex-grow-1">
+                                            <div class="wood-progress-bar bar-danger" style="width: 34%;"></div>
+                                        </div>
+                                        <span class="small fw-bold">34%</span>
+                                    </div>
+                                </td>
+                                <td><span class="small btn-wood-danger fw-bold">Jun 30, 2026</span></td>
+                                <td class="text-end">
+                                    <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
+                                            class="bi bi-arrow-up-right"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-bold d-block small">Mobile Console Rollout</span>
+                                    <span class="fs-9 opacity-50">Interface</span>
+                                </td>
+                                <td><span class="wood-badge btn-wood-action wood-badge-inset"><i
+                                            class="bi bi-arrow-repeat"></i> In Progress</span></td>
+                                <td style="width: 180px;">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="wood-progress flex-grow-1">
+                                            <div class="wood-progress-bar bar-action" style="width: 57%;"></div>
+                                        </div>
+                                        <span class="small fw-bold">57%</span>
+                                    </div>
+                                </td>
+                                <td><span class="small opacity-75">Aug 15, 2026</span></td>
+                                <td class="text-end">
+                                    <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
+                                            class="bi bi-arrow-up-right"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-bold d-block small">Calibration Ledger v2</span>
+                                    <span class="fs-9 opacity-50">Core Systems</span>
+                                </td>
+                                <td><span class="wood-badge btn-wood-success wood-badge-inset"><i
+                                            class="bi bi-circle-fill"></i> On Track</span></td>
+                                <td style="width: 180px;">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="wood-progress flex-grow-1">
+                                            <div class="wood-progress-bar bar-success" style="width: 95%;"></div>
+                                        </div>
+                                        <span class="small fw-bold">95%</span>
+                                    </div>
+                                </td>
+                                <td><span class="small opacity-75">Jun 20, 2026</span></td>
+                                <td class="text-end">
+                                    <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
+                                            class="bi bi-arrow-up-right"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-bold d-block small">RTL Layout Audit</span>
+                                    <span class="fs-9 opacity-50">Interface</span>
+                                </td>
+                                <td><span class="wood-badge btn-wood-success wood-badge-inset"><i
+                                            class="bi bi-circle-fill"></i> On Track</span></td>
+                                <td style="width: 180px;">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="wood-progress flex-grow-1">
+                                            <div class="wood-progress-bar bar-secondary" style="width: 70%;"></div>
+                                        </div>
+                                        <span class="small fw-bold">70%</span>
+                                    </div>
+                                </td>
+                                <td><span class="small opacity-75">Jul 10, 2026</span></td>
+                                <td class="text-end">
+                                    <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
+                                            class="bi bi-arrow-up-right"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-bold d-block small">Override Protocol Audit</span>
+                                    <span class="fs-9 opacity-50">Diagnostics</span>
+                                </td>
+                                <td><span class="wood-badge btn-wood-danger wood-badge-inset"><i
+                                            class="bi bi-exclamation-triangle-fill"></i> At Risk</span></td>
+                                <td style="width: 180px;">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="wood-progress flex-grow-1">
+                                            <div class="wood-progress-bar bar-danger" style="width: 18%;"></div>
+                                        </div>
+                                        <span class="small fw-bold">18%</span>
+                                    </div>
+                                </td>
+                                <td><span class="small btn-wood-danger fw-bold">Jun 25, 2026</span></td>
+                                <td class="text-end">
+                                    <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
+                                            class="bi bi-arrow-up-right"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </template>
@@ -752,7 +1741,7 @@
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="timber-studio.js"></script>
-    
+
 </body>
 
 </html>
