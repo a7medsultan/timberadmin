@@ -1412,6 +1412,23 @@ html {
     background-color: transparent !important;
     color: var(--btn-text-action) !important;
 }
+
+/* Retains wood/neomorphic theme integrity inside the floating card popup lists */
+.wood-dropdown-menu {
+    background: var(--studio-bg, #dfd5cb);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    padding: 0.35rem 0;
+}
+.wood-dropdown-menu .dropdown-item {
+    color: var(--studio-text, #4a3e3d);
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+}
+.wood-dropdown-menu .dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: inherit;
+}
 /* ==========================================================================
    LOADING SPINNER
    ========================================================================== */

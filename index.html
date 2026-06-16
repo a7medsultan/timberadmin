@@ -29,8 +29,28 @@
                 <i class="bi bi-layers-half btn-wood-secondary fs-4"></i>
                 <span class="fw-bold tracking-tight">Contrast Timber 3D</span>
             </a>
-
             <div class="ms-auto d-flex align-items-center gap-2">
+                <!-- Hardware System Alerts (Notifications) -->
+                <button type="button"
+                    class="wood-element btn-wood-secondary position-relative p-2 d-flex align-items-center justify-content-center"
+                    style="width: 36px; height: 36px;" id="btnNotifications" title="System Alerts">
+                    <i class="bi bi-bell-fill fs-5"></i>
+                    <!-- Inset physical alert dot indicator -->
+                    <span
+                        class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"
+                        style="transform: translate(-10px, 10px) !important;">
+                        <span class="visually-hidden">Alerts</span>
+                    </span>
+                </button>
+
+                <!-- System Settings Hardware Dial/Button -->
+                <button type="button"
+                    class="wood-element btn-wood-secondary p-2 d-flex align-items-center justify-content-center"
+                    style="width: 36px; height: 36px;" id="btnSettings" title="System Settings">
+                    <i class="bi bi-gear-fill fs-5"></i>
+                </button>
+
+                <div class="vr bg-dark opacity-25 mx-1" style="height: 24px;"></div>
                 <button class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-7 mobile-nav-toggle d-lg-none"
                     onclick="toggleSidebar()">
                     <i class="bi bi-list"></i>
@@ -39,9 +59,11 @@
                     onclick="handleThemeSwitch()">
                     <i class="bi bi-moon-stars" id="themeIcon"></i>
                 </button>
-                <button class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-7" id="dirToggle"
-                    onclick="handleDirectionSwitch()">
-                    <span id="dirText">RTL</span>
+                <!-- Language Switcher Button (Tactile Toggle) -->
+                <button id="langSwitcher" class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-7"
+                    onclick="toggleLanguage()">
+                    <i class="bi bi-translate"></i>
+                    <span id="currentLangLabel">العربية</span>
                 </button>
             </div>
         </header>
@@ -49,60 +71,60 @@
         <!-- CONTAINER CONTROL DECK -->
         <div class="d-flex flex-grow-1 overflow-hidden">
 
-            <!-- ROUTED TACTILE CONTROL SIDEBAR -->
             <div class="sidebar wood-panel p-3 d-flex flex-column flex-shrink-0">
                 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
                 <ul class="nav nav-pills flex-column mb-auto gap-3 p-1">
                     <li class="nav-item">
                         <a href="#" id="nav-dashboard" class="nav-link active d-flex align-items-center gap-2"
                             onclick="navigateTo('dashboard')">
-                            <i class="bi bi-cpu-fill"></i> <span>Dashboard</span>
+                            <i class="bi bi-cpu-fill"></i> <span data-i18n="side_dashboard">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" id="nav-forms" class="nav-link d-flex align-items-center gap-2"
                             onclick="navigateTo('forms')">
-                            <i class="bi bi-sliders2"></i> <span>Form Elements</span>
+                            <i class="bi bi-sliders2"></i> <span data-i18n="side_forms">Form Elements</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" id="nav-stats" class="nav-link d-flex align-items-center gap-2"
                             onclick="navigateTo('stats')">
-                            <i class="bi bi-graph-up-arrow"></i> <span>System Stats</span>
+                            <i class="bi bi-graph-up-arrow"></i> <span data-i18n="side_stats">System Stats</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" id="nav-components" class="nav-link d-flex align-items-center gap-2"
                             onclick="navigateTo('components')">
-                            <i class="bi bi-grid-3x3-gap"></i> <span>Components</span>
+                            <i class="bi bi-grid-3x3-gap"></i> <span data-i18n="side_components">Components</span>
                         </a>
                     </li>
-                    <!-- Sample Pages - Collapsible Nav Group -->
                     <li class="nav-item">
                         <div class="nav-group">
-                            <a href="#" class="nav-link nav-group-toggle d-flex align-items-center gap-2"
+                            <a href="#"
+                                class="nav-link nav-group-toggle d-flex align-items-center justify-content-between"
                                 onclick="toggleNavGroup(event, this)">
                                 <span class="d-flex align-items-center gap-2">
-                                    <i class="bi bi-folder2-open"></i> <span>Sample Pages</span>
+                                    <i class="bi bi-folder2-open"></i> <span data-i18n="side_sample_pages">Sample
+                                        Pages</span>
                                 </span>
                                 <i class="bi bi-chevron-down"></i>
                             </a>
                             <div class="nav-submenu">
                                 <a href="#" id="nav-profile" class="nav-link d-flex align-items-center gap-2"
                                     onclick="navigateTo('profile')">
-                                    <span>Profile Page</span>
+                                    <span data-i18n="side_profile">Profile Page</span>
                                 </a>
                                 <a href="#" id="nav-pricing" class="nav-link d-flex align-items-center gap-2"
                                     onclick="navigateTo('pricing')">
-                                    <span>Pricing Table</span>
+                                    <span data-i18n="side_pricing">Pricing Table</span>
                                 </a>
                                 <a href="#" id="nav-faq" class="nav-link d-flex align-items-center gap-2"
                                     onclick="navigateTo('faq')">
-                                    <span>FAQ Page</span>
+                                    <span data-i18n="side_faq">FAQ Page</span>
                                 </a>
                                 <a href="#" id="nav-projects" class="nav-link d-flex align-items-center gap-2"
                                     onclick="navigateTo('projects')">
-                                    <span>Projects</span>
+                                    <span data-i18n="side_projects">Projects</span>
                                 </a>
                             </div>
                         </div>
@@ -111,29 +133,28 @@
 
                 <div class="wood-divider my-3"></div>
 
-                <!-- Surface Matrix Configuration Dropdown -->
                 <div class="dropdown">
                     <button
                         class="wood-element btn-wood-secondary btn-sm w-100 text-start d-flex align-items-center justify-content-between dropdown-toggle"
                         data-bs-toggle="dropdown">
                         <span class="d-flex align-items-center gap-2 small">
                             <i class="bi bi-circle-square"></i>
-                            <strong>Surface Matrix</strong>
+                            <strong data-i18n="side_matrix_title">Surface Matrix</strong>
                         </span>
                     </button>
                     <ul class="dropdown-menu border-0 wood-panel p-2 shadow-lg">
-                        <li><a class="dropdown-item rounded small" href="#">Specular Profile</a></li>
+                        <li><a class="dropdown-item rounded small" href="#" data-i18n="side_dropdown_specular">Specular
+                                Profile</a></li>
                         <li>
                             <div class="wood-divider my-2"></div>
                         </li>
-                        <li><a class="dropdown-item rounded small" href="#">Reset Vectors</a></li>
+                        <li><a class="dropdown-item rounded small" href="#" data-i18n="side_dropdown_reset">Reset
+                                Vectors</a></li>
                     </ul>
                 </div>
             </div>
 
-            <!-- MAIN ACTIVE VIEWPORT VIEW -->
             <main class="flex-grow-1 px-4 overflow-y-auto" id="mainViewport">
-                <!-- Content gets injected dynamically by javascript matrix router -->
             </main>
 
         </div>
@@ -141,7 +162,7 @@
         <!-- CONSOLE FOOTER BAR -->
         <footer class="footer mt-3 py-2 wood-panel px-4 flex-shrink-0">
             <div class="d-flex justify-content-between align-items-center small opacity-75">
-                <span>Material Coordinates Bound</span>
+                <span data-i18n="footer_coordinates">Material Coordinates Bound</span>
                 <span class="fw-bold btn-wood-secondary" id="footerMatrixStatus">Active Deck: Dashboard</span>
             </div>
         </footer>
@@ -156,7 +177,7 @@
         <div class="container-fluid py-1">
             <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
                 style="border-color: rgba(0,0,0,0.06) !important;">
-                <h2 class="h5 fw-bold mb-0">Chrominance Control Dashboard</h2>
+                <h2 class="h5 fw-bold mb-0"><span data-i18n="dash_title">Chrominance Control Dashboard</span></h2>
             </div>
 
             <!-- 3D STATS CARD ARRAY (RAISED LAYOUT KEYS) -->
@@ -165,7 +186,8 @@
                 <div class="col-12 col-sm-6 col-xl-4">
                     <div class="wood-stat-card p-3">
                         <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="fs-8 text-uppercase fw-bold opacity-50">Active Matrix Nodes</span>
+                            <span class="fs-8 text-uppercase fw-bold opacity-50" data-i18n="dash_stat_nodes_lbl">Active
+                                Matrix Nodes</span>
                             <i class="bi bi-cpu btn-wood-secondary fs-5"></i>
                         </div>
                         <div class="h3 fw-bold mb-1 btn-wood-primary">1,402</div>
@@ -178,12 +200,14 @@
                 <div class="col-12 col-sm-6 col-xl-4">
                     <div class="wood-stat-card p-3">
                         <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="fs-8 text-uppercase fw-bold opacity-50">Luminance Output</span>
+                            <span class="fs-8 text-uppercase fw-bold opacity-50"
+                                data-i18n="dash_stat_lumi_lbl">Luminance Output</span>
                             <i class="bi bi-lightning-charge btn-wood-action fs-5"></i>
                         </div>
                         <div class="h3 fw-bold mb-1 btn-wood-primary">482.5 <span
                                 class="fs-7 fw-normal text-body opacity-50">kW</span></div>
-                        <span class="fs-9 btn-wood-secondary fw-bold"><i class="bi bi-dash"></i> Optimal Balance</span>
+                        <span class="fs-9 btn-wood-secondary fw-bold"><i class="bi bi-dash"></i> <span
+                                data-i18n="dash_stat_lumi_trend"></span>Optimal Balance</span></span>
                     </div>
                 </div>
 
@@ -191,11 +215,13 @@
                 <div class="col-12 col-sm-6 col-xl-4">
                     <div class="wood-stat-card p-3">
                         <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="fs-8 text-uppercase fw-bold opacity-50">Specular Variance</span>
+                            <span class="fs-8 text-uppercase fw-bold opacity-50" data-i18n="dash_stat_spec_lbl">Specular
+                                Variance</span>
                             <i class="bi bi-activity btn-wood-danger fs-5"></i>
                         </div>
                         <div class="h3 fw-bold mb-1 btn-wood-primary">0.04%</div>
-                        <span class="fs-9 btn-wood-danger fw-bold"><i class="bi bi-arrow-down-short"></i> -3.1% Lower
+                        <span class="fs-9 btn-wood-danger fw-bold"><i class="bi bi-arrow-down-short"></i> <span
+                                data-i18n="dash_stat_spec_trend"></span>-3.1% Lower
                             Variance</span>
                     </div>
                 </div>
@@ -208,9 +234,10 @@
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <div class="d-flex align-items-center gap-2">
                                 <i class="bi bi-graph-up btn-wood-secondary fs-5"></i>
-                                <h4 class="h6 fw-bold mb-0 text-body">Frequency Waveform Diagnostics</h4>
+                                <h4 class="h6 fw-bold mb-0 text-body" data-i18n="dash_chart_title">Frequency Waveform
+                                    Diagnostics</h4>
                             </div>
-                            <span class="fs-9 opacity-50 fw-bold">Live Graph Output</span>
+                            <span class="fs-9 opacity-50 fw-bold" data-i18n="dash_chart_lbl">Live Graph Output</span>
                         </div>
                         <div class="wood-divider mb-4"></div>
 
@@ -226,8 +253,8 @@
             <div class="row g-4">
                 <div class="col-12 col-md-6">
                     <div class="p-4 wood-panel h-100">
-                        <h5 class="h6 fw-bold mb-2">Continuous Milled Canvas</h5>
-                        <p class="small opacity-75 mb-0">
+                        <h5 class="h6 fw-bold mb-2" data-i18n="dash_panel_canvas_title">Continuous Milled Canvas</h5>
+                        <p class="small opacity-75 mb-0" data-i18n="dash_panel_canvas_desc">
                             The background deck and modules are color-locked. The raw linear grain textures run
                             completely uninterrupted without breaking boundaries.
                         </p>
@@ -235,8 +262,8 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="p-4 wood-panel h-100">
-                        <h5 class="h6 fw-bold mb-2">Typographic Hierarchy</h5>
-                        <p class="small opacity-75 mb-0">
+                        <h5 class="h6 fw-bold mb-2" data-i18n="dash_panel_typo_title">Typographic Hierarchy</h5>
+                        <p class="small opacity-75 mb-0" data-i18n="dash_panel_typo_desc">
                             Interface actions drop flat material boxes for pure laser-etched contrast ink, letting the
                             clean architecture remain unblemished.
                         </p>
@@ -251,59 +278,60 @@
         <div class="container-fluid py-1">
             <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
                 style="border-color: rgba(0,0,0,0.06) !important;">
-                <h2 class="h5 fw-bold mb-0">Form Controls Console</h2>
+                <h2 class="h5 fw-bold mb-0" data-i18n="forms_title">Form Controls Console</h2>
             </div>
 
             <div class="wood-card-inset p-4">
-                <h4 class="h6 fw-bold mb-3 btn-wood-secondary"><i class="bi bi-sliders me-2"></i>Parameter Node Entry
-                </h4>
+                <h4 class="h6 fw-bold mb-3 btn-wood-secondary"><i class="bi bi-sliders me-2"></i><span
+                        data-i18n="forms_param_node_entry">Parameter Node Entry</span></h4>
                 <div class="wood-divider mb-4"></div>
 
                 <form id="consoleDataForm" onsubmit="event.preventDefault();">
                     <div class="row g-4">
-                        <!-- Carved Text Box Input Component -->
                         <div class="col-12 col-md-6">
-                            <label class="form-label small fw-bold opacity-75">Registry Node Label</label>
+                            <label class="form-label small fw-bold opacity-75" data-i18n="forms_registry_label">Registry
+                                Node Label</label>
                             <input type="text" class="form-control wood-input-carved"
                                 placeholder="e.g. Core-Module-Alpha">
                         </div>
 
-                        <!-- Carved Select Dropdown Component -->
                         <div class="col-12 col-md-6">
-                            <label class="form-label small fw-bold opacity-75">Chroma Frequency Channel</label>
+                            <label class="form-label small fw-bold opacity-75" data-i18n="forms_chroma_channel">Chroma
+                                Frequency Channel</label>
                             <select class="form-select wood-input-carved">
-                                <option selected>Select Channel Matrix...</option>
-                                <option value="1">Terracotta Shift (#BF7A43)</option>
-                                <option value="2">Copper Action (#C46510)</option>
-                                <option value="3">Moss Olive (#7A8568)</option>
+                                <option selected data-i18n="forms_select_placeholder">Select Channel Matrix...</option>
+                                <option value="1" data-i18n="forms_opt_terracotta">Terracotta Shift (#BF7A43)</option>
+                                <option value="2" data-i18n="forms_opt_copper">Copper Action (#C46510)</option>
+                                <option value="3" data-i18n="forms_opt_moss">Moss Olive (#7A8568)</option>
                             </select>
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label small fw-bold opacity-75">Registry Node Desc</label>
+                            <label class="form-label small fw-bold opacity-75" data-i18n="forms_registry_desc">Registry
+                                Node Desc</label>
                             <textarea class="form-control wood-input-carved" rows="3"
                                 placeholder="e.g. Core-Module-Desc"></textarea>
                         </div>
 
-                        <!-- Checkboxes & Radios & Switches -->
                         <div class="col-12 col-md-6">
                             <div class="wood-card-inset">
-                                <h5 class="h6 fw-bold mb-3">Checkboxes, Radios & Switches</h5>
+                                <h5 class="h6 fw-bold mb-3" data-i18n="forms_checkboxes_title">Checkboxes, Radios &
+                                    Switches</h5>
                                 <div class="d-flex flex-column gap-3">
                                     <label class="wood-checkbox">
                                         <input type="checkbox" checked>
                                         <span class="wood-checkbox-box"><i class="bi bi-check-lg"></i></span>
-                                        Enable diagnostics overlay
+                                        <span data-i18n="forms_chk_diagnostics">Enable diagnostics overlay</span>
                                     </label>
                                     <label class="wood-checkbox">
                                         <input type="checkbox">
                                         <span class="wood-checkbox-box"><i class="bi bi-check-lg"></i></span>
-                                        Auto-recalibrate nodes
+                                        <span data-i18n="forms_chk_recalibrate">Auto-recalibrate nodes</span>
                                     </label>
                                     <label class="wood-checkbox">
                                         <input type="checkbox" disabled>
                                         <span class="wood-checkbox-box"><i class="bi bi-check-lg"></i></span>
-                                        Locked parameter (disabled)
+                                        <span data-i18n="forms_chk_locked">Locked parameter (disabled)</span>
                                     </label>
 
                                     <div class="wood-divider my-1"></div>
@@ -311,12 +339,12 @@
                                     <label class="wood-radio">
                                         <input type="radio" name="matrixMode" checked>
                                         <span class="wood-radio-circle"></span>
-                                        Linear Grain Mode
+                                        <span data-i18n="forms_rad_linear">Linear Grain Mode</span>
                                     </label>
                                     <label class="wood-radio">
                                         <input type="radio" name="matrixMode">
                                         <span class="wood-radio-circle"></span>
-                                        Cross Grain Mode
+                                        <span data-i18n="forms_rad_cross">Cross Grain Mode</span>
                                     </label>
 
                                     <div class="wood-divider my-1"></div>
@@ -324,142 +352,150 @@
                                     <label class="wood-switch">
                                         <input type="checkbox" checked>
                                         <span class="wood-switch-track"><span class="wood-switch-thumb"></span></span>
-                                        Live telemetry sync
+                                        <span data-i18n="forms_sw_telemetry">Live telemetry sync</span>
                                     </label>
                                     <label class="wood-switch">
                                         <input type="checkbox">
                                         <span class="wood-switch-track"><span class="wood-switch-thumb"></span></span>
-                                        Override safe mode
+                                        <span data-i18n="forms_sw_override">Override safe mode</span>
                                     </label>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Form Call-To-Action Operations -->
                         <div class="col-12 d-flex justify-content-end gap-3 mt-4">
                             <button type="button" class="wood-element btn-wood-primary btn-sm px-4"
-                                onclick="navigateTo('dashboard')">Cancel</button>
-                            <button type="button" class="wood-element btn-wood-action btn-sm px-4">Execute Matrix
-                                Commit</button>
+                                onclick="navigateTo('dashboard')" data-i18n="forms_btn_cancel">Cancel</button>
+                            <button type="button" class="wood-element btn-wood-action btn-sm px-4"
+                                data-i18n="forms_btn_commit">Execute Matrix Commit</button>
                         </div>
                     </div>
-                    <!-- Add this as a new section within the view-forms template, after the existing form or as its own wood-card-inset -->
+
                     <div class="wood-card-inset mt-4">
-                        <h4 class="h6 fw-bold mb-3 btn-wood-secondary"><i class="bi bi-hand-index-thumb me-2"></i>Button
-                            Controls</h4>
+                        <h4 class="h6 fw-bold mb-3 btn-wood-secondary"><i class="bi bi-hand-index-thumb me-2"></i><span
+                                data-i18n="forms_btn_controls_title">Button Controls</span></h4>
                         <div class="wood-divider mb-4"></div>
 
                         <div class="row g-4">
-                            <!-- Intent Buttons -->
                             <div class="col-12">
-                                <label class="form-label small fw-bold opacity-75 d-block mb-2">Intent Variants</label>
+                                <label class="form-label small fw-bold opacity-75 d-block mb-2"
+                                    data-i18n="forms_lbl_intents">Intent Variants</label>
                                 <div class="d-flex flex-wrap gap-3">
                                     <button type="button" class="wood-element btn-wood-primary btn-sm px-4">
-                                        <i class="bi bi-circle me-2"></i>Primary
+                                        <i class="bi bi-circle me-2"></i><span
+                                            data-i18n="forms_btn_primary">Primary</span>
                                     </button>
                                     <button type="button" class="wood-element btn-wood-secondary btn-sm px-4">
-                                        <i class="bi bi-bookmark me-2"></i>Secondary
+                                        <i class="bi bi-bookmark me-2"></i><span
+                                            data-i18n="forms_btn_secondary">Secondary</span>
                                     </button>
                                     <button type="button" class="wood-element btn-wood-action btn-sm px-4">
-                                        <i class="bi bi-lightning-charge me-2"></i>Action
+                                        <i class="bi bi-lightning-charge me-2"></i><span
+                                            data-i18n="forms_btn_action">Action</span>
                                     </button>
                                     <button type="button" class="wood-element btn-wood-success btn-sm px-4">
-                                        <i class="bi bi-check-circle me-2"></i>Success
+                                        <i class="bi bi-check-circle me-2"></i><span
+                                            data-i18n="forms_btn_success">Success</span>
                                     </button>
                                     <button type="button" class="wood-element btn-wood-danger btn-sm px-4">
-                                        <i class="bi bi-exclamation-triangle me-2"></i>Danger
+                                        <i class="bi bi-exclamation-triangle me-2"></i><span
+                                            data-i18n="forms_btn_danger">Danger</span>
                                     </button>
                                     <button type="button" class="wood-element btn-wood-accent btn-sm px-4">
-                                        <i class="bi bi-star me-2"></i>Accent
+                                        <i class="bi bi-star me-2"></i><span data-i18n="forms_btn_accent">Accent</span>
                                     </button>
                                 </div>
                             </div>
 
-                            <!-- Sizes -->
                             <div class="col-12">
-                                <label class="form-label small fw-bold opacity-75 d-block mb-2">Sizes</label>
+                                <label class="form-label small fw-bold opacity-75 d-block mb-2"
+                                    data-i18n="forms_lbl_sizes">Sizes</label>
                                 <div class="d-flex flex-wrap align-items-center gap-3">
-                                    <button type="button"
-                                        class="wood-element btn-wood-action btn-sm py-1 px-3 fs-8">Small</button>
-                                    <button type="button" class="wood-element btn-wood-action px-4">Default</button>
-                                    <button type="button"
-                                        class="wood-element btn-wood-action px-5 py-3 fs-5">Large</button>
+                                    <button type="button" class="wood-element btn-wood-action btn-sm py-1 px-3 fs-8"
+                                        data-i18n="forms_size_sm">Small</button>
+                                    <button type="button" class="wood-element btn-wood-action px-4"
+                                        data-i18n="forms_size_def">Default</button>
+                                    <button type="button" class="wood-element btn-wood-action px-5 py-3 fs-5"
+                                        data-i18n="forms_size_lg">Large</button>
                                 </div>
                             </div>
 
-                            <!-- Icon-only Buttons -->
                             <div class="col-12">
-                                <label class="form-label small fw-bold opacity-75 d-block mb-2">Icon Only</label>
+                                <label class="form-label small fw-bold opacity-75 d-block mb-2"
+                                    data-i18n="forms_lbl_icon_only">Icon Only</label>
                                 <div class="d-flex flex-wrap gap-3">
                                     <button type="button" class="wood-element btn-wood-primary btn-sm py-2 px-2 fs-6"
-                                        style="width: 42px; height: 42px;">
+                                        style="width: 42px; height: 42px;" id="btnFormGear" title="Settings Profile">
                                         <i class="bi bi-gear"></i>
                                     </button>
                                     <button type="button" class="wood-element btn-wood-secondary btn-sm py-2 px-2 fs-6"
-                                        style="width: 42px; height: 42px;">
+                                        style="width: 42px; height: 42px;" id="btnFormSearch" title="Query Registry">
                                         <i class="bi bi-search"></i>
                                     </button>
                                     <button type="button" class="wood-element btn-wood-action btn-sm py-2 px-2 fs-6"
-                                        style="width: 42px; height: 42px;">
+                                        style="width: 42px; height: 42px;" id="btnFormPlus" title="Insert Array">
                                         <i class="bi bi-plus-lg"></i>
                                     </button>
                                     <button type="button" class="wood-element btn-wood-danger btn-sm py-2 px-2 fs-6"
-                                        style="width: 42px; height: 42px;">
+                                        style="width: 42px; height: 42px;" id="btnFormTrash" title="Purge Component">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </div>
                             </div>
 
-                            <!-- States -->
                             <div class="col-12">
-                                <label class="form-label small fw-bold opacity-75 d-block mb-2">States</label>
+                                <label class="form-label small fw-bold opacity-75 d-block mb-2"
+                                    data-i18n="forms_lbl_states">States</label>
                                 <div class="d-flex flex-wrap align-items-center gap-3">
-                                    <button type="button"
-                                        class="wood-element btn-wood-action btn-sm px-4">Normal</button>
-                                    <button type="button"
-                                        class="wood-element btn-wood-action active btn-sm px-4">Pressed</button>
                                     <button type="button" class="wood-element btn-wood-action btn-sm px-4"
-                                        disabled>Disabled</button>
+                                        data-i18n="forms_state_normal">Normal</button>
+                                    <button type="button" class="wood-element btn-wood-action active btn-sm px-4"
+                                        data-i18n="forms_state_pressed">Pressed</button>
+                                    <button type="button" class="wood-element btn-wood-action btn-sm px-4" disabled
+                                        data-i18n="forms_state_disabled">Disabled</button>
                                 </div>
                             </div>
 
-                            <!-- Button Group -->
                             <div class="col-12">
-                                <label class="form-label small fw-bold opacity-75 d-block mb-2">Grouped Actions</label>
+                                <label class="form-label small fw-bold opacity-75 d-block mb-2"
+                                    data-i18n="forms_lbl_groups">Grouped Actions</label>
                                 <div class="wood-rocker-track d-inline-flex p-1">
                                     <button type="button" class="rocker-segment active" onclick="toggleRocker(this)">
-                                        <i class="bi bi-list-ul me-1"></i>List
+                                        <i class="bi bi-list-ul me-1"></i><span data-i18n="forms_grp_list">List</span>
                                     </button>
                                     <button type="button" class="rocker-segment" onclick="toggleRocker(this)">
-                                        <i class="bi bi-grid-3x3-gap me-1"></i>Grid
+                                        <i class="bi bi-grid-3x3-gap me-1"></i><span
+                                            data-i18n="forms_grp_grid">Grid</span>
                                     </button>
                                     <button type="button" class="rocker-segment" onclick="toggleRocker(this)">
-                                        <i class="bi bi-card-list me-1"></i>Card
+                                        <i class="bi bi-card-list me-1"></i><span data-i18n="forms_grp_card">Card</span>
                                     </button>
                                 </div>
                             </div>
 
-                            <!-- Full Width / Block Buttons -->
                             <div class="col-12">
-                                <label class="form-label small fw-bold opacity-75 d-block mb-2">Block Width</label>
+                                <label class="form-label small fw-bold opacity-75 d-block mb-2"
+                                    data-i18n="forms_lbl_block">Block Width</label>
                                 <div class="d-flex flex-column gap-3" style="max-width: 320px;">
                                     <button type="button" class="wood-element btn-wood-action w-100">
-                                        <i class="bi bi-cloud-upload me-2"></i>Upload Configuration
+                                        <i class="bi bi-cloud-upload me-2"></i><span data-i18n="forms_btn_upload">Upload
+                                            Configuration</span>
                                     </button>
                                     <button type="button" class="wood-element btn-wood-primary w-100">
-                                        <i class="bi bi-arrow-clockwise me-2"></i>Reset to Defaults
+                                        <i class="bi bi-arrow-clockwise me-2"></i><span
+                                            data-i18n="forms_btn_reset">Reset to Defaults</span>
                                     </button>
                                 </div>
                             </div>
 
-                            <!-- Loading Button -->
                             <div class="col-12">
-                                <label class="form-label small fw-bold opacity-75 d-block mb-2">Loading State</label>
+                                <label class="form-label small fw-bold opacity-75 d-block mb-2"
+                                    data-i18n="forms_lbl_loading">Loading State</label>
                                 <button type="button"
                                     class="wood-element btn-wood-action btn-sm px-4 d-inline-flex align-items-center gap-2"
                                     disabled>
                                     <span class="wood-spinner"></span>
-                                    Processing...
+                                    <span data-i18n="forms_btn_processing">Processing...</span>
                                 </button>
                             </div>
 
@@ -476,66 +512,141 @@
         <div class="container-fluid py-1">
             <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
                 style="border-color: rgba(0,0,0,0.06) !important;">
-                <h2 class="h5 fw-bold mb-0">System Node Registry & Stats</h2>
+                <h2 class="h5 fw-bold mb-0" data-i18n="stats_main_title">System Node Registry & Stats</h2>
             </div>
 
-            <!-- Deep Carved Card Display Containing Laser-Etched Table -->
             <div class="wood-card-inset">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div class="d-flex align-items-center gap-2">
                         <i class="bi bi-cpu btn-wood-secondary fs-5"></i>
-                        <h4 class="h6 fw-bold mb-0 text-body">Live Node Calibration Ledger</h4>
+                        <h4 class="h6 fw-bold mb-0 text-body" data-i18n="stats_ledger_title">Live Node Calibration
+                            Ledger</h4>
                     </div>
                 </div>
 
-                <div class="table-responsive wood-table-container">
-                    <table class="table wood-table">
+                <div class="table-responsive wood-table-container" style="overflow: visible;">
+                    <table class="table wood-table" style="vertical-align: middle;">
                         <thead>
                             <tr>
-                                <th scope="col">Node Identification</th>
-                                <th scope="col">Matrix State</th>
-                                <th scope="col">Luminance</th>
-                                <th scope="col" class="text-end">Actions</th>
+                                <th scope="col" data-i18n="stats_th_node">Node Identification</th>
+                                <th scope="col" data-i18n="stats_th_state">Matrix State</th>
+                                <th scope="col" data-i18n="stats_th_lumi">Luminance</th>
+                                <th scope="col" class="text-end" data-i18n="stats_th_actions">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
                                     <span class="fw-bold d-block small">Core-Module-Alpha</span>
-                                    <span class="fs-9 opacity-50">Addr: 0x4F8E2</span>
+                                    <span class="fs-9 opacity-50"><span data-i18n="stats_lbl_addr">Addr</span>:
+                                        0x4F8E2</span>
                                 </td>
-                                <td><span class="btn-wood-success small"><i class="bi bi-circle-fill me-1 fs-9"></i>
-                                        Operational</span></td>
-                                <td><span class="small opacity-75">85% Stable</span></td>
+                                <td>
+                                    <span class="btn-wood-success small">
+                                        <i class="bi bi-circle-fill me-1 fs-9"></i>
+                                        <span data-i18n="stats_status_operational">Operational</span>
+                                    </span>
+                                </td>
+                                <td><span class="small opacity-75"><span data-i18n="stats_lbl_stable">Stable</span>
+                                        85%</span></td>
                                 <td class="text-end">
-                                    <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
-                                            class="bi bi-sliders"></i></button>
+                                    <div class="dropdown d-inline-block">
+                                        <button
+                                            class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm dropdown-toggle hide-toggle-icon"
+                                            type="button" data-bs-toggle="dropdown" data-bs-boundary="viewport"
+                                            aria-expanded="false">
+                                            <i class="bi bi-sliders"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end wood-dropdown-menu shadow">
+                                            <li><a class="dropdown-item" href="#"
+                                                    onclick="showToast('success', 'Recalibrate', 'Core-Module-Alpha parameters synced.')"
+                                                    data-i18n="stats_act_recalibrate">Recalibrate Parameters</a></li>
+                                            <li><a class="dropdown-item" href="#"
+                                                    data-i18n="stats_act_optimize">Optimize Output</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item text-danger" href="#"
+                                                    data-i18n="stats_act_purge">Purge Array</a></li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <span class="fw-bold d-block small">Bevel-Vector-Beta</span>
-                                    <span class="fs-9 opacity-50">Addr: 0x9A1C4</span>
+                                    <span class="fs-9 opacity-50"><span data-i18n="stats_lbl_addr">Addr</span>:
+                                        0x9A1C4</span>
                                 </td>
-                                <td><span class="btn-wood-success small"><i class="bi bi-circle-fill me-1 fs-9"></i>
-                                        Operational</span></td>
-                                <td><span class="small opacity-75">92% Stable</span></td>
+                                <td>
+                                    <span class="btn-wood-success small">
+                                        <i class="bi bi-circle-fill me-1 fs-9"></i>
+                                        <span data-i18n="stats_status_operational">Operational</span>
+                                    </span>
+                                </td>
+                                <td><span class="small opacity-75"><span data-i18n="stats_lbl_stable">Stable</span>
+                                        92%</span></td>
                                 <td class="text-end">
-                                    <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
-                                            class="bi bi-sliders"></i></button>
+                                    <div class="dropdown d-inline-block">
+                                        <button
+                                            class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm dropdown-toggle hide-toggle-icon"
+                                            type="button" data-bs-toggle="dropdown" data-bs-boundary="viewport"
+                                            aria-expanded="false">
+                                            <i class="bi bi-sliders"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end wood-dropdown-menu shadow">
+                                            <li><a class="dropdown-item" href="#"
+                                                    onclick="showToast('success', 'Recalibrate', 'Bevel-Vector-Beta parameters synced.')"
+                                                    data-i18n="stats_act_recalibrate">Recalibrate Parameters</a></li>
+                                            <li><a class="dropdown-item" href="#"
+                                                    data-i18n="stats_act_optimize">Optimize Output</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item text-danger" href="#"
+                                                    data-i18n="stats_act_purge">Purge Array</a></li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <span class="fw-bold d-block small">Specular-Chroma-Delta</span>
-                                    <span class="fs-9 opacity-50">Addr: 0x2D7B9</span>
+                                    <span class="fs-9 opacity-50"><span data-i18n="stats_lbl_addr">Addr</span>:
+                                        0x2D7B9</span>
                                 </td>
-                                <td><span class="btn-wood-danger small"><i class="bi bi-slash-circle me-1 fs-9"></i>
-                                        Mismatch Fault</span></td>
-                                <td><span class="small btn-wood-danger fw-bold">41% Variance</span></td>
+                                <td>
+                                    <span class="btn-wood-danger small">
+                                        <i class="bi bi-slash-circle me-1 fs-9"></i>
+                                        <span data-i18n="stats_status_fault">Mismatch Fault</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="small btn-wood-danger fw-bold">
+                                        41% <span data-i18n="stats_lbl_variance">Variance</span>
+                                    </span>
+                                </td>
                                 <td class="text-end">
-                                    <button class="wood-element btn-wood-danger btn-sm py-1 px-2 fs-8 shadow-sm"><i
-                                            class="bi bi-wrench-adjustable"></i></button>
+                                    <div class="dropdown d-inline-block">
+                                        <button
+                                            class="wood-element btn-wood-danger btn-sm py-1 px-2 fs-8 shadow-sm dropdown-toggle hide-toggle-icon"
+                                            type="button" data-bs-toggle="dropdown" data-bs-boundary="viewport"
+                                            aria-expanded="false">
+                                            <i class="bi bi-wrench-adjustable"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end wood-dropdown-menu shadow">
+                                            <li><a class="dropdown-item fw-bold" href="#"
+                                                    onclick="showToast('action', 'Hotfix', 'Re-routing calibration vectors...')"
+                                                    data-i18n="stats_act_hotfix">Execute Vector Hotfix</a></li>
+                                            <li><a class="dropdown-item" href="#" data-i18n="stats_act_diagnostics">Run
+                                                    Diagnostics</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item text-danger" href="#"
+                                                    data-i18n="stats_act_shutdown">Isolate System Node</a></li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -544,75 +655,86 @@
             </div>
         </div>
     </template>
-
     <!-- PAGE 4: COMPONENT SHOWCASE -->
     <template id="view-components">
         <div class="container-fluid py-1">
             <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
                 style="border-color: rgba(0,0,0,0.06) !important;">
-                <h2 class="h5 fw-bold mb-0">Component Showcase</h2>
+                <h2 class="h5 fw-bold mb-0" data-i18n="comp_showcase_title">Component Showcase</h2>
             </div>
 
             <div class="row g-4">
 
-                <!-- Badges -->
                 <div class="col-12 col-md-6">
                     <div class="wood-panel p-4 mb-3">
-                        <h5 class="h6 fw-bold mb-3">Badges</h5>
+                        <h5 class="h6 fw-bold mb-3" data-i18n="comp_section_badges">Badges</h5>
                         <div class="d-flex flex-wrap gap-2">
-                            <span class="wood-badge btn-wood-secondary"><i class="bi bi-circle-fill"></i>
-                                Secondary</span>
-                            <span class="wood-badge btn-wood-action"><i class="bi bi-lightning-charge-fill"></i>
-                                Action</span>
-                            <span class="wood-badge btn-wood-success"><i class="bi bi-check-circle-fill"></i>
-                                Success</span>
-                            <span class="wood-badge btn-wood-danger"><i class="bi bi-exclamation-triangle-fill"></i>
-                                Danger</span>
-                            <span class="wood-badge wood-badge-inset btn-wood-accent"><i class="bi bi-star-fill"></i>
-                                Inset Accent</span>
+                            <span class="wood-badge btn-wood-secondary">
+                                <i class="bi bi-circle-fill"></i>
+                                <span data-i18n="comp_badge_secondary">Secondary</span>
+                            </span>
+                            <span class="wood-badge btn-wood-action">
+                                <i class="bi bi-lightning-charge-fill"></i>
+                                <span data-i18n="comp_badge_action">Action</span>
+                            </span>
+                            <span class="wood-badge btn-wood-success">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span data-i18n="comp_badge_success">Success</span>
+                            </span>
+                            <span class="wood-badge btn-wood-danger">
+                                <i class="bi bi-exclamation-triangle-fill"></i>
+                                <span data-i18n="comp_badge_danger">Danger</span>
+                            </span>
+                            <span class="wood-badge wood-badge-inset btn-wood-accent">
+                                <i class="bi bi-star-fill"></i>
+                                <span data-i18n="comp_badge_inset_accent">Inset Accent</span>
+                            </span>
                         </div>
                     </div>
 
                     <div class="wood-panel p-4 mb-3">
-                        <h5 class="h6 fw-bold mb-3">Tooltips & Popovers</h5>
+                        <h5 class="h6 fw-bold mb-3" data-i18n="comp_section_tooltips">Tooltips & Popovers</h5>
                         <div class="d-flex flex-wrap gap-3 align-items-center">
                             <span class="wood-tooltip-trigger">
-                                <button class="wood-element btn-wood-primary btn-sm">Hover for tooltip</button>
-                                <span class="wood-tooltip tt-top">Specular variance: 0.04%</span>
+                                <button class="wood-element btn-wood-primary btn-sm" data-i18n="comp_btn_hover_tt">Hover
+                                    for
+                                    tooltip</button>
+                                <span class="wood-tooltip tt-top" data-i18n="comp_tt_content">Specular variance:
+                                    0.04%</span>
                             </span>
 
                             <div style="position: relative;">
-                                <button class="wood-element btn-wood-secondary btn-sm"
-                                    onclick="toggleWoodPopover()">Toggle
-                                    popover</button>
+                                <button class="wood-element btn-wood-secondary btn-sm" onclick="toggleWoodPopover()"
+                                    data-i18n="comp_btn_toggle_pop">Toggle popover</button>
                                 <div class="wood-popover" id="demoPopover">
-                                    <div class="wood-popover-title">Node Details</div>
-                                    <div class="wood-popover-body">Core-Module-Alpha is operating at 85% stability with
-                                        nominal luminance output.</div>
+                                    <div class="wood-popover-title" data-i18n="comp_pop_title">Node Details</div>
+                                    <div class="wood-popover-body" data-i18n="comp_pop_body">Core-Module-Alpha is
+                                        operating
+                                        at 85% stability with nominal luminance output.</div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="wood-panel p-4">
-                        <h5 class="h6 fw-bold mb-3">Modals & Toasts</h5>
+                        <h5 class="h6 fw-bold mb-3" data-i18n="comp_section_modals">Modals & Toasts</h5>
                         <div class="d-flex flex-wrap gap-3">
-                            <button class="wood-element btn-wood-action btn-sm" onclick="openWoodModal()">Open
-                                Modal</button>
+                            <button class="wood-element btn-wood-action btn-sm" onclick="openWoodModal()"
+                                data-i18n="comp_btn_open_mod">Open Modal</button>
                             <button class="wood-element btn-wood-success btn-sm"
-                                onclick="showToast('success', 'Sync Complete', 'All matrix nodes recalibrated successfully.')">Success
-                                Toast</button>
-                            <button class="wood-element btn-wood-danger btn-sm"
-                                onclick="showToast('danger', 'Fault Detected', 'Specular-Chroma-Delta reported a mismatch fault.')">Danger
-                                Toast</button>
+        onclick="showToast('success', 'toast_sync_complete_title', 'toast_sync_complete_msg')"
+        data-i18n="comp_btn_toast_succ">Success Toast</button>
+
+<button class="wood-element btn-wood-danger btn-sm"
+        onclick="showToast('danger', 'toast_fault_detected_title', 'toast_fault_detected_msg')"
+        data-i18n="comp_btn_toast_dang">Danger Toast</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Progress Bars -->
                 <div class="col-12 col-md-6">
                     <div class="wood-panel p-4 mb-3">
-                        <h5 class="h6 fw-bold mb-3">Progress Bars</h5>
+                        <h5 class="h6 fw-bold mb-3" data-i18n="comp_section_progress">Progress Bars</h5>
                         <div class="d-flex flex-column gap-3">
                             <div class="wood-progress">
                                 <div class="wood-progress-bar bar-secondary" style="width: 85%;"></div>
@@ -630,7 +752,7 @@
                     </div>
 
                     <div class="wood-panel p-4">
-                        <h5 class="h6 fw-bold mb-3">Pagination</h5>
+                        <h5 class="h6 fw-bold mb-3" data-i18n="comp_section_pagination">Pagination</h5>
                         <ul class="wood-pagination">
                             <li class="page-item disabled"><a class="page-link" href="#"><i
                                         class="bi bi-chevron-left"></i></a></li>
@@ -643,34 +765,37 @@
                     </div>
                 </div>
 
-                <!-- Accordion Section -->
                 <div class="col-12 col-md-6">
                     <div class="wood-panel p-4">
-                        <h5 class="h6 fw-bold mb-3">Accordion</h5>
+                        <h5 class="h6 fw-bold mb-3" data-i18n="comp_section_accordion">Accordion</h5>
                         <div class="wood-accordion">
                             <div class="wood-accordion-item open">
                                 <div class="wood-accordion-header" onclick="toggleAccordion(this)">
-                                    <span class="wood-accordion-icon"><i class="bi bi-cpu btn-wood-secondary"></i>
-                                        Matrix Node Configuration</span>
+                                    <span class="wood-accordion-icon">
+                                        <i class="bi bi-cpu btn-wood-secondary"></i>
+                                        <span data-i18n="comp_acc_header_matrix">Matrix Node Configuration</span>
+                                    </span>
                                     <i class="bi bi-chevron-down"></i>
                                 </div>
                                 <div class="wood-accordion-collapse">
-                                    <div class="wood-accordion-body">
+                                    <div class="wood-accordion-body" data-i18n="comp_acc_body_matrix">
                                         Configure the active matrix nodes including frequency channel assignment,
-                                        luminance thresholds, and specular variance tolerances for the calibration
-                                        ledger.
+                                        luminance
+                                        thresholds, and specular variance tolerances for the calibration ledger.
                                     </div>
                                 </div>
                             </div>
 
                             <div class="wood-accordion-item">
                                 <div class="wood-accordion-header" onclick="toggleAccordion(this)">
-                                    <span class="wood-accordion-icon"><i
-                                            class="bi bi-shield-check btn-wood-success"></i> System Diagnostics</span>
+                                    <span class="wood-accordion-icon">
+                                        <i class="bi bi-shield-check btn-wood-success"></i>
+                                        <span data-i18n="comp_acc_header_diag">System Diagnostics</span>
+                                    </span>
                                     <i class="bi bi-chevron-down"></i>
                                 </div>
                                 <div class="wood-accordion-collapse">
-                                    <div class="wood-accordion-body">
+                                    <div class="wood-accordion-body" data-i18n="comp_acc_body_diag">
                                         Run a full diagnostic sweep across all registered nodes to verify operational
                                         status, surface mismatch faults, and recalibrate variance baselines.
                                     </div>
@@ -679,12 +804,14 @@
 
                             <div class="wood-accordion-item disabled">
                                 <div class="wood-accordion-header">
-                                    <span class="wood-accordion-icon"><i class="bi bi-lock btn-wood-primary"></i> Locked
-                                        Settings</span>
+                                    <span class="wood-accordion-icon">
+                                        <i class="bi bi-lock btn-wood-primary"></i>
+                                        <span data-i18n="comp_acc_header_locked">Locked Settings</span>
+                                    </span>
                                     <i class="bi bi-chevron-down"></i>
                                 </div>
                                 <div class="wood-accordion-collapse">
-                                    <div class="wood-accordion-body">
+                                    <div class="wood-accordion-body" data-i18n="comp_acc_body_locked">
                                         These settings are locked pending administrator approval.
                                     </div>
                                 </div>
@@ -693,31 +820,31 @@
                     </div>
                 </div>
 
-                <!-- Flush Accordion Variant -->
                 <div class="col-12 col-md-6">
                     <div class="wood-panel p-4">
-                        <h5 class="h6 fw-bold mb-3">Accordion (Flush)</h5>
+                        <h5 class="h6 fw-bold mb-3" data-i18n="comp_section_flush">Accordion (Flush)</h5>
                         <div class="wood-accordion flush">
                             <div class="wood-accordion-item">
                                 <div class="wood-accordion-header" onclick="toggleAccordion(this)">
-                                    <span>What is Specular Variance?</span>
+                                    <span data-i18n="comp_flush_q1">What is Specular Variance?</span>
                                     <i class="bi bi-chevron-down"></i>
                                 </div>
                                 <div class="wood-accordion-collapse">
-                                    <div class="wood-accordion-body">
+                                    <div class="wood-accordion-body" data-i18n="comp_flush_a1">
                                         A measure of deviation in surface reflectivity across the matrix nodes. Lower
-                                        values indicate more consistent material calibration.
+                                        values
+                                        indicate more consistent material calibration.
                                     </div>
                                 </div>
                             </div>
 
                             <div class="wood-accordion-item">
                                 <div class="wood-accordion-header" onclick="toggleAccordion(this)">
-                                    <span>How often should I recalibrate?</span>
+                                    <span data-i18n="comp_flush_q2">How often should I recalibrate?</span>
                                     <i class="bi bi-chevron-down"></i>
                                 </div>
                                 <div class="wood-accordion-collapse">
-                                    <div class="wood-accordion-body">
+                                    <div class="wood-accordion-body" data-i18n="comp_flush_a2">
                                         Recalibration is recommended every 72 hours, or immediately following a mismatch
                                         fault on any registered node.
                                     </div>
@@ -726,11 +853,11 @@
 
                             <div class="wood-accordion-item">
                                 <div class="wood-accordion-header" onclick="toggleAccordion(this)">
-                                    <span>Can I export the calibration ledger?</span>
+                                    <span data-i18n="comp_flush_q3">Can I export the calibration ledger?</span>
                                     <i class="bi bi-chevron-down"></i>
                                 </div>
                                 <div class="wood-accordion-collapse">
-                                    <div class="wood-accordion-body">
+                                    <div class="wood-accordion-body" data-i18n="comp_flush_a3">
                                         Yes — use the export action from the System Stats deck to download the current
                                         ledger as a structured report.
                                     </div>
@@ -740,10 +867,9 @@
                     </div>
                 </div>
 
-                <!-- Skeleton Loaders -->
                 <div class="col-12">
                     <div class="wood-card-inset">
-                        <h5 class="h6 fw-bold mb-3">Skeleton Loaders</h5>
+                        <h5 class="h6 fw-bold mb-3" data-i18n="comp_section_skeletons">Skeleton Loaders</h5>
                         <div class="row g-3">
                             <div class="col-12 col-md-4">
                                 <div class="wood-skeleton wood-skeleton-circle mb-3"></div>
@@ -764,73 +890,79 @@
                     </div>
                 </div>
 
-                <!-- Cards Section -->
                 <div class="col-12">
                     <div class="wood-panel p-4">
-                        <h5 class="h6 fw-bold mb-3">Cards</h5>
+                        <h5 class="h6 fw-bold mb-3" data-i18n="comp_section_cards">Cards</h5>
                         <div class="row g-4">
 
-                            <!-- Standard card with image -->
                             <div class="col-12 col-md-4">
                                 <div class="wood-card wood-card-hover">
                                     <img src="https://picsum.photos/seed/timber1/400/240" class="wood-card-img-top"
                                         alt="Module preview">
                                     <div class="wood-card-body">
-                                        <div class="wood-card-subtitle btn-wood-secondary">Calibration Node</div>
+                                        <div class="wood-card-subtitle btn-wood-secondary" data-i18n="comp_card_sub1">
+                                            Calibration Node</div>
                                         <h6 class="wood-card-title">Core-Module-Alpha</h6>
-                                        <p class="wood-card-text">Primary processing unit running at nominal specular
-                                            variance with stable luminance throughput.</p>
-                                        <button class="wood-element btn-wood-action btn-sm px-4 w-100">View
-                                            Details</button>
+                                        <p class="wood-card-text" data-i18n="comp_card_text1">Primary processing unit
+                                            running at nominal specular variance with stable luminance throughput.</p>
+                                        <button class="wood-element btn-wood-action btn-sm px-4 w-100"
+                                            data-i18n="comp_btn_view_det">View Details</button>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Accent status card, no image -->
                             <div class="col-12 col-md-4">
                                 <div class="wood-card wood-card-hover wood-card-accent btn-wood-danger">
                                     <div class="wood-card-body">
-                                        <div class="wood-card-subtitle btn-wood-danger"><i
-                                                class="bi bi-exclamation-triangle-fill me-1"></i>Fault Alert</div>
+                                        <div class="wood-card-subtitle btn-wood-danger">
+                                            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                                            <span data-i18n="comp_card_sub2">Fault Alert</span>
+                                        </div>
                                         <h6 class="wood-card-title text-body">Specular-Chroma-Delta</h6>
-                                        <p class="wood-card-text">Mismatch fault detected — 41% variance exceeds the
-                                            safe calibration threshold.</p>
+                                        <p class="wood-card-text" data-i18n="comp_card_text2">Mismatch fault detected —
+                                            41%
+                                            variance exceeds the safe calibration threshold.</p>
                                     </div>
                                     <div class="wood-card-footer">
-                                        <span class="wood-card-footer-meta">Addr: 0x2D7B9</span>
-                                        <button
-                                            class="wood-element btn-wood-danger btn-sm py-1 px-3 fs-8">Resolve</button>
+                                        <span class="wood-card-footer-meta"><span data-i18n="comp_lbl_addr">Addr</span>:
+                                            0x2D7B9</span>
+                                        <button class="wood-element btn-wood-danger btn-sm py-1 px-3 fs-8"
+                                            data-i18n="comp_btn_resolve">Resolve</button>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Flat / inset card -->
                             <div class="col-12 col-md-4">
                                 <div class="wood-card wood-card-flat">
                                     <div class="wood-card-body">
-                                        <div class="wood-card-subtitle btn-wood-success"><i
-                                                class="bi bi-graph-up-arrow me-1"></i>Summary</div>
-                                        <h6 class="wood-card-title">Weekly Output</h6>
-                                        <p class="wood-card-text">Aggregate luminance across all active nodes increased
-                                            12% over the previous epoch.</p>
+                                        <div class="wood-card-subtitle btn-wood-success">
+                                            <i class="bi bi-graph-up-arrow me-1"></i>
+                                            <span data-i18n="comp_card_sub3">Summary</span>
+                                        </div>
+                                        <h6 class="wood-card-title" data-i18n="comp_card_title3">Weekly Output</h6>
+                                        <p class="wood-card-text" data-i18n="comp_card_text3">Aggregate luminance across
+                                            all
+                                            active nodes increased 12% over the previous epoch.</p>
                                     </div>
                                     <div class="wood-card-footer">
-                                        <span class="wood-card-footer-meta">Updated 2h ago</span>
+                                        <span class="wood-card-footer-meta" data-i18n="comp_card_meta3">Updated 2h
+                                            ago</span>
                                         <i class="bi bi-arrow-clockwise btn-wood-secondary"></i>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Horizontal card -->
                             <div class="col-12">
                                 <div class="wood-card wood-card-hover wood-card-horizontal">
                                     <img src="https://picsum.photos/seed/timber2/200/200" class="wood-card-img-top"
                                         alt="Module preview">
                                     <div class="wood-card-body d-flex flex-column justify-content-center">
-                                        <div class="wood-card-subtitle btn-wood-secondary">Registry Entry</div>
+                                        <div class="wood-card-subtitle btn-wood-secondary" data-i18n="comp_card_sub4">
+                                            Registry Entry</div>
                                         <h6 class="wood-card-title">Bevel-Vector-Beta</h6>
-                                        <p class="wood-card-text mb-0">Secondary support module operating at 92%
-                                            stability — no action required at this time.</p>
+                                        <p class="wood-card-text mb-0" data-i18n="comp_card_text4">Secondary support
+                                            module
+                                            operating at 92% stability — no action required at this time.</p>
                                     </div>
                                 </div>
                             </div>
@@ -839,19 +971,19 @@
                     </div>
                 </div>
 
-                <!-- Empty State -->
                 <div class="col-12">
                     <div class="wood-card-inset">
                         <div class="wood-empty-state">
                             <i class="bi bi-inbox"></i>
-                            <h5>No Calibration Records Found</h5>
-                            <p class="opacity-75 mb-3">Run a diagnostic sweep to populate the node registry.</p>
-                            <button class="wood-element btn-wood-action btn-sm px-4">Run Diagnostic Sweep</button>
+                            <h5 data-i18n="comp_empty_title">No Calibration Records Found</h5>
+                            <p class="opacity-75 mb-3" data-i18n="comp_empty_desc">Run a diagnostic sweep to populate
+                                the
+                                node registry.</p>
+                            <button class="wood-element btn-wood-action btn-sm px-4" data-i18n="comp_btn_run_sweep">Run
+                                Diagnostic Sweep</button>
                         </div>
                     </div>
                 </div>
-
-
 
             </div>
         </div>
@@ -862,7 +994,7 @@
         <div class="container-fluid py-1">
             <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
                 style="border-color: rgba(0,0,0,0.06) !important;">
-                <h2 class="h5 fw-bold mb-0">Operator Profile</h2>
+                <h2 class="h5 fw-bold mb-0" data-i18n="prof_title_operator">Operator Profile</h2>
             </div>
 
             <div class="row g-4">
@@ -875,47 +1007,57 @@
                                 <i class="bi bi-person-fill"></i>
                             </div>
                             <h6 class="wood-card-title mb-1">Amira Al-Farsi</h6>
-                            <div class="wood-card-subtitle btn-wood-secondary mb-3">Senior Matrix Operator</div>
+                            <div class="wood-card-subtitle btn-wood-secondary mb-3"
+                                data-i18n="prof_role_senior_operator">Senior Matrix Operator</div>
 
                             <div class="d-flex justify-content-center gap-2 mb-3">
-                                <span class="wood-badge btn-wood-success"><i class="bi bi-circle-fill"></i>
-                                    Online</span>
-                                <span class="wood-badge wood-badge-inset btn-wood-action"><i
-                                        class="bi bi-patch-check-fill"></i> Verified</span>
+                                <span class="wood-badge btn-wood-success">
+                                    <i class="bi bi-circle-fill"></i>
+                                    <span data-i18n="prof_status_online">Online</span>
+                                </span>
+                                <span class="wood-badge wood-badge-inset btn-wood-action">
+                                    <i class="bi bi-patch-check-fill"></i>
+                                    <span data-i18n="prof_status_verified">Verified</span>
+                                </span>
                             </div>
 
-                            <p class="wood-card-text">
+                            <p class="wood-card-text" data-i18n="prof_bio_text">
                                 Responsible for calibration oversight across Core and Bevel node clusters. Member since
                                 2023.
                             </p>
 
                             <button class="wood-element btn-wood-action w-100">
-                                <i class="bi bi-pencil-square me-2"></i>Edit Profile
+                                <i class="bi bi-pencil-square me-2"></i><span data-i18n="prof_btn_edit">Edit
+                                    Profile</span>
                             </button>
                         </div>
                         <div class="wood-card-footer">
-                            <span class="wood-card-footer-meta"><i class="bi bi-geo-alt me-1"></i>Abu Dhabi, AE</span>
+                            <span class="wood-card-footer-meta"><i class="bi bi-geo-alt me-1"></i><span
+                                    data-i18n="prof_loc_abudhabi">Abu Dhabi, AE</span></span>
                             <span class="wood-card-footer-meta"><i class="bi bi-clock me-1"></i>GST</span>
                         </div>
                     </div>
 
                     <!-- Contact Info Card -->
                     <div class="wood-card-inset mt-4">
-                        <h6 class="fw-bold mb-3 btn-wood-secondary"><i class="bi bi-person-lines-fill me-2"></i>Contact
-                            Information</h6>
+                        <h6 class="fw-bold mb-3 btn-wood-secondary">
+                            <i class="bi bi-person-lines-fill me-2"></i><span data-i18n="prof_section_contact">Contact
+                                Information</span>
+                        </h6>
                         <div class="wood-divider mb-3"></div>
                         <div class="d-flex flex-column gap-3 small">
                             <div class="d-flex justify-content-between">
-                                <span class="opacity-60">Email</span>
+                                <span class="opacity-60" data-i18n="prof_lbl_email">Email</span>
                                 <span class="fw-bold">amira.alfarsi@timberstudio.io</span>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <span class="opacity-60">Phone</span>
+                                <span class="opacity-60" data-i18n="prof_lbl_phone">Phone</span>
                                 <span class="fw-bold">+971 50 123 4567</span>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <span class="opacity-60">Node Access Level</span>
-                                <span class="fw-bold btn-wood-action">Tier 3 — Full</span>
+                                <span class="opacity-60" data-i18n="prof_lbl_access">Node Access Level</span>
+                                <span class="fw-bold btn-wood-action" data-i18n="prof_val_access_tier">Tier 3 —
+                                    Full</span>
                             </div>
                         </div>
                     </div>
@@ -929,7 +1071,8 @@
                         <div class="col-12 col-sm-4">
                             <div class="wood-stat-card p-3">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <span class="fs-8 text-uppercase fw-bold opacity-50">Nodes Managed</span>
+                                    <span class="fs-8 text-uppercase fw-bold opacity-50"
+                                        data-i18n="prof_stat_managed">Nodes Managed</span>
                                     <i class="bi bi-diagram-3 btn-wood-secondary fs-5"></i>
                                 </div>
                                 <div class="h3 fw-bold mb-0 btn-wood-primary">28</div>
@@ -938,7 +1081,8 @@
                         <div class="col-12 col-sm-4">
                             <div class="wood-stat-card p-3">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <span class="fs-8 text-uppercase fw-bold opacity-50">Calibrations</span>
+                                    <span class="fs-8 text-uppercase fw-bold opacity-50"
+                                        data-i18n="prof_stat_calibrations">Calibrations</span>
                                     <i class="bi bi-check2-circle btn-wood-success fs-5"></i>
                                 </div>
                                 <div class="h3 fw-bold mb-0 btn-wood-primary">412</div>
@@ -947,7 +1091,8 @@
                         <div class="col-12 col-sm-4">
                             <div class="wood-stat-card p-3">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <span class="fs-8 text-uppercase fw-bold opacity-50">Open Faults</span>
+                                    <span class="fs-8 text-uppercase fw-bold opacity-50"
+                                        data-i18n="prof_stat_faults">Open Faults</span>
                                     <i class="bi bi-exclamation-triangle btn-wood-danger fs-5"></i>
                                 </div>
                                 <div class="h3 fw-bold mb-0 btn-wood-primary">1</div>
@@ -957,14 +1102,16 @@
 
                     <!-- Skill / Proficiency Progress -->
                     <div class="wood-card-inset mb-4">
-                        <h6 class="fw-bold mb-3 btn-wood-secondary"><i
-                                class="bi bi-bar-chart-steps me-2"></i>Proficiency Matrix</h6>
+                        <h6 class="fw-bold mb-3 btn-wood-secondary">
+                            <i class="bi bi-bar-chart-steps me-2"></i><span
+                                data-i18n="prof_section_proficiency">Proficiency Matrix</span>
+                        </h6>
                         <div class="wood-divider mb-4"></div>
 
                         <div class="d-flex flex-column gap-3">
                             <div>
                                 <div class="d-flex justify-content-between small fw-bold mb-2">
-                                    <span>Specular Calibration</span>
+                                    <span data-i18n="prof_skill_specular">Specular Calibration</span>
                                     <span class="opacity-60">92%</span>
                                 </div>
                                 <div class="wood-progress">
@@ -973,7 +1120,7 @@
                             </div>
                             <div>
                                 <div class="d-flex justify-content-between small fw-bold mb-2">
-                                    <span>Frequency Diagnostics</span>
+                                    <span data-i18n="prof_skill_frequency">Frequency Diagnostics</span>
                                     <span class="opacity-60">78%</span>
                                 </div>
                                 <div class="wood-progress">
@@ -982,7 +1129,7 @@
                             </div>
                             <div>
                                 <div class="d-flex justify-content-between small fw-bold mb-2">
-                                    <span>Fault Resolution</span>
+                                    <span data-i18n="prof_skill_resolution">Fault Resolution</span>
                                     <span class="opacity-60">65%</span>
                                 </div>
                                 <div class="wood-progress">
@@ -991,7 +1138,7 @@
                             </div>
                             <div>
                                 <div class="d-flex justify-content-between small fw-bold mb-2">
-                                    <span>System Override Protocols</span>
+                                    <span data-i18n="prof_skill_protocols">System Override Protocols</span>
                                     <span class="opacity-60">41%</span>
                                 </div>
                                 <div class="wood-progress">
@@ -1003,8 +1150,10 @@
 
                     <!-- Activity / Recent Actions -->
                     <div class="wood-card-inset">
-                        <h6 class="fw-bold mb-3 btn-wood-secondary"><i class="bi bi-clock-history me-2"></i>Recent
-                            Activity</h6>
+                        <h6 class="fw-bold mb-3 btn-wood-secondary">
+                            <i class="bi bi-clock-history me-2"></i><span data-i18n="prof_section_activity">Recent
+                                Activity</span>
+                        </h6>
                         <div class="wood-divider mb-3"></div>
 
                         <div class="d-flex flex-column gap-3">
@@ -1012,24 +1161,30 @@
                                 <span class="wood-badge btn-wood-success wood-badge-inset"><i
                                         class="bi bi-check-lg"></i></span>
                                 <div class="flex-grow-1">
-                                    <div class="small fw-bold">Recalibrated Bevel-Vector-Beta</div>
-                                    <div class="fs-9 opacity-50">Variance reduced to 8% — 2 hours ago</div>
+                                    <div class="small fw-bold" data-i18n="prof_act_title1">Recalibrated
+                                        Bevel-Vector-Beta</div>
+                                    <div class="fs-9 opacity-50" data-i18n="prof_act_meta1">Variance reduced to 8% — 2
+                                        hours ago</div>
                                 </div>
                             </div>
                             <div class="d-flex align-items-start gap-3">
                                 <span class="wood-badge btn-wood-danger wood-badge-inset"><i
                                         class="bi bi-exclamation-triangle"></i></span>
                                 <div class="flex-grow-1">
-                                    <div class="small fw-bold">Flagged Specular-Chroma-Delta</div>
-                                    <div class="fs-9 opacity-50">Mismatch fault logged — 5 hours ago</div>
+                                    <div class="small fw-bold" data-i18n="prof_act_title2">Flagged Specular-Chroma-Delta
+                                    </div>
+                                    <div class="fs-9 opacity-50" data-i18n="prof_act_meta2">Mismatch fault logged — 5
+                                        hours ago</div>
                                 </div>
                             </div>
                             <div class="d-flex align-items-start gap-3">
                                 <span class="wood-badge btn-wood-secondary wood-badge-inset"><i
                                         class="bi bi-arrow-repeat"></i></span>
                                 <div class="flex-grow-1">
-                                    <div class="small fw-bold">Updated Chroma Frequency Channel</div>
-                                    <div class="fs-9 opacity-50">Core-Module-Alpha — yesterday</div>
+                                    <div class="small fw-bold" data-i18n="prof_act_title3">Updated Chroma Frequency
+                                        Channel</div>
+                                    <div class="fs-9 opacity-50" data-i18n="prof_act_meta3">Core-Module-Alpha —
+                                        yesterday</div>
                                 </div>
                             </div>
                         </div>
@@ -1045,15 +1200,15 @@
         <div class="container-fluid py-1">
             <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
                 style="border-color: rgba(0,0,0,0.06) !important;">
-                <h2 class="h5 fw-bold mb-0">Subscription Tiers</h2>
+                <h2 class="h5 fw-bold mb-0" data-i18n="prc_title_tiers">Subscription Tiers</h2>
             </div>
 
             <!-- Intro + Billing Toggle -->
             <div class="wood-panel p-4 mb-4">
                 <div class="row g-3 align-items-center">
                     <div class="col-12 col-md-8">
-                        <h5 class="h6 fw-bold mb-1">Choose your matrix capacity</h5>
-                        <p class="small opacity-75 mb-0">
+                        <h5 class="h6 fw-bold mb-1" data-i18n="prc_intro_title">Choose your matrix capacity</h5>
+                        <p class="small opacity-75 mb-0" data-i18n="prc_intro_desc">
                             All tiers include core diagnostics and the calibration ledger. Upgrade for expanded node
                             capacity and override protocols.
                         </p>
@@ -1061,10 +1216,12 @@
                     <div class="col-12 col-md-4 d-flex justify-content-md-end">
                         <div class="wood-rocker-track d-inline-flex p-1">
                             <button type="button" class="rocker-segment active"
-                                onclick="toggleRocker(this); togglePricingPeriod('monthly')">Monthly</button>
+                                onclick="toggleRocker(this); togglePricingPeriod('monthly')"
+                                data-i18n="prc_period_monthly">Monthly</button>
                             <button type="button" class="rocker-segment"
                                 onclick="toggleRocker(this); togglePricingPeriod('annual')">
-                                Annual <span class="wood-badge wood-badge-inset btn-wood-success ms-1"
+                                <span data-i18n="prc_period_annual">Annual</span> <span
+                                    class="wood-badge wood-badge-inset btn-wood-success ms-1"
                                     style="font-size: 0.6rem; padding: 0.1rem 0.5rem;">-20%</span>
                             </button>
                         </div>
@@ -1079,36 +1236,42 @@
                 <div class="col-12 col-lg-4">
                     <div class="wood-card wood-card-hover h-100 d-flex flex-column">
                         <div class="wood-card-body flex-grow-1">
-                            <div class="wood-card-subtitle btn-wood-secondary">Starter</div>
-                            <h6 class="wood-card-title fs-5 mb-1">Core Access</h6>
+                            <div class="wood-card-subtitle btn-wood-secondary" data-i18n="prc_tier1_badge">Starter</div>
+                            <h6 class="wood-card-title fs-5 mb-1" data-i18n="prc_tier1_title">Core Access</h6>
                             <div class="mb-3">
                                 <span class="h2 fw-bold btn-wood-primary price-monthly">$29</span>
                                 <span class="h2 fw-bold btn-wood-primary price-annual d-none">$23</span>
-                                <span class="small opacity-60">/ month</span>
+                                <span class="small opacity-60" data-i18n="prc_lbl_per_month">/ month</span>
                             </div>
-                            <p class="wood-card-text">For individual operators managing a small registry of calibration
-                                nodes.</p>
+                            <p class="wood-card-text" data-i18n="prc_tier1_desc">For individual operators managing a
+                                small registry of calibration nodes.</p>
 
                             <div class="d-flex flex-column gap-2 mt-4">
                                 <div class="d-flex align-items-center gap-2 small">
-                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Up to 10 active nodes
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> <span
+                                        data-i18n="prc_feat_nodes_10">Up to 10 active nodes</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 small">
-                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Calibration ledger
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> <span
+                                        data-i18n="prc_feat_ledger">Calibration ledger</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 small">
-                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Standard diagnostics
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> <span
+                                        data-i18n="prc_feat_diag_std">Standard diagnostics</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 small opacity-40">
-                                    <i class="bi bi-x-circle"></i> Override protocols
+                                    <i class="bi bi-x-circle"></i> <span data-i18n="prc_feat_override">Override
+                                        protocols</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 small opacity-40">
-                                    <i class="bi bi-x-circle"></i> Priority support
+                                    <i class="bi bi-x-circle"></i> <span data-i18n="prc_feat_support_prio">Priority
+                                        support</span>
                                 </div>
                             </div>
                         </div>
                         <div class="wood-card-footer">
-                            <button class="wood-element btn-wood-primary w-100">Get Started</button>
+                            <button class="wood-element btn-wood-primary w-100" data-i18n="prc_btn_get_started">Get
+                                Started</button>
                         </div>
                     </div>
                 </div>
@@ -1119,39 +1282,46 @@
                         style="border-width: 4px;">
                         <div class="wood-card-body flex-grow-1">
                             <div class="d-flex justify-content-between align-items-start">
-                                <div class="wood-card-subtitle btn-wood-action">Professional</div>
-                                <span class="wood-badge btn-wood-action"><i class="bi bi-star-fill"></i> Most
-                                    Popular</span>
+                                <div class="wood-card-subtitle btn-wood-action" data-i18n="prc_tier2_badge">Professional
+                                </div>
+                                <span class="wood-badge btn-wood-action"><i class="bi bi-star-fill"></i> <span
+                                        data-i18n="prc_lbl_popular">Most Popular</span></span>
                             </div>
-                            <h6 class="wood-card-title fs-5 mb-1">Expanded Matrix</h6>
+                            <h6 class="wood-card-title fs-5 mb-1" data-i18n="prc_tier2_title">Expanded Matrix</h6>
                             <div class="mb-3">
                                 <span class="h2 fw-bold btn-wood-primary price-monthly">$79</span>
                                 <span class="h2 fw-bold btn-wood-primary price-annual d-none">$63</span>
-                                <span class="small opacity-60">/ month</span>
+                                <span class="small opacity-60" data-i18n="prc_lbl_per_month">/ month</span>
                             </div>
-                            <p class="wood-card-text">For teams running active calibration sweeps across multiple node
-                                clusters.</p>
+                            <p class="wood-card-text" data-i18n="prc_tier2_desc">For teams running active calibration
+                                sweeps across multiple node clusters.</p>
 
                             <div class="d-flex flex-column gap-2 mt-4">
                                 <div class="d-flex align-items-center gap-2 small">
-                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Up to 100 active nodes
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> <span
+                                        data-i18n="prc_feat_nodes_100">Up to 100 active nodes</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 small">
-                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Calibration ledger
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> <span
+                                        data-i18n="prc_feat_ledger">Calibration ledger</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 small">
-                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Advanced diagnostics
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> <span
+                                        data-i18n="prc_feat_diag_adv">Advanced diagnostics</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 small">
-                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Override protocols
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> <span
+                                        data-i18n="prc_feat_override">Override protocols</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 small opacity-40">
-                                    <i class="bi bi-x-circle"></i> Priority support
+                                    <i class="bi bi-x-circle"></i> <span data-i18n="prc_feat_support_prio">Priority
+                                        support</span>
                                 </div>
                             </div>
                         </div>
                         <div class="wood-card-footer">
-                            <button class="wood-element btn-wood-action w-100">Get Started</button>
+                            <button class="wood-element btn-wood-action w-100" data-i18n="prc_btn_get_started">Get
+                                Started</button>
                         </div>
                     </div>
                 </div>
@@ -1160,36 +1330,43 @@
                 <div class="col-12 col-lg-4">
                     <div class="wood-card wood-card-hover h-100 d-flex flex-column">
                         <div class="wood-card-body flex-grow-1">
-                            <div class="wood-card-subtitle btn-wood-secondary">Enterprise</div>
-                            <h6 class="wood-card-title fs-5 mb-1">Full Deployment</h6>
+                            <div class="wood-card-subtitle btn-wood-secondary" data-i18n="prc_tier3_badge">Enterprise
+                            </div>
+                            <h6 class="wood-card-title fs-5 mb-1" data-i18n="prc_tier3_title">Full Deployment</h6>
                             <div class="mb-3">
                                 <span class="h2 fw-bold btn-wood-primary price-monthly">$199</span>
                                 <span class="h2 fw-bold btn-wood-primary price-annual d-none">$159</span>
-                                <span class="small opacity-60">/ month</span>
+                                <span class="small opacity-60" data-i18n="prc_lbl_per_month">/ month</span>
                             </div>
-                            <p class="wood-card-text">For organizations operating unlimited nodes with dedicated
-                                support.</p>
+                            <p class="wood-card-text" data-i18n="prc_tier3_desc">For organizations operating unlimited
+                                nodes with dedicated support.</p>
 
                             <div class="d-flex flex-column gap-2 mt-4">
                                 <div class="d-flex align-items-center gap-2 small">
-                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Unlimited active nodes
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> <span
+                                        data-i18n="prc_feat_nodes_unlimited">Unlimited active nodes</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 small">
-                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Calibration ledger
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> <span
+                                        data-i18n="prc_feat_ledger">Calibration ledger</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 small">
-                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Advanced diagnostics
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> <span
+                                        data-i18n="prc_feat_diag_adv">Advanced diagnostics</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 small">
-                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Override protocols
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> <span
+                                        data-i18n="prc_feat_override">Override protocols</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 small">
-                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> Priority support
+                                    <i class="bi bi-check-circle-fill btn-wood-success"></i> <span
+                                        data-i18n="prc_feat_support_prio">Priority support</span>
                                 </div>
                             </div>
                         </div>
                         <div class="wood-card-footer">
-                            <button class="wood-element btn-wood-secondary w-100">Contact Sales</button>
+                            <button class="wood-element btn-wood-secondary w-100"
+                                data-i18n="prc_btn_contact_sales">Contact Sales</button>
                         </div>
                     </div>
                 </div>
@@ -1200,8 +1377,10 @@
             <div class="wood-card-inset mt-4 text-center">
                 <p class="small opacity-75 mb-0">
                     <i class="bi bi-info-circle me-1"></i>
-                    Need a custom configuration? <span class="btn-wood-action fw-bold" style="cursor: pointer;">Contact
-                        our team</span> for tailored node allocations and SLA terms.
+                    <span data-i18n="prc_footer_note_prefix">Need a custom configuration?</span>
+                    <span class="btn-wood-action fw-bold" style="cursor: pointer;"
+                        data-i18n="prc_footer_note_action">Contact our team</span>
+                    <span data-i18n="prc_footer_note_suffix">for tailored node allocations and SLA terms.</span>
                 </p>
             </div>
         </div>
@@ -1212,7 +1391,7 @@
         <div class="container-fluid py-1">
             <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
                 style="border-color: rgba(0,0,0,0.06) !important;">
-                <h2 class="h5 fw-bold mb-0">Frequently Asked Questions</h2>
+                <h2 class="h5 fw-bold mb-0" data-i18n="faq_title">Frequently Asked Questions</h2>
             </div>
 
             <div class="row g-4">
@@ -1222,8 +1401,8 @@
                     <div class="wood-panel p-4">
                         <div class="row g-3 align-items-center">
                             <div class="col-12 col-md-8">
-                                <h5 class="h6 fw-bold mb-1">How can we help?</h5>
-                                <p class="small opacity-75 mb-0">
+                                <h5 class="h6 fw-bold mb-1" data-i18n="faq_intro_title">How can we help?</h5>
+                                <p class="small opacity-75 mb-0" data-i18n="faq_intro_desc">
                                     Browse common questions about matrix calibration, node management, and system
                                     diagnostics below.
                                 </p>
@@ -1231,7 +1410,8 @@
                             <div class="col-12 col-md-4">
                                 <div class="position-relative">
                                     <input type="text" class="form-control wood-input-carved ps-5"
-                                        placeholder="Search questions...">
+                                        placeholder="Search questions..."
+                                        data-i18n-placeholder="faq_search_placeholder">
                                     <i class="bi bi-search position-absolute"
                                         style="left: 1rem; top: 50%; transform: translateY(-50%); opacity: 0.5;"></i>
                                 </div>
@@ -1243,25 +1423,32 @@
                 <!-- Category Filter -->
                 <div class="col-12">
                     <div class="wood-rocker-track d-inline-flex p-1">
-                        <button type="button" class="rocker-segment active" onclick="toggleRocker(this)">All</button>
-                        <button type="button" class="rocker-segment" onclick="toggleRocker(this)">Calibration</button>
-                        <button type="button" class="rocker-segment" onclick="toggleRocker(this)">Nodes</button>
-                        <button type="button" class="rocker-segment" onclick="toggleRocker(this)">Account</button>
-                        <button type="button" class="rocker-segment" onclick="toggleRocker(this)">Billing</button>
+                        <button type="button" class="rocker-segment active" onclick="toggleRocker(this)"
+                            data-i18n="faq_cat_all">All</button>
+                        <button type="button" class="rocker-segment" onclick="toggleRocker(this)"
+                            data-i18n="faq_cat_calibration">Calibration</button>
+                        <button type="button" class="rocker-segment" onclick="toggleRocker(this)"
+                            data-i18n="faq_cat_nodes">Nodes</button>
+                        <button type="button" class="rocker-segment" onclick="toggleRocker(this)"
+                            data-i18n="faq_cat_account">Account</button>
+                        <button type="button" class="rocker-segment" onclick="toggleRocker(this)"
+                            data-i18n="faq_cat_billing">Billing</button>
                     </div>
                 </div>
 
                 <!-- FAQ Accordion - Calibration -->
                 <div class="col-12">
-                    <h6 class="fw-bold mb-2 btn-wood-secondary"><i class="bi bi-sliders me-2"></i>Calibration</h6>
+                    <h6 class="fw-bold mb-2 btn-wood-secondary">
+                        <i class="bi bi-sliders me-2"></i><span data-i18n="faq_cat_calibration">Calibration</span>
+                    </h6>
                     <div class="wood-accordion flush">
                         <div class="wood-accordion-item open">
                             <div class="wood-accordion-header" onclick="toggleAccordion(this)">
-                                <span>What is Specular Variance?</span>
+                                <span data-i18n="faq_q_specular">What is Specular Variance?</span>
                                 <i class="bi bi-chevron-down"></i>
                             </div>
                             <div class="wood-accordion-collapse">
-                                <div class="wood-accordion-body">
+                                <div class="wood-accordion-body" data-i18n="faq_a_specular">
                                     A measure of deviation in surface reflectivity across the matrix nodes. Lower values
                                     indicate more consistent material calibration. Values above 30% typically trigger a
                                     mismatch fault flag on the System Stats deck.
@@ -1271,11 +1458,11 @@
 
                         <div class="wood-accordion-item">
                             <div class="wood-accordion-header" onclick="toggleAccordion(this)">
-                                <span>How often should I recalibrate?</span>
+                                <span data-i18n="faq_q_recalibrate">How often should I recalibrate?</span>
                                 <i class="bi bi-chevron-down"></i>
                             </div>
                             <div class="wood-accordion-collapse">
-                                <div class="wood-accordion-body">
+                                <div class="wood-accordion-body" data-i18n="faq_a_recalibrate">
                                     Recalibration is recommended every 72 hours under normal operating conditions, or
                                     immediately following a mismatch fault on any registered node.
                                 </div>
@@ -1284,11 +1471,11 @@
 
                         <div class="wood-accordion-item">
                             <div class="wood-accordion-header" onclick="toggleAccordion(this)">
-                                <span>Can calibration be automated?</span>
+                                <span data-i18n="faq_q_automation">Can calibration be automated?</span>
                                 <i class="bi bi-chevron-down"></i>
                             </div>
                             <div class="wood-accordion-collapse">
-                                <div class="wood-accordion-body">
+                                <div class="wood-accordion-body" data-i18n="faq_a_automation">
                                     Yes — enable Auto-recalibrate from the Form Elements console to schedule calibration
                                     sweeps at fixed intervals without manual intervention.
                                 </div>
@@ -1299,15 +1486,17 @@
 
                 <!-- FAQ Accordion - Nodes -->
                 <div class="col-12">
-                    <h6 class="fw-bold mb-2 btn-wood-secondary"><i class="bi bi-cpu me-2"></i>Nodes & Registry</h6>
+                    <h6 class="fw-bold mb-2 btn-wood-secondary">
+                        <i class="bi bi-cpu me-2"></i><span data-i18n="faq_section_nodes">Nodes & Registry</span>
+                    </h6>
                     <div class="wood-accordion flush">
                         <div class="wood-accordion-item">
                             <div class="wood-accordion-header" onclick="toggleAccordion(this)">
-                                <span>How do I add a new node to the registry?</span>
+                                <span data-i18n="faq_q_add_node">How do I add a new node to the registry?</span>
                                 <i class="bi bi-chevron-down"></i>
                             </div>
                             <div class="wood-accordion-collapse">
-                                <div class="wood-accordion-body">
+                                <div class="wood-accordion-body" data-i18n="faq_a_add_node">
                                     Navigate to Form Elements, enter a Registry Node Label and assign a Chroma Frequency
                                     Channel, then select Execute Matrix Commit to register the node.
                                 </div>
@@ -1316,11 +1505,11 @@
 
                         <div class="wood-accordion-item">
                             <div class="wood-accordion-header" onclick="toggleAccordion(this)">
-                                <span>What does "Mismatch Fault" mean?</span>
+                                <span data-i18n="faq_q_mismatch">What does "Mismatch Fault" mean?</span>
                                 <i class="bi bi-chevron-down"></i>
                             </div>
                             <div class="wood-accordion-collapse">
-                                <div class="wood-accordion-body">
+                                <div class="wood-accordion-body" data-i18n="faq_a_mismatch">
                                     A node has reported specular variance exceeding the safe threshold (typically 30%).
                                     Review the node's calibration history and run a diagnostic sweep to resolve.
                                 </div>
@@ -1329,11 +1518,11 @@
 
                         <div class="wood-accordion-item">
                             <div class="wood-accordion-header" onclick="toggleAccordion(this)">
-                                <span>Can I export the calibration ledger?</span>
+                                <span data-i18n="faq_q_export">Can I export the calibration ledger?</span>
                                 <i class="bi bi-chevron-down"></i>
                             </div>
                             <div class="wood-accordion-collapse">
-                                <div class="wood-accordion-body">
+                                <div class="wood-accordion-body" data-i18n="faq_a_export">
                                     Yes — use the export action from the System Stats deck to download the current
                                     ledger as a structured report.
                                 </div>
@@ -1344,16 +1533,18 @@
 
                 <!-- FAQ Accordion - Account -->
                 <div class="col-12">
-                    <h6 class="fw-bold mb-2 btn-wood-secondary"><i class="bi bi-person-gear me-2"></i>Account & Access
+                    <h6 class="fw-bold mb-2 btn-wood-secondary">
+                        <i class="bi bi-person-gear me-2"></i><span data-i18n="faq_section_account">Account &
+                            Access</span>
                     </h6>
                     <div class="wood-accordion flush">
                         <div class="wood-accordion-item">
                             <div class="wood-accordion-header" onclick="toggleAccordion(this)">
-                                <span>How do I change my access tier?</span>
+                                <span data-i18n="faq_q_tier">How do I change my access tier?</span>
                                 <i class="bi bi-chevron-down"></i>
                             </div>
                             <div class="wood-accordion-collapse">
-                                <div class="wood-accordion-body">
+                                <div class="wood-accordion-body" data-i18n="faq_a_tier">
                                     Access tier changes must be requested from a Tier 3 operator. Contact your system
                                     administrator to initiate an access review.
                                 </div>
@@ -1362,11 +1553,11 @@
 
                         <div class="wood-accordion-item">
                             <div class="wood-accordion-header" onclick="toggleAccordion(this)">
-                                <span>Is my profile data shared with other operators?</span>
+                                <span data-i18n="faq_q_privacy">Is my profile data shared with other operators?</span>
                                 <i class="bi bi-chevron-down"></i>
                             </div>
                             <div class="wood-accordion-collapse">
-                                <div class="wood-accordion-body">
+                                <div class="wood-accordion-body" data-i18n="faq_a_privacy">
                                     Only your name, role, and online status are visible to other operators. Contact
                                     information and access tier remain private to administrators.
                                 </div>
@@ -1379,11 +1570,12 @@
                 <div class="col-12">
                     <div class="wood-card-inset text-center py-4">
                         <i class="bi bi-life-preserver fs-3 btn-wood-secondary mb-2 d-block"></i>
-                        <h6 class="fw-bold mb-2">Still need help?</h6>
-                        <p class="small opacity-75 mb-3">Our support team can assist with node configuration,
-                            calibration issues, and account access.</p>
+                        <h6 class="fw-bold mb-2" data-i18n="faq_footer_title">Still need help?</h6>
+                        <p class="small opacity-75 mb-3" data-i18n="faq_footer_desc">
+                            Our support team can assist with node configuration, calibration issues, and account access.
+                        </p>
                         <button class="wood-element btn-wood-action px-4">
-                            <i class="bi bi-chat-dots me-2"></i>Contact Support
+                            <i class="bi bi-chat-dots me-2"></i><span data-i18n="faq_btn_support">Contact Support</span>
                         </button>
                     </div>
                 </div>
@@ -1397,18 +1589,18 @@
         <div class="container-fluid py-1">
             <div class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
                 style="border-color: rgba(0,0,0,0.06) !important;">
-                <h2 class="h5 fw-bold mb-0">Projects Progress</h2>
+                <h2 class="h5 fw-bold mb-0" data-i18n="proj_title">Projects Progress</h2>
                 <button class="wood-element btn-wood-action btn-sm px-4">
-                    <i class="bi bi-plus-lg me-2"></i>New Project
+                    <i class="bi bi-plus-lg me-2"></i><span data-i18n="proj_btn_new">New Project</span>
                 </button>
             </div>
 
-            <!-- Summary Stats -->
             <div class="row g-3 mb-4">
                 <div class="col-12 col-sm-6 col-xl-3">
                     <div class="wood-stat-card p-3">
                         <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="fs-8 text-uppercase fw-bold opacity-50">Active Projects</span>
+                            <span class="fs-8 text-uppercase fw-bold opacity-50" data-i18n="proj_stat_active">Active
+                                Projects</span>
                             <i class="bi bi-kanban btn-wood-secondary fs-5"></i>
                         </div>
                         <div class="h3 fw-bold mb-0 btn-wood-primary">6</div>
@@ -1417,7 +1609,8 @@
                 <div class="col-12 col-sm-6 col-xl-3">
                     <div class="wood-stat-card p-3">
                         <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="fs-8 text-uppercase fw-bold opacity-50">On Track</span>
+                            <span class="fs-8 text-uppercase fw-bold opacity-50" data-i18n="proj_status_on_track">On
+                                Track</span>
                             <i class="bi bi-check-circle btn-wood-success fs-5"></i>
                         </div>
                         <div class="h3 fw-bold mb-0 btn-wood-primary">4</div>
@@ -1426,7 +1619,8 @@
                 <div class="col-12 col-sm-6 col-xl-3">
                     <div class="wood-stat-card p-3">
                         <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="fs-8 text-uppercase fw-bold opacity-50">At Risk</span>
+                            <span class="fs-8 text-uppercase fw-bold opacity-50" data-i18n="proj_status_at_risk">At
+                                Risk</span>
                             <i class="bi bi-exclamation-triangle btn-wood-danger fs-5"></i>
                         </div>
                         <div class="h3 fw-bold mb-0 btn-wood-primary">2</div>
@@ -1435,7 +1629,8 @@
                 <div class="col-12 col-sm-6 col-xl-3">
                     <div class="wood-stat-card p-3">
                         <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="fs-8 text-uppercase fw-bold opacity-50">Avg. Completion</span>
+                            <span class="fs-8 text-uppercase fw-bold opacity-50"
+                                data-i18n="proj_stat_avg_completion">Avg. Completion</span>
                             <i class="bi bi-graph-up btn-wood-action fs-5"></i>
                         </div>
                         <div class="h3 fw-bold mb-0 btn-wood-primary">68%</div>
@@ -1443,24 +1638,25 @@
                 </div>
             </div>
 
-            <!-- Project Cards Grid -->
             <div class="row g-4 mb-4">
 
-                <!-- Project Card 1 -->
                 <div class="col-12 col-md-6 col-xl-4">
                     <div class="wood-card wood-card-hover h-100 d-flex flex-column">
                         <div class="wood-card-body flex-grow-1">
                             <div class="d-flex justify-content-between align-items-start mb-2">
-                                <div class="wood-card-subtitle btn-wood-secondary">Core Systems</div>
-                                <span class="wood-badge btn-wood-success"><i class="bi bi-circle-fill"></i> On
-                                    Track</span>
+                                <div class="wood-card-subtitle btn-wood-secondary" data-i18n="proj_cat_core">Core
+                                    Systems</div>
+                                <span class="wood-badge btn-wood-success">
+                                    <i class="bi bi-circle-fill"></i> <span data-i18n="proj_status_on_track">On
+                                        Track</span>
+                                </span>
                             </div>
-                            <h6 class="wood-card-title">Matrix Node Migration</h6>
-                            <p class="wood-card-text">Migrating legacy node clusters to the new specular calibration
-                                framework.</p>
+                            <h6 class="wood-card-title" data-i18n="proj_name_migration">Matrix Node Migration</h6>
+                            <p class="wood-card-text" data-i18n="proj_desc_migration">Migrating legacy node clusters to
+                                the new specular calibration framework.</p>
 
                             <div class="d-flex justify-content-between small fw-bold mb-2">
-                                <span class="opacity-60">Progress</span>
+                                <span class="opacity-60" data-i18n="proj_lbl_progress">Progress</span>
                                 <span>82%</span>
                             </div>
                             <div class="wood-progress mb-3">
@@ -1468,8 +1664,10 @@
                             </div>
 
                             <div class="d-flex align-items-center justify-content-between small">
-                                <span class="opacity-60"><i class="bi bi-calendar3 me-1"></i>Due Jul 28</span>
-                                <span class="opacity-60"><i class="bi bi-list-task me-1"></i>18/22 tasks</span>
+                                <span class="opacity-60"><i class="bi bi-calendar3 me-1"></i><span
+                                        data-i18n="proj_due_jul_28">Due Jul 28</span></span>
+                                <span class="opacity-60"><i class="bi bi-list-task me-1"></i><span
+                                        data-i18n="proj_tasks_migration">18/22 tasks</span></span>
                             </div>
                         </div>
                         <div class="wood-card-footer">
@@ -1480,26 +1678,29 @@
                                         class="bi bi-person-fill"></i></span>
                                 <span class="wood-avatar wood-avatar-sm"><i class="bi bi-person-fill"></i></span>
                             </div>
-                            <button class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-8">View</button>
+                            <button class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-8"
+                                data-i18n="proj_btn_view">View</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project Card 2 -->
                 <div class="col-12 col-md-6 col-xl-4">
                     <div class="wood-card wood-card-hover h-100 d-flex flex-column">
                         <div class="wood-card-body flex-grow-1">
                             <div class="d-flex justify-content-between align-items-start mb-2">
-                                <div class="wood-card-subtitle btn-wood-secondary">Diagnostics</div>
-                                <span class="wood-badge btn-wood-danger"><i class="bi bi-circle-fill"></i> At
-                                    Risk</span>
+                                <div class="wood-card-subtitle btn-wood-secondary" data-i18n="proj_cat_diagnostics">
+                                    Diagnostics</div>
+                                <span class="wood-badge btn-wood-danger">
+                                    <i class="bi bi-circle-fill"></i> <span data-i18n="proj_status_at_risk">At
+                                        Risk</span>
+                                </span>
                             </div>
-                            <h6 class="wood-card-title">Fault Detection Overhaul</h6>
-                            <p class="wood-card-text">Rebuilding the mismatch fault pipeline with real-time variance
-                                alerts.</p>
+                            <h6 class="wood-card-title" data-i18n="proj_name_fault">Fault Detection Overhaul</h6>
+                            <p class="wood-card-text" data-i18n="proj_desc_fault">Rebuilding the mismatch fault pipeline
+                                with real-time variance alerts.</p>
 
                             <div class="d-flex justify-content-between small fw-bold mb-2">
-                                <span class="opacity-60">Progress</span>
+                                <span class="opacity-60" data-i18n="proj_lbl_progress">Progress</span>
                                 <span>34%</span>
                             </div>
                             <div class="wood-progress mb-3">
@@ -1507,8 +1708,10 @@
                             </div>
 
                             <div class="d-flex align-items-center justify-content-between small">
-                                <span class="opacity-60"><i class="bi bi-calendar3 me-1"></i>Due Jun 30</span>
-                                <span class="opacity-60"><i class="bi bi-list-task me-1"></i>7/20 tasks</span>
+                                <span class="opacity-60"><i class="bi bi-calendar3 me-1"></i><span
+                                        data-i18n="proj_due_jun_30">Due Jun 30</span></span>
+                                <span class="opacity-60"><i class="bi bi-list-task me-1"></i><span
+                                        data-i18n="proj_tasks_fault">7/20 tasks</span></span>
                             </div>
                         </div>
                         <div class="wood-card-footer">
@@ -1517,26 +1720,29 @@
                                         class="bi bi-person-fill"></i></span>
                                 <span class="wood-avatar wood-avatar-sm"><i class="bi bi-person-fill"></i></span>
                             </div>
-                            <button class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-8">View</button>
+                            <button class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-8"
+                                data-i18n="proj_btn_view">View</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project Card 3 -->
                 <div class="col-12 col-md-6 col-xl-4">
                     <div class="wood-card wood-card-hover h-100 d-flex flex-column">
                         <div class="wood-card-body flex-grow-1">
                             <div class="d-flex justify-content-between align-items-start mb-2">
-                                <div class="wood-card-subtitle btn-wood-secondary">Interface</div>
-                                <span class="wood-badge btn-wood-action"><i class="bi bi-circle-fill"></i> In
-                                    Progress</span>
+                                <div class="wood-card-subtitle btn-wood-secondary" data-i18n="proj_cat_interface">
+                                    Interface</div>
+                                <span class="wood-badge btn-wood-action">
+                                    <i class="bi bi-circle-fill"></i> <span data-i18n="proj_status_in_progress">In
+                                        Progress</span>
+                                </span>
                             </div>
-                            <h6 class="wood-card-title">Mobile Console Rollout</h6>
-                            <p class="wood-card-text">Expanding the carved-wood interface to mobile sidebar and touch
-                                controls.</p>
+                            <h6 class="wood-card-title" data-i18n="proj_name_mobile">Mobile Console Rollout</h6>
+                            <p class="wood-card-text" data-i18n="proj_desc_mobile">Expanding the carved-wood interface
+                                to mobile sidebar and touch controls.</p>
 
                             <div class="d-flex justify-content-between small fw-bold mb-2">
-                                <span class="opacity-60">Progress</span>
+                                <span class="opacity-60" data-i18n="proj_lbl_progress">Progress</span>
                                 <span>57%</span>
                             </div>
                             <div class="wood-progress mb-3">
@@ -1544,8 +1750,10 @@
                             </div>
 
                             <div class="d-flex align-items-center justify-content-between small">
-                                <span class="opacity-60"><i class="bi bi-calendar3 me-1"></i>Due Aug 15</span>
-                                <span class="opacity-60"><i class="bi bi-list-task me-1"></i>12/21 tasks</span>
+                                <span class="opacity-60"><i class="bi bi-calendar3 me-1"></i><span
+                                        data-i18n="proj_due_aug_15">Due Aug 15</span></span>
+                                <span class="opacity-60"><i class="bi bi-list-task me-1"></i><span
+                                        data-i18n="proj_tasks_mobile">12/21 tasks</span></span>
                             </div>
                         </div>
                         <div class="wood-card-footer">
@@ -1558,19 +1766,19 @@
                                         class="bi bi-person-fill"></i></span>
                                 <span class="wood-avatar wood-avatar-sm"><i class="bi bi-person-fill"></i></span>
                             </div>
-                            <button class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-8">View</button>
+                            <button class="wood-element btn-wood-primary btn-sm py-1 px-3 fs-8"
+                                data-i18n="proj_btn_view">View</button>
                         </div>
                     </div>
                 </div>
 
             </div>
 
-            <!-- Detailed Table -->
             <div class="wood-card-inset">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div class="d-flex align-items-center gap-2">
                         <i class="bi bi-list-check btn-wood-secondary fs-5"></i>
-                        <h4 class="h6 fw-bold mb-0 text-body">All Projects</h4>
+                        <h4 class="h6 fw-bold mb-0 text-body" data-i18n="proj_table_heading">All Projects</h4>
                     </div>
                 </div>
 
@@ -1578,21 +1786,26 @@
                     <table class="table wood-table">
                         <thead>
                             <tr>
-                                <th scope="col">Project</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Progress</th>
-                                <th scope="col">Deadline</th>
-                                <th scope="col" class="text-end">Actions</th>
+                                <th scope="col" data-i18n="proj_th_project">Project</th>
+                                <th scope="col" data-i18n="proj_th_status">Status</th>
+                                <th scope="col" data-i18n="proj_th_progress">Progress</th>
+                                <th scope="col" data-i18n="proj_th_deadline">Deadline</th>
+                                <th scope="col" class="text-end" data-i18n="proj_th_actions">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
-                                    <span class="fw-bold d-block small">Matrix Node Migration</span>
-                                    <span class="fs-9 opacity-50">Core Systems</span>
+                                    <span class="fw-bold d-block small" data-i18n="proj_name_migration">Matrix Node
+                                        Migration</span>
+                                    <span class="fs-9 opacity-50" data-i18n="proj_cat_core">Core Systems</span>
                                 </td>
-                                <td><span class="wood-badge btn-wood-success wood-badge-inset"><i
-                                            class="bi bi-circle-fill"></i> On Track</span></td>
+                                <td>
+                                    <span class="wood-badge btn-wood-success wood-badge-inset">
+                                        <i class="bi bi-circle-fill"></i> <span data-i18n="proj_status_on_track">On
+                                            Track</span>
+                                    </span>
+                                </td>
                                 <td style="width: 180px;">
                                     <div class="d-flex align-items-center gap-2">
                                         <div class="wood-progress flex-grow-1">
@@ -1601,7 +1814,8 @@
                                         <span class="small fw-bold">82%</span>
                                     </div>
                                 </td>
-                                <td><span class="small opacity-75">Jul 28, 2026</span></td>
+                                <td><span class="small opacity-75" data-i18n="proj_date_jul_28_2026">Jul 28, 2026</span>
+                                </td>
                                 <td class="text-end">
                                     <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
                                             class="bi bi-arrow-up-right"></i></button>
@@ -1609,11 +1823,16 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="fw-bold d-block small">Fault Detection Overhaul</span>
-                                    <span class="fs-9 opacity-50">Diagnostics</span>
+                                    <span class="fw-bold d-block small" data-i18n="proj_name_fault">Fault Detection
+                                        Overhaul</span>
+                                    <span class="fs-9 opacity-50" data-i18n="proj_cat_diagnostics">Diagnostics</span>
                                 </td>
-                                <td><span class="wood-badge btn-wood-danger wood-badge-inset"><i
-                                            class="bi bi-exclamation-triangle-fill"></i> At Risk</span></td>
+                                <td>
+                                    <span class="wood-badge btn-wood-danger wood-badge-inset">
+                                        <i class="bi bi-exclamation-triangle-fill"></i> <span
+                                            data-i18n="proj_status_at_risk">At Risk</span>
+                                    </span>
+                                </td>
                                 <td style="width: 180px;">
                                     <div class="d-flex align-items-center gap-2">
                                         <div class="wood-progress flex-grow-1">
@@ -1622,7 +1841,8 @@
                                         <span class="small fw-bold">34%</span>
                                     </div>
                                 </td>
-                                <td><span class="small btn-wood-danger fw-bold">Jun 30, 2026</span></td>
+                                <td><span class="small btn-wood-danger fw-bold" data-i18n="proj_date_jun_30_2026">Jun
+                                        30, 2026</span></td>
                                 <td class="text-end">
                                     <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
                                             class="bi bi-arrow-up-right"></i></button>
@@ -1630,11 +1850,16 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="fw-bold d-block small">Mobile Console Rollout</span>
-                                    <span class="fs-9 opacity-50">Interface</span>
+                                    <span class="fw-bold d-block small" data-i18n="proj_name_mobile">Mobile Console
+                                        Rollout</span>
+                                    <span class="fs-9 opacity-50" data-i18n="proj_cat_interface">Interface</span>
                                 </td>
-                                <td><span class="wood-badge btn-wood-action wood-badge-inset"><i
-                                            class="bi bi-arrow-repeat"></i> In Progress</span></td>
+                                <td>
+                                    <span class="wood-badge btn-wood-action wood-badge-inset">
+                                        <i class="bi bi-arrow-repeat"></i> <span data-i18n="proj_status_in_progress">In
+                                            Progress</span>
+                                    </span>
+                                </td>
                                 <td style="width: 180px;">
                                     <div class="d-flex align-items-center gap-2">
                                         <div class="wood-progress flex-grow-1">
@@ -1643,7 +1868,8 @@
                                         <span class="small fw-bold">57%</span>
                                     </div>
                                 </td>
-                                <td><span class="small opacity-75">Aug 15, 2026</span></td>
+                                <td><span class="small opacity-75" data-i18n="proj_date_aug_15_2026">Aug 15, 2026</span>
+                                </td>
                                 <td class="text-end">
                                     <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
                                             class="bi bi-arrow-up-right"></i></button>
@@ -1651,11 +1877,16 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="fw-bold d-block small">Calibration Ledger v2</span>
-                                    <span class="fs-9 opacity-50">Core Systems</span>
+                                    <span class="fw-bold d-block small" data-i18n="proj_name_ledger">Calibration Ledger
+                                        v2</span>
+                                    <span class="fs-9 opacity-50" data-i18n="proj_cat_core">Core Systems</span>
                                 </td>
-                                <td><span class="wood-badge btn-wood-success wood-badge-inset"><i
-                                            class="bi bi-circle-fill"></i> On Track</span></td>
+                                <td>
+                                    <span class="wood-badge btn-wood-success wood-badge-inset">
+                                        <i class="bi bi-circle-fill"></i> <span data-i18n="proj_status_on_track">On
+                                            Track</span>
+                                    </span>
+                                </td>
                                 <td style="width: 180px;">
                                     <div class="d-flex align-items-center gap-2">
                                         <div class="wood-progress flex-grow-1">
@@ -1664,7 +1895,8 @@
                                         <span class="small fw-bold">95%</span>
                                     </div>
                                 </td>
-                                <td><span class="small opacity-75">Jun 20, 2026</span></td>
+                                <td><span class="small opacity-75" data-i18n="proj_date_jun_20_2026">Jun 20, 2026</span>
+                                </td>
                                 <td class="text-end">
                                     <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
                                             class="bi bi-arrow-up-right"></i></button>
@@ -1672,11 +1904,16 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="fw-bold d-block small">RTL Layout Audit</span>
-                                    <span class="fs-9 opacity-50">Interface</span>
+                                    <span class="fw-bold d-block small" data-i18n="proj_name_rtl">RTL Layout
+                                        Audit</span>
+                                    <span class="fs-9 opacity-50" data-i18n="proj_cat_interface">Interface</span>
                                 </td>
-                                <td><span class="wood-badge btn-wood-success wood-badge-inset"><i
-                                            class="bi bi-circle-fill"></i> On Track</span></td>
+                                <td>
+                                    <span class="wood-badge btn-wood-success wood-badge-inset">
+                                        <i class="bi bi-circle-fill"></i> <span data-i18n="proj_status_on_track">On
+                                            Track</span>
+                                    </span>
+                                </td>
                                 <td style="width: 180px;">
                                     <div class="d-flex align-items-center gap-2">
                                         <div class="wood-progress flex-grow-1">
@@ -1685,7 +1922,8 @@
                                         <span class="small fw-bold">70%</span>
                                     </div>
                                 </td>
-                                <td><span class="small opacity-75">Jul 10, 2026</span></td>
+                                <td><span class="small opacity-75" data-i18n="proj_date_jul_10_2026">Jul 10, 2026</span>
+                                </td>
                                 <td class="text-end">
                                     <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
                                             class="bi bi-arrow-up-right"></i></button>
@@ -1693,11 +1931,16 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="fw-bold d-block small">Override Protocol Audit</span>
-                                    <span class="fs-9 opacity-50">Diagnostics</span>
+                                    <span class="fw-bold d-block small" data-i18n="proj_name_override">Override Protocol
+                                        Audit</span>
+                                    <span class="fs-9 opacity-50" data-i18n="proj_cat_diagnostics">Diagnostics</span>
                                 </td>
-                                <td><span class="wood-badge btn-wood-danger wood-badge-inset"><i
-                                            class="bi bi-exclamation-triangle-fill"></i> At Risk</span></td>
+                                <td>
+                                    <span class="wood-badge btn-wood-danger wood-badge-inset">
+                                        <i class="bi bi-exclamation-triangle-fill"></i> <span
+                                            data-i18n="proj_status_at_risk">At Risk</span>
+                                    </span>
+                                </td>
                                 <td style="width: 180px;">
                                     <div class="d-flex align-items-center gap-2">
                                         <div class="wood-progress flex-grow-1">
@@ -1706,7 +1949,8 @@
                                         <span class="small fw-bold">18%</span>
                                     </div>
                                 </td>
-                                <td><span class="small btn-wood-danger fw-bold">Jun 25, 2026</span></td>
+                                <td><span class="small btn-wood-danger fw-bold" data-i18n="proj_date_jun_25_2026">Jun
+                                        25, 2026</span></td>
                                 <td class="text-end">
                                     <button class="wood-element btn-wood-action btn-sm py-1 px-2 fs-8 shadow-sm"><i
                                             class="bi bi-arrow-up-right"></i></button>
@@ -1723,17 +1967,18 @@
     <div class="wood-modal-backdrop" id="woodModal" style="display: none;">
         <div class="wood-modal-content">
             <div class="wood-modal-header">
-                <h5 class="wood-modal-title">Confirm Matrix Commit</h5>
+                <h5 class="wood-modal-title" data-i18n="modal_commit_title">Confirm Matrix Commit</h5>
                 <button class="btn-close-raised" onclick="closeWoodModal()"><i class="bi bi-x"></i></button>
             </div>
-            <div class="wood-modal-body">
+            <div class="wood-modal-body" data-i18n="modal_commit_body">
                 This action will permanently bind the current chroma frequency channel configuration to the active node
                 registry. Continue?
             </div>
             <div class="wood-modal-footer">
-                <button class="wood-element btn-wood-primary btn-sm px-4" onclick="closeWoodModal()">Cancel</button>
-                <button class="wood-element btn-wood-action btn-sm px-4" onclick="closeWoodModal()">Confirm
-                    Commit</button>
+                <button class="wood-element btn-wood-primary btn-sm px-4" onclick="closeWoodModal()"
+                    data-i18n="modal_btn_cancel">Cancel</button>
+                <button class="wood-element btn-wood-action btn-sm px-4" onclick="closeWoodModal()"
+                    data-i18n="modal_btn_confirm">Confirm Commit</button>
             </div>
         </div>
     </div>
